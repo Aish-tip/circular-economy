@@ -1,0 +1,89 @@
+[   
+        {
+            "id": 1, 
+            "title": "HP E098X scanner printer", 
+            "price": 20000,
+            "stock": 5,
+            "image":"../assets/images/computer-scanner.jpeg"
+            
+        },
+        {
+            "id": 2, 
+            "title": "Dell Insion all in one printer", 
+            "price": 12000,
+            "stock": 2,
+            "image":"../assets/images/laser-printers.jpeg"
+        },
+        {
+            "id": 3, 
+            "title": "HP QE09B jetink printer", 
+            "price": 8000,
+            "stock": 12,
+            "image":"../assets/images/printer-1.png"
+        },
+        {
+            "id": 4, 
+            "title": "Canon laser printer", 
+            "price": 12500,
+            "stock": 0,
+            "image":"../assets/images/printer-2.png"
+        },
+        {
+            "id": 5, 
+            "title": "Samsung printer-scanner", 
+            "price": 19750,
+            "stock": 8,
+             "image":"../assets/images/printer-3.png"
+        },
+        {
+            "id": 6, 
+            "title": "HP scramjet printer",
+            "price": 500000,
+            "stock": 8,
+            "image":"../assets/images/laser-printers.jpeg"
+        },
+        {
+            "id": 7, 
+            "title": "Canon home printer", 
+            "price": 6000,
+            "stock": 5,
+            "image":"../assets/images/computer-scanner.jpeg"
+        },
+        {
+            "id": 8, 
+            "title": "Samsung ESOS Office printer", 
+            "price": 38000,
+            "stock": 7,
+             "image":"../assets/images/printer-1.png"
+        },
+        {
+            "id": 9, 
+            "title": "Dell laser printer", 
+            "price": 22000,
+            "stock": 1,
+            "image":"../assets/images/printer-2.png"
+        },
+        {
+            "id": 10, 
+            "title": "Samsung B1 scanner", 
+            "price": 11000,
+            "stock": 0,
+            "image":"images/printer-3.png"
+        },
+        {
+            "id": 11, 
+            "title": "Samsung camera", 
+            "price": 4000,
+            "stock": 0,
+            "image":"../assets/images/laser-printers.jpeg"
+        },
+        {
+            "id": 10, 
+            "title": "Canon camera", 
+            "price": 3500,
+            "stock": 0,
+            "image":"../assets/images/computer-scanner.jpeg"
+        }
+
+    
+    ]

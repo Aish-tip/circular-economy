@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-4">
+        <div id="ta" style="padding: 10px;">
+            <h2>Total Assets</h2>
+            <p>500</p>
+            <p>Total assets available with the organization</p>
+            <button routerLink="/inventory">
+                <span>View All</span>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div id="aiu" style="padding: 10px;">
+            <h2>Assets In Use</h2>
+            <p>200</p>
+            <p>Total assets currently in use</p>
+            <button routerLink="/inventory">
+                <span>View All</span>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div id="fa" style="padding: 10px;">
+            <h2>Free Assets</h2>
+            <p>200</p>
+            <p>Total assets currently in use</p>
+            <button routerLink="/inventory">
+                <span>View All</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding:1.5rem">
+    <div class="col-6" style="padding: 12px;" >
+        <div id="box">
+        <h1>High Stock Items</h1>
+        <ng-container *ngFor="let asset of data ">
+            <div id="high-stock" *ngIf="asset.stock>=5" style="margin-bottom: 2%;">
+                <img src="../assets/{{asset.image}}"/>
+                <div style="background-color: green;width:100%;padding: 10px;">
+                    <p>{{asset.title}}</p>
+                    <span>price:{{asset.price}}</span><br>
+                    <span>stock:{{asset.stock}}</span>
+                </div>
+            </div>
+        </ng-container>
+        <div id="view-btn">
+            <button id="view">View All</button>
+        </div>
+    </div>
+    </div>
+    <div class="col-6"  style="padding: 12px;">
+        <div id="box">
+        <h1>Low Stock Items</h1>
+        <ng-container  *ngFor="let asset of data ">
+            <div id="low-stock" *ngIf="asset.stock<5" style="margin-bottom: 2%;">
+                <img src="../assets/{{asset.image}}"/>
+                <div style="background-color: red;width: 100%; padding: 10px;">
+                    <p>{{asset.title}}</p>
+                    <span>price:{{asset.price}}</span><br>                    
+                    <span>stock:{{asset.stock}}</span>
+                </div>
+            </div>
+        </ng-container>
+        <div id="view-btn">
+            <button id="view">View All</button>
+        </div>
+    </div>
+    </div>
+
+</div>

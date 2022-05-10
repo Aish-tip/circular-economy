@@ -1,0 +1,11 @@
+div#inventory{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+img{
+    width:100%;
+}
+div#high-stock{
+    width:20%;
+}
