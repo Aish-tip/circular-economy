@@ -1,0 +1,30 @@
+#register{
+    position: relative;
+    left: 5%;
+    top: 0%;
+   /* transform: translate(-50%, -50%); */
+    padding: 10px;
+}
+input{
+    margin:10px;
+    padding:5px;
+    width:96%;
+    border-radius: 10px;
+    background-color: rgba(243,244,246);
+}
+h1{
+    margin: 0px !important;
+    text-align: center;
+    
+    color: black;
+}
+button{
+    width:96%;
+    position: relative;
+    margin: 1%;
+    border-radius: 10px;
+    background: #062f77;
+    padding: 10px;
+    color:#ffffff;
+    font-size: 20px;
+}

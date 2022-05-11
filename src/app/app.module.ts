@@ -18,8 +18,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { GoogleChartsConfig, GoogleChartsModule, GOOGLE_CHARTS_LAZY_CONFIG } from 'angular-google-charts';
 import { OpenSidebarOnswipeDirective } from './open-sidebar-onswipe.directive';
 import {  ReplaySubject } from 'rxjs';
+import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
-
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 //googleChartsConfigSubject.next(config);
@@ -32,7 +36,10 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
     MessagesComponent,
     ReportsComponent,
     AboutComponent,
-    OpenSidebarOnswipeDirective
+    OpenSidebarOnswipeDirective,
+    ProfileComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,9 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
     GoogleChartsModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [{provide: GOOGLE_CHARTS_LAZY_CONFIG, useValue: googleChartsConfigSubject.asObservable()}],
   bootstrap: [AppComponent]

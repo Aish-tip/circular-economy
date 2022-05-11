@@ -1,0 +1,32 @@
+
+<h1>REGISTER</h1>
+<a routerLink="/login" target="_blank">Already registered? LOGIN</a>
+<div id="register">
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label for="firstname">First Name: </label><br>
+    <input id="firstname" type="text" formControlName="firstname">
+  <br>
+  <label for="lastname">Last Name: </label>
+    <input id="lastname" type="text" formControlName="lastname">
+    <br>
+    <label for="mobile">Mobile Number: </label>
+    <input id="mobile" type="number" formControlName="mobile">
+    <br>
+    <label for="email">Email: </label>
+    <input id="email" type="email" formControlName="email">
+<br>
+<label for="username">Username: </label>
+    <input id="username" type="text" formControlName="username">   
+  <br>
+  <label for="age">Enter Age: </label>
+    <input id="age" type="number" formControlName="age">   
+  <br>  
+    <label for="password">Password: </label>
+    <input id="password" type="password" formControlName="password">
+<br>
+    
+<button type="submit" [disabled]="!profileForm.valid">Submit</button>
+  </form>
+</div>
+<router-outlet></router-outlet>

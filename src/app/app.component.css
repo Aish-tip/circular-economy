@@ -4,6 +4,9 @@ h1{
     color: #ffffff;
     padding: 1%;
 }
+.row{
+    margin-right: 0 !important;
+}
 /* button{
     position: absolute;
     background-color: #3f51b5;
