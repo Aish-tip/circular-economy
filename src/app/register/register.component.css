@@ -5,16 +5,20 @@ font-weight: 500;
 font-size: 20px;
 line-height: 30px;
 color: #4D5959;
+margin-bottom: 0;
 }
 .form-reg{
     position: relative;
 }
 .title{
     position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 .heading{     
     position: absolute;
-    top: 50%;
+    top: 35%;
     color:#1D5C63;
     font-family: 'Poppins';
     font-style: normal;
@@ -24,7 +28,7 @@ color: #4D5959;
 }
 .logo{
     position: absolute;
-    top: 75%;
+    top: 48%;
 }
 .heading-reg{
     position: absolute;
@@ -38,13 +42,13 @@ color: #1D5C63;
 #register{
     position: absolute;
     left: 0%;
-    top: 20%;
+    top: 10%;
    /* transform: translate(-50%, -50%); */
     padding: 10px;
 }
 input{
-    margin:10px;
-    padding:5px;
+    margin:10px 0;
+    padding:10px;
     width:600px;
     border-radius: 8px;
     background-color: #EFF0F2;
@@ -52,8 +56,7 @@ input{
 }
 h1{
     margin: 0px !important;
-    text-align: center;
-    
+    text-align: center;    
     color: black;
 }
 button{
@@ -86,5 +89,16 @@ font-weight: 400;
 font-size: 18px;
 line-height: 27px;
 color: #4D5959;
+}
+::placeholder{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 30px;
+/* identical to box height */
+
+
+color: #838383;
 
 }

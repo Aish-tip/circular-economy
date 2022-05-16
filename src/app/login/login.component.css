@@ -106,4 +106,16 @@ color: rgba(29, 92, 99, 0.5);
     position: relative;
     top: 34%;
 }
+::placeholder{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 30px;
+/* identical to box height */
+
+
+color: #838383;
+
+}
 
