@@ -9,9 +9,10 @@ import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
-  {path:'',  redirectTo: '/home', pathMatch: 'full'},
+  {path:'',  redirectTo: '/login', pathMatch: 'full'},
   {path: 'home', component: HomeComponent },
   {path:'inventory', component:InventoryComponent},
   {path:'users', component:UsersComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path:'about', component:AboutComponent},
   {path:'profile', component:ProfileComponent},
   {path:'login', component:LoginComponent},
-  {path:'register', component:RegisterComponent}  
+  {path:'register', component:RegisterComponent} ,
+  {path:'menu',component:MenuComponent} 
 ];
 
 @NgModule({

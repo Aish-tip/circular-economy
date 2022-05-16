@@ -21,6 +21,7 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { MenuComponent } from './menu/menu.component';
 
 
 //googleChartsConfigSubject.next(config);
@@ -36,7 +37,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     OpenSidebarOnswipeDirective,
     ProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

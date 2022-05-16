@@ -4,17 +4,21 @@
 <div class="col-4 title">
   <h1 class="heading">Welcome to</h1>
   <img class="logo" src="../../assets/images/circular economy logo.png" alt="logo">
+  <img class="user" src="../../assets/images/User Login.png" alt="User">
 </div>
 <div class="col-1"></div>
 <div class="col-6 form-login">
-  <h3 style="position:absolute;color:#1D5C63;font-family: 'Poppins';font-style: normal;font-weight: 600;font-size: 48px;
-  line-height: 72px;top: 40%;">Login</h3>
+  <h3 class="login-head">Login</h3>
+  <p class="tabs">
+    <span id="tab-user">User Login</span>
+    <span id="tab-admin">Admin Login</span>
+  </p>
   <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" id="login">
-    <label for="email">Email</label>
-    <input id="email" type="text" formControlName="email" placeholder="email" [email]="true">
+    <label for="email">Email</label><br>
+    <input id="email" type="text" formControlName="email" placeholder="enter your email here" [email]="true">
   <br>
-    <label for="password">Password</label>
-    <input id="password" type="password" formControlName="password" placeholder="password">
+    <label for="password">Password</label><br>
+    <input id="password" type="password" formControlName="password" placeholder="enter your password">
     <br>
 <button id="submit" type="submit">Submit</button>
 <br>
