@@ -7,22 +7,26 @@ import { ChangeDetectorRef, Component, HostBinding, HostListener, OnInit } from 
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
      open(){
     const row=document.getElementById("row") ;
     const menu=document.getElementById("menu") ;
     const home=document.getElementById("home"); 
-    if(row && menu){
+    const header=document.getElementById("header");
+    if(row && menu && header){
       if(row.style.width==="15%"){
         
         menu.classList.add('horizTranslate');
+        header.classList.add('horizTranslate')
         row.style.width="60px";
         menu.style.width="60px";
+        header.style.width="100%";
       }
       else{
         row.style.width="15%";
         menu.style.width="15%";
+        header.style.width="100%";
       }      
     }
    if(menu && home) {

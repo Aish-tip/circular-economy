@@ -1,43 +1,67 @@
-#login{
+
+.form-login{
     position: relative;
-    left: 65%;
-    top: 85%;
-    transform: translate(-50%, -50%);
-    padding: 5%;
 }
-h1{
-    text-align: center;
-    margin:0 !important;
-    position: relative;
+#login{
+    position: absolute;
     top: 50%;
-    left:8%;
+    /* transform: translate(-50%, -50%); */
+    padding: 5%;
+    padding-left: 0;
+    width: 100%;
+}
+.title{
+    position: relative;
+}
+.heading{     
+    position: absolute;
+    top: 50%;
+    /* transform: translate(-50%, -50%); */
+    color:#1D5C63;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 96px;
+}
+.logo{
+    position: absolute;
+    top: 75%;
+}
+label{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 30px;
+color: #4D5959;
+
 }
 #email,#password{
-    margin-bottom: 2%;
-    width: 85%;
+    /* position: absolute; */
+    margin-bottom: 5%;
+    width: 600px;
     padding: 1%;
     border-radius: 10px
 }
 
 #submit{
     margin: 1%;
-    position: relative;
+    position: absolute;
     top: 75%;
-    left: 41.5%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width:85%;
-    background: #062f77;
+    left: 20%;
+    width:50%;
+    background: #007074;
     padding: 10px;
     border-radius: 10px;
     color:#ffffff;
-    font-size:20px;
+    font-size:26px;
 }
 #register{
     margin: 0;
-    position: relative;
-    top: 50%;
-    left: 34%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 100%;
+    left: 26%;
+    font-size: 18px;
+    color: #000000;    
 }
