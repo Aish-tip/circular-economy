@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { MenuComponent } from './menu/menu.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AuthGuard } from './services/auth.guard';
 
 
 //googleChartsConfigSubject.next(config);
@@ -53,7 +54,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
