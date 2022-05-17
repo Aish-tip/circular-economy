@@ -1,4 +1,3 @@
-<!-- <h1>LOGIN</h1> -->
 <div class="row" style="height:100%">
   <div class="col-1"></div>
 <div class="col-4 title">
@@ -7,7 +6,8 @@
   <img class="user" src="../../assets/images/User Login.png" alt="User">
 </div>
 <div class="col-1"></div>
-<div class="col-6 form-login">
+<!--LOGIN COMPONENT-->
+<div id="log" class="col-6 form-login">
   <h3 class="login-head">Login</h3>
   <p class="tabs">
     <span id="tab-user">User Login</span>
@@ -16,14 +16,44 @@
   <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" id="login">
     <label for="email">Email</label><br>
     <input id="email" type="text" formControlName="email" placeholder="enter your email here" [email]="true">
-  <br>
+    <br>
     <label for="password">Password</label><br>
     <input id="password" type="password" formControlName="password" placeholder="enter your password">
     <br>
-<button id="submit" type="submit">Submit</button>
-<br>
-<a routerLink="/register" id="register">Don't have an account?<span style="color:#4D5959">Sign Up</span></a>
+    <button id="submit" type="submit">Submit</button>
+    <br>
+    <a (click)="register()" id="register">Don't have an account?<span style="color:#4D5959">Sign Up</span></a>
   </form>
 </div>
-
+<!--REGISTER COMPONENT-->
+<div id="reg" class="col-6 form-reg">
+  <h1 class="heading-reg">Sign Up</h1>
+    <div id="register_form">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <label for="firstname">First Name: </label><br>
+      <input id="firstname" type="text" formControlName="firstname" placeholder="enter firstname">
+      <br>
+      <label for="lastname">Last Name: </label><br>
+      <input id="lastname" type="text" formControlName="lastname" placeholder="enter lastname">
+      <br>
+      <label for="mobile">Mobile Number: </label><br>
+      <input id="mobile" type="number" formControlName="mobile" placeholder="enter mobile">
+      <br>
+      <label for="email">Email: </label><br>
+      <input id="email" type="email" formControlName="email" placeholder="enter email">
+      <br>
+      <label for="username">Username: </label><br>
+      <input id="username" type="text" formControlName="username" placeholder="enter username">   
+      <br>
+      <!-- <label for="age">Enter Age: </label>
+      <input id="age" type="number" formControlName="age">   
+      <br>   -->
+      <label for="password">Password: </label><br>
+      <input id="password" type="password" formControlName="password" placeholder="enter password">
+      <br>
+      <button id="acc-btn" type="submit" [disabled]="!profileForm.valid">Create Account</button>
+      <a (click)="login()" id="login-page" >Already registered?<span style="color:#007074">Log in</span></a>
+    </form>
+    
+  </div>
 </div>

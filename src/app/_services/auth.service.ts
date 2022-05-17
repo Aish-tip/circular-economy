@@ -16,15 +16,14 @@ export class AuthService {
       password
     }, httpOptions);    
   }
-  register(firstname:any, lastname:any, email:any, password:any, username:any, mobile:any, age:any): Observable<any> {
+  register(firstname:any, lastname:any, email:any, password:any, username:any, mobile:any): Observable<any> {
     return this.http.post('http://localhost:3000/api/Users', {
       firstname,
       lastname,
       username,
       email,
       password,
-      mobile,
-      age
+      mobile
     }, httpOptions);
   }
 }

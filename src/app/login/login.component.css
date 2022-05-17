@@ -46,15 +46,7 @@
     position: absolute;
     top: 35%;
 }
-label{
-    font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 30px;
-color: #4D5959;
 
-}
 #email,#password{
     /* position: absolute; */
     margin-bottom: 5%;
@@ -118,4 +110,80 @@ line-height: 30px;
 color: #838383;
 
 }
+
+#reg{
+    display:none;
+}
+#log{
+    display:block;
+}
+
+/*register*/
+
+.heading-reg{
+    position: absolute;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 48px;
+line-height: 72px;
+color: #1D5C63;
+}
+#register_form{
+    position: absolute;
+    left: 0%;
+    top: 10%;
+   /* transform: translate(-50%, -50%); */
+    padding: 10px;
+}
+label{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 30px;
+color: #4D5959;
+margin-bottom: 0;
+}
+input{
+    margin:10px 0;
+    padding:10px;
+    width:600px;
+    border-radius: 8px;
+    background-color: #EFF0F2;
+    border: none;
+}
+#acc-btn{
+    width:65%;
+    left:16%;
+    position: absolute;
+    margin: 1%;
+    border-radius: 8px;
+    background: #007074;
+    padding: 10px;
+    color:#ffffff;
+    font-size: 20px;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 26px;
+line-height: 30px;
+border: none;
+}
+#login-page{
+
+    position: absolute;
+    top: 110%;
+    left: 32%;
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 5%;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 27px;
+color: #4D5959;
+}
+
 

@@ -1,0 +1,31 @@
+.home{
+  background: #E5E5E5;
+}
+.banner{
+  width: 85%;
+    margin: 10% 0;
+}
+.desc{
+  margin: 10% 0;
+}
+.img-title{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 72px;
+  color: #1D5C63;
+  padding: 0 16%;
+}
+.img-desc{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #417D7A;
+  padding: 0 15%;
+}
+.location{
+  padding: 0 15%;
+}

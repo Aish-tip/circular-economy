@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { MenuComponent } from './menu/menu.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 //googleChartsConfigSubject.next(config);
@@ -38,7 +39,8 @@ import { MenuComponent } from './menu/menu.component';
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
-    MenuComponent
+    MenuComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
