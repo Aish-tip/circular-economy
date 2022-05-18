@@ -3,10 +3,10 @@
 }
 .banner{
   width: 85%;
-    margin: 10% 0;
+    margin: 5% 0;
 }
 .desc{
-  margin: 10% 0;
+  margin: 5% 0;
 }
 .img-title{
   font-family: 'Poppins';
@@ -15,7 +15,7 @@
   font-size: 48px;
   line-height: 72px;
   color: #1D5C63;
-  padding: 0 16%;
+  padding: 0 10%;
 }
 .img-desc{
   font-family: 'Poppins';
@@ -24,8 +24,102 @@
   font-size: 14px;
   line-height: 21px;
   color: #417D7A;
-  padding: 0 15%;
+  padding: 0 10%;
 }
 .location{
-  padding: 0 15%;
+  padding: 0 10%;
+}
+.request{
+  background: #1D5C63;
+border-radius: 16px;
+border: none;
+color:#ffffff;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 21px;
+letter-spacing: -0.02em;
+padding: 2% 6%;
+margin-left: 10%;
+}
+.div-title{
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 48px;
+line-height: 72px;
+color: #1D5C63;
+padding: 0% 4%;
+}
+hr.line{
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  margin:0 1%;
+  height:3px;
+  color:#000000;
+}
+#products{
+  background: #FFFFFF;
+box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+width: 27%;
+  margin: 3%;
+  display:inline-block;
+}
+#product-img img{
+  width: 90%;
+  margin: 5%;
+  
+}
+#product-img{
+  background: #FFE2E2;
+}
+.asset-title{
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+text-align: left;
+color: #000000;
+}
+.asset-stock{
+  float: right;
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+text-align: center;
+color: #000000;
+}
+.asset-btn{
+  background: #1D5C63;
+  border-radius: 8px;
+  color:#ffffff;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  border: none;
+  padding: 2% 5%;
+  margin: 2% 0%;
+}
+.prod{
+  float:right;
+  margin-top: 2%;
+}
+.prod label{
+  /* margin-left: -20%; */
+    margin-right: 40px;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 21px;
+color: #1D5C63;
+
+    /* float:right; */
 }

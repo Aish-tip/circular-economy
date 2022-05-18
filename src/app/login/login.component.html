@@ -3,24 +3,42 @@
 <div class="col-4 title">
   <h1 class="heading">Welcome to</h1>
   <img class="logo" src="../../assets/images/circular economy logo.png" alt="logo">
-  <img class="user" src="../../assets/images/User Login.png" alt="User">
+  <img id="userlog" class="user" src="../../assets/images/User Login.png" alt="User">
+  <img id="adminlog" class="user" src="../../assets/images/Admin Login.png" alt="admin">
 </div>
 <div class="col-1"></div>
 <!--LOGIN COMPONENT-->
 <div id="log" class="col-6 form-login">
   <h3 class="login-head">Login</h3>
   <p class="tabs">
-    <span id="tab-user">User Login</span>
-    <span id="tab-admin">Admin Login</span>
+    <a (click)="openuser()" id="tab-user">User Login</a>
+    <a (click)="openadmin()" id="tab-admin">Admin Login</a>
   </p>
-  <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" id="login">
+
+  <!-- user login -->
+
+  <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" id="userlogin">
     <label for="email">Email</label><br>
-    <input id="email" type="text" formControlName="email" placeholder="enter your email here" [email]="true">
+    <input id="email1" type="text" formControlName="email" placeholder="enter your email here" [email]="true">
     <br>
     <label for="password">Password</label><br>
-    <input id="password" type="password" formControlName="password" placeholder="enter your password">
+    <input id="password1" type="password" formControlName="password" placeholder="enter your password">
     <br>
     <button id="submit" type="submit">Submit</button>
+    <br>
+    <a (click)="register()" id="register">Don't have an account?<span style="color:#4D5959">Sign Up</span></a>
+  </form>
+
+  <!-- admin login -->
+
+  <form id="adminlogin">
+    <label for="email">Email</label><br>
+    <input id="email-admin" type="text" placeholder="enter your admin-email here">
+    <br>
+    <label for="password">Password</label><br>
+    <input id="password-admin" type="password" placeholder="enter your password">
+    <br>
+    <button id="admin-submit" type="submit">Submit</button>
     <br>
     <a (click)="register()" id="register">Don't have an account?<span style="color:#4D5959">Sign Up</span></a>
   </form>

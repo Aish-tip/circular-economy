@@ -2,13 +2,26 @@
 .form-login{
     position: relative;
 }
-#login{
+#userlogin{
+    display: block;
     position: absolute;
     top: 35%;
     /* transform: translate(-50%, -50%); */
     padding: 5% 0;
     padding-left: 0;
     width: 100%;
+}
+#adminlogin{
+    display: none;
+    position: absolute;
+    top: 35%;
+    /* transform: translate(-50%, -50%); */
+    padding: 5% 0;
+    padding-left: 0;
+    width: 100%;
+}
+#adminlog{
+    display: none;
 }
 .user{
     width: 70%;
@@ -47,7 +60,15 @@
     top: 35%;
 }
 
-#email,#password{
+#email1,#password1{
+    /* position: absolute; */
+    margin-bottom: 5%;
+    width: 600px;
+    padding: 1%;
+    border-radius: 10px;
+    background:#EFF0F2;
+}
+#email-admin,#password-admin{
     /* position: absolute; */
     margin-bottom: 5%;
     width: 600px;
@@ -57,6 +78,18 @@
 }
 
 #submit{
+    margin: 1%;
+    position: absolute;
+    top: 75%;
+    left: 13%;
+    width:50%;
+    background: #007074;
+    padding: 10px;
+    border-radius: 10px;
+    color:#ffffff;
+    font-size:26px;
+}
+#admin-submit{
     margin: 1%;
     position: absolute;
     top: 75%;
@@ -84,6 +117,7 @@ font-size: 24px;
 line-height: 36px;
 color: #1D5C63;
 margin-right: 5%;
+text-decoration: underline;
 }
 #tab-admin{
 font-family: 'Poppins';
@@ -92,7 +126,7 @@ font-weight: 600;
 font-size: 24px;
 line-height: 36px;
 color: rgba(29, 92, 99, 0.5);
-
+text-decoration: none;
 }
 .tabs{
     position: relative;

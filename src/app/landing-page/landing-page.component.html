@@ -4,8 +4,8 @@
 <div>
   <div class="home">
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-4 desc">
+      <!-- <div class="col-1"></div> -->
+      <div class="col-5 desc">
         <h1 class="img-title">Macbook Pro 16 inch</h1>
         <p class="img-desc">2020 Apple MacBook Pro 
         (13.3-inch/33.78 cm, Apple M1 chip with 8-core CPU and 8-core GPU, 8GB RAM, 256GB SSD) - Silver</p>
@@ -13,7 +13,7 @@
           <span><img src="../../assets/images/location.svg" alt="location"></span>
           <span style="margin-left:8%">Hyderabad</span>
         </p>
-        <button class="">Request Item</button>
+        <button class="request">Request Item</button>
       </div>
       <div class="col-2"></div>
       <div class="col-5 ">
@@ -21,5 +21,36 @@
       </div>
     </div>
   </div>
+  <div>
+    <span class="prod">
+      <label>Recent</label>
+      <label>Most Requested</label>
+    </span>
+    <h2 class="div-title">Popular products</h2>
+    
+    <hr class="line">
+  </div>
+  <div id="inventory" style="padding: 12px;" >        
+    <ng-container *ngFor="let asset of data ">
+      <div id="products">
+        <div>
+          <div id="product-img">
+            <img src="../../assets/images/macbook pro.png"/>
+          </div>          
+          <div style="padding: 10px;">
+            <p>
+              <span class="asset-title">{{asset.title}}</span>
+              <span class="asset-stock">{{asset.stock}} available</span>
+            </p>
+            <span><img src="../../assets/images/location.svg" alt="location"></span>
+            <span style="margin-left:1%">Bangalore</span>
+            <p><button class="asset-btn">Request Item</button></p>            
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
 </div>
+</div>
+<app-footer></app-footer>
 

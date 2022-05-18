@@ -15,17 +15,17 @@ import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {path:'',  redirectTo: '/login', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  {path:'inventory', component:InventoryComponent,canActivate: [AuthGuard]},
-  {path:'users', component:UsersComponent,canActivate: [AuthGuard]},
-  {path:'messages', component:MessagesComponent,canActivate: [AuthGuard]},
-  {path:'reports', component:ReportsComponent,canActivate: [AuthGuard]},
-  {path:'about', component:AboutComponent,canActivate: [AuthGuard]},
-  {path:'profile', component:ProfileComponent,canActivate: [AuthGuard]},
+  {path: 'home', component: HomeComponent},
+  {path:'inventory', component:InventoryComponent},
+  {path:'users', component:UsersComponent},
+  {path:'messages', component:MessagesComponent},
+  {path:'reports', component:ReportsComponent},
+  {path:'about', component:AboutComponent},
+  {path:'profile', component:ProfileComponent},
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent} ,
-  {path:'menu',component:MenuComponent,canActivate: [AuthGuard]},
-  {path:'landing',component:LandingPageComponent,canActivate: [AuthGuard]} 
+  {path:'menu',component:MenuComponent},
+  {path:'landing',component:LandingPageComponent} 
 ];
 
 @NgModule({

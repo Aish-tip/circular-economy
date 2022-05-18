@@ -24,6 +24,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { MenuComponent } from './menu/menu.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthGuard } from './services/auth.guard';
+import { FooterComponent } from './footer/footer.component';
 
 
 //googleChartsConfigSubject.next(config);
@@ -41,7 +42,8 @@ import { AuthGuard } from './services/auth.guard';
     LoginComponent,
     RegisterComponent,
     MenuComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
