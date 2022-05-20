@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MenuComponent } from './menu/menu.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AddProductComponent } from './add-product/add-product.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent} ,
   {path:'menu',component:MenuComponent},
-  {path:'landing',component:LandingPageComponent} 
+  {path:'landing',component:LandingPageComponent},
+  {path:'add-product',component:AddProductComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,70 @@
+<div class="main-div">    
+    <div class="vertical-div">    
+        <div>
+            <img routerLink="/landing" class="admin-logo" src="../../assets/images/circular economy logo.png" alt="logo">
+            <p class="options">
+                <span class="icon"><img src="../../assets/images/dashboard.svg" alt="dashboard"></span>
+                <span class="text">Dashboard</span>
+            </p>
+            <p class="options">
+                <span class="icon"><img src="../../assets/images/manage user.svg" alt="dashboard"></span>
+                <span class="text">Manage User</span>
+            </p>
+            <p class="options">
+                <span class="icon"><img src="../../assets/images/request.svg" alt="dashboard"></span>
+                <span class="text">Request</span>
+            </p>
+        </div>  
+        <hr>
+        <div class="profile-icons">
+            <span>
+                <img src="../../assets/images/Message.svg" alt="message">
+            </span>
+            <span>
+                <img src="../../assets/images/notification.svg" alt="notification">
+            </span>
+        </div>
+        <div class="content-div">
+            <div class="drag-area">
+                <span class="icon-file">
+                    <input id="imgfile" type="file" id="img" name="img" accept="image/*">
+                </span>
+            </div> 
+            <div class="product-form">
+                <form class="form-details">
+                    <label for="firstname">Name of Product </label><br>
+                    <input id="firstname" type="text" formControlName="firstname" placeholder="enter name here">
+                    <br>
+                    <!-- <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="30">
+                    <br> -->
+                    <label for="lastname">Description of Product </label><br>
+                    <textarea id="lastname" rows="4" cols="84" placeholder="enter description"></textarea>
+                    <br>
+                    <label for="email">Location of Product </label><br>
+                    <input id="email" type="text" formControlName="email" placeholder="enter location here">
+                    <br>
+                    <label for="mobile">Serial Number of Product </label><br>
+                    <input id="mobile" type="number" formControlName="mobile" placeholder="enter serial number">
+                    <br>
+                    <label for="username">Brand of product </label><br>
+                    <input id="username" type="text" formControlName="username" placeholder="enter brand here">   
+                    <br>
+                    <!-- <label for="age">Enter Age: </label>
+                    <input id="age" type="number" formControlName="age">   
+                    <br>   -->
+                    <label for="username">Year of Product Manufacture </label><br>
+                    <input id="username" type="datetime" formControlName="username" placeholder="enter manufacture date">   
+                    <br>
+                    <button class="product-submit" type="submit">Submit</button>
+                </form>
+            </div>
+        </div> 
+    </div>
+    
+    <div>
+        <!-- <span style="color: red;" >&#x229E;</span>
+        <input type="file" id="imageFile" accept="image/*"> -->
+        
+    </div>
+</div>

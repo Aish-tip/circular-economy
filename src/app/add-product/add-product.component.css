@@ -1,0 +1,92 @@
+.admin-logo{    
+    width:50%;
+    margin: 5% 5%;
+}
+hr{    
+  height: 730px;
+  width: 2px;
+  margin-left: -9%;
+}
+.vertical-div{
+    display: flex;
+}
+.content-div{
+    display:flex;
+    margin-top:3%;
+}
+.options{
+    margin: 5% 6%;
+}
+.drag-area{
+    height: 300px;
+    border: 3px dashed #e0eafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5% 5%;
+    width: 50%;
+}
+label{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 30px;
+color: #4D5959;
+}
+.product-form{
+    width:1000px;
+}
+input{
+    margin: 0px 0 15px 0;
+    padding:10px;
+    width:90%;
+    border-radius: 8px;
+    background-color: #EFF0F2;
+    border: none;
+}
+.form-details{
+    margin: 8% 0%;
+}
+::placeholder{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #838383;
+}
+.product-submit{
+    /* margin: 1%; */
+    position: absolute;
+    /* top: 75%; */
+    /* left: 13%; */
+    width:10%;
+    background: #007074;
+    padding: 10px;
+    border-radius: 10px;
+    color:#ffffff;
+    font-size:26px;
+    border:none;
+}
+textarea{
+    background-color: #EFF0F2;
+    border: none;
+}
+input#img{
+    background-color: transparent;
+}
+.text{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 21px;
+text-align: center;
+color: #417D7A;
+margin-left: 5%;
+}
+.profile-icons{
+    display:flex;
+}

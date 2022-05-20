@@ -25,6 +25,7 @@ import { MenuComponent } from './menu/menu.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthGuard } from './services/auth.guard';
 import { FooterComponent } from './footer/footer.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 //googleChartsConfigSubject.next(config);
@@ -43,7 +44,8 @@ import { FooterComponent } from './footer/footer.component';
     RegisterComponent,
     MenuComponent,
     LandingPageComponent,
-    FooterComponent
+    FooterComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
