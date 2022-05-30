@@ -53,7 +53,7 @@
     font-weight: 600;
     font-size: 48px;
   line-height: 72px;
-  top: 23%;
+  top: 21%;
 }
 .logo{
     position: absolute;
@@ -111,6 +111,7 @@
 }
 #tab-user{
     font-family: 'Poppins';
+    cursor:pointer;
 font-style: normal;
 font-weight: 600;
 font-size: 24px;
@@ -121,6 +122,7 @@ text-decoration: underline;
 }
 #tab-admin{
 font-family: 'Poppins';
+cursor:pointer;
 font-style: normal;
 font-weight: 600;
 font-size: 24px;
@@ -130,7 +132,7 @@ text-decoration: none;
 }
 .tabs{
     position: relative;
-    top: 34%;
+    top: 32%;
 }
 ::placeholder{
     font-family: 'Poppins';

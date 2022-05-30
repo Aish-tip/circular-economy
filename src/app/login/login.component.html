@@ -12,10 +12,10 @@
 
 <div id="log" class="col-6 form-login">
   <h3 class="login-head">Login</h3>
-  <p class="tabs">
-    <a (click)="openuser()" id="tab-user">User Login</a>
+  <div class="tabs">
+    <span (click)="openuser()"  id="tab-user">User Login</span>
     <a (click)="openadmin()" id="tab-admin">Admin Login</a>
-  </p>
+  </div>
 
   <!-- user login -->
 
@@ -27,8 +27,10 @@
     <input id="password1" type="password" formControlName="password" placeholder="enter your password">
     <br>
     <button id="submit" type="submit">Submit</button>
+    <!-- <button routerLink="/landing" id="submit" type="submit">Submit</button> -->
     <br>
     <a (click)="register()" id="register">Don't have an account?<span style="color:#4D5959">Sign Up</span></a>
+    <!-- <a routerLink="/landing" id="register">Don't have an account?<span style="color:#4D5959">Sign Up</span></a> -->
   </form>
 
   <!-- admin login -->
@@ -41,9 +43,12 @@
     <input id="password-admin" type="password" placeholder="enter your password">
     <br>
     <button id="admin-submit" type="submit">Submit</button>
+    <!-- <button routerLink="/landing" id="admin-submit" type="submit">Submit</button> -->
     <br>
     <a (click)="register()" id="register">Don't have an account?<span style="color:#4D5959">Sign Up</span></a>
+    <!-- <a routerLink="/landing" id="register">Don't have an account?<span style="color:#4D5959">Sign Up</span></a> -->
   </form>
+
 </div>
 
 <!--REGISTER COMPONENT-->
@@ -51,7 +56,7 @@
 <div id="reg" class="col-6 form-reg">
   <h1 class="heading-reg">Sign Up</h1>
     <div id="register_form">
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="profileForm" (ngSubmit)="onRegister()">
       <label for="firstname">First Name: </label><br>
       <input id="firstname" type="text" formControlName="firstname" placeholder="enter firstname">
       <br>
@@ -71,7 +76,9 @@
       <input id="password" type="password" formControlName="password" placeholder="enter password">
       <br>
       <button id="acc-btn" type="submit" [disabled]="!profileForm.valid">Create Account</button>
+      <!-- <button routerLink="/login" id="acc-btn" type="submit">Create Account</button> -->
       <a (click)="login()" id="login-page" >Already registered?<span style="color:#007074">Log in</span></a>
+      <!-- <a routerLink="/login" id="login-page" >Already registered?<span style="color:#007074">Log in</span></a> -->
     </form>
     
   </div>

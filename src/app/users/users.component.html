@@ -1,4 +1,12 @@
 <div>
     <app-menu></app-menu>
   </div>
-<p>users works!</p>
+<!-- <p>account works!</p> -->
+<h1 style="text-align:center">Requested Items</h1>
+<ng-container *ngFor="let req of item">
+  <div id="reqitem">
+      <p>Asset Name: {{req.name}}</p>
+      <p>Qunatity: {{req.quantity}}</p>
+  </div>
+</ng-container>
+

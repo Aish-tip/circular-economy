@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
+ 
   constructor() { }
 
   ngOnInit(): void {
@@ -55,6 +55,16 @@ export class MenuComponent implements OnInit {
       //   home.classList.add("col-11");
       //   home.classList.remove("col-10");
       // }
-    }     
+    
+    } 
+      //     var head = document.getElementById("menu-items");
+      //     var btns = document.getElementsByClassName("btn");
+      // for (var i = 0; i < btns.length; i++) {
+      //   btns[i].addEventListener("click", () => {
+      //   var current = document.getElementsByClassName("active");
+      //   current[0].className = current[0].className.replace(" active", "");
+      //   this.className += " active";
+      //   });
+      // }    
 }
 }

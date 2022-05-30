@@ -26,6 +26,17 @@ export class AuthService {
       mobile
     }, httpOptions);
   }
+  addproduct(name:any, quantity:any, desc:any, location:any, serial:any, brand:any, year:any): Observable<any>{
+    return this.http.post('http://localhost:3000/api/products', {
+      name,
+      quantity,
+      desc,
+      location,
+      serial,
+      brand,
+      year
+    }, httpOptions);
+  }
   getAuthStatus(){
     return false;
   }

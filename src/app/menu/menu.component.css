@@ -1,5 +1,3 @@
-
-
 .logo{
     width:10%;
     margin: 2% 5%;
@@ -21,42 +19,50 @@ hr.line{
     margin-left: 10%;
 }
     
-  .topnav input[type=text] {
+  .topnav input {
     padding: 6px;
     border: none;
     margin-top: 8px;
     margin-right: 16px;
     font-size: 17px;
+    width: 100%;
+    outline:none;
   }
   .main{
       position: relative;
       display: flex;
       align-items: center;
   }
-  .track{
-    font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-text-align: center;
-color: #000000;
-margin-left: 5%;
-  }
+.track{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  margin-left: 5%;
+}
 .menu-item{
     list-style: none;
     display: flex;
 }
-  li{
-    margin:1% 6% 1% 6.5%;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    text-align: center;
-    color: #1D5C63;
-  }
+li{
+  margin:1% 5% 1% 7%;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #1D5C63;
+  cursor: pointer;
+}
+/* .active, .btn:hover{
+  border-bottom : 3px solid #417D7A;
+} */
+
+
 
 
   

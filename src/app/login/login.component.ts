@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
       }
     });
 
+  }
+
+  onRegister(){
     var firstname = this.profileForm.value.firstname;
     var lastname = this.profileForm.value.lastname;
     var mobile=this.profileForm.value.mobile;
@@ -48,12 +51,14 @@ export class LoginComponent implements OnInit {
     this.authservice.register(firstname, lastname, email, password, username, mobile).subscribe({
     next: Response => {
       console.log(Response);
-      this.router.navigate(['/login']);
+      location.reload();
+      // this.router.navigate(['/login']);
       alert("registration successful");
-      // this.isSuccessful = true;
-      // this.isSignUpFailed = false;
-    }    
-  });    
+    },
+    error: err => {
+      alert("registration failed");
+    }   
+  });
   }
 
   register(){

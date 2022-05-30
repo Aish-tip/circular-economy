@@ -13,7 +13,7 @@
           <span><img src="../../assets/images/location.svg" alt="location"></span>
           <span style="margin-left:8%">Hyderabad</span>
         </p>
-        <button class="request">Request Item</button>
+        <button (click)="openForm()" class="request">Request Item</button>
       </div>
       <div class="col-2"></div>
       <div class="col-5 ">
@@ -44,13 +44,30 @@
             </p>
             <span><img src="../../assets/images/location.svg" alt="location"></span>
             <span style="margin-left:1%">Bangalore</span>
-            <p><button class="asset-btn">Request Item</button></p>            
+            <div>
+              <button (click)="openForm()" class="asset-btn">Request Item</button>
+              
+            </div>         
           </div>
         </div>
       </div>
     </ng-container>
+    <div class="form-popup" id="myForm">
+      <form [formGroup]="requestForm" (ngSubmit)="openpop()" class="form-container">
+        <h1>Item Request</h1>
 
-</div>
+        <label for="name"><b>Item Name</b></label>
+        <input type="text" placeholder="Enter Item Name" formControlName="name" required>
+    
+        <label for="quantity"><b>quantity</b></label>
+        <input type="number" placeholder="Enter quantity" formControlName="quantity" required>
+    
+        <button type="submit" class="btn">Submit</button>
+        <button type="button" (click)="closeForm()" class="btn cancel">Close</button>
+      </form>
+    </div>
+
+  </div>
 </div>
 <app-footer></app-footer>
 
