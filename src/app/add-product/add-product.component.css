@@ -1,11 +1,14 @@
+.row{
+    --bs-gutter-x: 0 !important;
+  }
 .admin-logo{    
     width:50%;
     margin: 5% 5%;
 }
-hr{    
+hr.line{    
   height: 730px;
-  width: 2px;
-  margin-left: -9%;
+  width: 1px;
+  margin-left: 85%;
 }
 .vertical-div{
     display: flex;
@@ -24,7 +27,7 @@ hr{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 5% 5%;
+    margin: 3% 3%;
     width: 50%;
 }
 label{
@@ -84,9 +87,88 @@ font-weight: 600;
 font-size: 14px;
 line-height: 21px;
 text-align: center;
-color: #417D7A;
+color: #838383;
 margin-left: 5%;
 }
 .profile-icons{
     display:flex;
+    flex-direction: row-reverse;
 }
+.profile-icons img{
+    margin-left:2%;
+    margin-top: 2%;
+    margin-right: 2%;
+}
+
+.search_user{
+    overflow: hidden;
+    width: 15%;
+    background: #EFF0F2;
+    border: 1px solid rgba(169, 169, 169, 0.15);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin: 5% 0%;
+}
+.search_user input{
+    padding: 6px;
+    border: none;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-right: 0px;
+    font-size: 17px;
+    width: 100%;
+    outline:none;
+}
+/* .headings{
+    padding: 0 70% 0 70%;
+} */
+/* .content span{
+    padding: 0 65% 0 70%;
+} */
+/* .user_name{
+    padding: 0 65% 0 70%;
+}
+.user_id{
+    padding: 0 65% 0 70%;
+} */
+/* .user_data td{
+    padding: 0 70% 0 70%;
+}*/
+table{
+    width:75%;
+    margin-left: 0%;
+}
+
+.user_div{
+    width:100%;
+}
+.accept-btn{
+    width: 130px;
+    height: 44px;
+    left: 1070px;
+    top: 375px;
+    background: #007074;
+    border-radius: 8px;
+    color:#ffffff;
+    border:none;
+    margin-right:5%;
+    margin-top: 5%;
+}
+.decline-btn{
+    width: 130px;
+height: 44px;
+left: 1207px;
+top: 375px;
+
+background: #B4B4B4;
+border-radius: 8px;
+border:none;
+color:#ffffff;
+}
+hr{
+    position: absolute;
+    left: 0%;
+    width: 85%;
+    height: 1px
+}
+

@@ -13,21 +13,22 @@ import { MenuComponent } from './menu/menu.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AuthGuard } from './services/auth.guard';
+import { NoauthGuard } from './services/noauth.guard';
 
 const routes: Routes = [
   {path:'',  redirectTo: '/login', pathMatch: 'full'},
   {path:'home', component: HomeComponent},
-  {path:'inventory', component:InventoryComponent},
-  {path:'users', component:UsersComponent},
-  {path:'messages', component:MessagesComponent},
-  {path:'reports', component:ReportsComponent},
+  {path:'inventory', component:InventoryComponent, canActivate :[AuthGuard]},
+  {path:'account', component:UsersComponent, canActivate :[AuthGuard]},
+  {path:'messages', component:MessagesComponent, canActivate :[AuthGuard]},
+  {path:'reports', component:ReportsComponent, canActivate :[AuthGuard]},
   {path:'about', component:AboutComponent},
   {path:'profile', component:ProfileComponent},
-  {path:'login', component:LoginComponent},
+  {path:'login', component:LoginComponent, canActivate : [NoauthGuard] },
   // {path:'register', component:RegisterComponent} ,
   {path:'menu',component:MenuComponent},
-  {path:'landing',component:LandingPageComponent},
-  {path:'add-product',component:AddProductComponent}
+  {path:'landing',component:LandingPageComponent, canActivate :[AuthGuard]},
+  {path:'add-product',component:AddProductComponent, canActivate :[AuthGuard]}
 ];
 
 @NgModule({

@@ -1,19 +1,22 @@
 <div>
 <app-menu></app-menu>
 </div>
-<!-- 
-<div *ngIf='currentUser'>
-  <header>
-    <h3>
-      <strong>{{ currentUser.username }}</strong> Profile
-    </h3>
-  </header>  
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-  </div> -->
+<div>
+  <h1>Profile</h1>
+  
+    <div class="profile_card">
+      <p>Firstname: {{activeuser.firstname}}</p>
+      <p>Lastname: {{activeuser.lastname}}</p>
+      <p>Email: {{activeuser.email}}</p>
+      <p>Username: {{activeuser.username}}</p>
+      <p>Role: {{activeuser.role}}</p>
+      <p>Mobile Number: {{activeuser.mobile}}</p>
 
+    </div>
+  
+</div>
+<!-- <button routerLink="/add-product">
+  Add-product
+</button> -->
 
-  {{userid}}
   

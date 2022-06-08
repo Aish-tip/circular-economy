@@ -1,0 +1,27 @@
+.profile_card{
+    text-align: justify;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    width: 25%;
+    position: relative;
+    margin: 2% auto;
+    padding: 2%;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+}
+h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    text-align: center;
+    margin: 5%;
+}
+button{
+    background: #007074;
+    border-radius: 8px;
+    color:#ffffff;
+    border: none;
+    margin: 3%;
+    padding: 1%;
+  }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+ user:any;
  
-  constructor() { }
+  constructor(private authservice : AuthService,private router :Router) { }
 
   ngOnInit(): void {
+    
   }
   open(){
     const row=document.getElementById("row") ;
@@ -32,39 +36,30 @@ export class MenuComponent implements OnInit {
       }      
     }
    if(menu && home) {
-      // if(menu.classList.contains("col-2")){
-      //   menu.classList.remove("col-1 horizTranslate");
-      //   menu.classList.add("col-2");
-        
-      // }
-      // else{
-      //   menu.classList.add("col-1 horizTranslate");
-      //   menu.classList.remove("col-2");
-      // }
+      
       if(menu.classList.contains("horizTranslate")){
         menu.classList.remove(" horizTranslate");
       }
       else{
          menu.classList.add("horizTranslate");
       }
-      // if(home.classList.contains("col-11")){
-      //   home.classList.add("col-10");
-      //   home.classList.remove("col-11");
-      // }
-      // else{
-      //   home.classList.add("col-11");
-      //   home.classList.remove("col-10");
-      // }
+      
     
     } 
-      //     var head = document.getElementById("menu-items");
-      //     var btns = document.getElementsByClassName("btn");
-      // for (var i = 0; i < btns.length; i++) {
-      //   btns[i].addEventListener("click", () => {
-      //   var current = document.getElementsByClassName("active");
-      //   current[0].className = current[0].className.replace(" active", "");
-      //   this.className += " active";
-      //   });
-      // }    
+    
+   
+    
+}
+LogOut() {
+  this.user = JSON.parse(localStorage.getItem('currentUser')!);
+    console.log(this.user);
+  this.authservice.logout(this.user);
+  localStorage.removeItem('currentUser');
+
+  // window.location.reload();
+  this.router.navigate(['/login']);
+
 }
 }
+
+

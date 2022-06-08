@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router} from '@angular/router';
 import { Observable } from 'rxjs';
+import { Urls } from '../constants/urls';
+import { map } from 'rxjs/operators';
 // const AUTH_API = 'http://localhost:3000/api';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -9,35 +12,52 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  private router: Router) { }
   login(email: any, password: any): Observable<any> {
-    return this.http.post('http://localhost:3000/api/Users/login', {
-      email,
-      password
-    }, httpOptions);    
+    return this.http.post<any>(`${Urls.LOGIN}`, {email, password, returnSecureToken: true})
+    .pipe(map(user => {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      // console.log('user',JSON.stringify(user))
+      this.http.get(`${Urls.USERS}/${user.userId}?access_token=${user.id}`).subscribe(res => {
+        let data: any = res;
+        localStorage.setItem("userName", data.username);
+      });
+      if (user && user.id) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+      this.router.navigate(['/landing']);
+      return user;
+    }));
+        
   }
-  register(firstname:any, lastname:any, email:any, password:any, username:any, mobile:any): Observable<any> {
-    return this.http.post('http://localhost:3000/api/Users', {
-      firstname,
-      lastname,
-      username,
-      email,
-      password,
-      mobile
-    }, httpOptions);
+
+  logout(user: { id: any; }) {
+    // localStorage.removeItem('currentUser');
+    // this.router.navigate(['/login']);
+    this.http.post<any>(`${Urls.LOGOUT}?access_token=${user.id}`, {}).subscribe((res: any) => {
+      console.log(res);
+      console.log("Logged out");
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('userName');
+      this.router.navigate(['/login']);
+    })
+
   }
-  addproduct(name:any, quantity:any, desc:any, location:any, serial:any, brand:any, year:any): Observable<any>{
+
+  register(firstname:any, lastname:any, role:any, email:any, password:any, username:any, mobile:any): Observable<any> {
+    return this.http.post(`${Urls.USERS}`, {firstname,lastname,role,username,email,password,mobile}, httpOptions);
+  }
+  addproduct(name:any, description:any, quantity:any, brand:any, location:any, serial:any, year:any): Observable<any>{
     return this.http.post('http://localhost:3000/api/products', {
       name,
+      description,
       quantity,
-      desc,
+      brand,      
       location,
-      serial,
-      brand,
+      serial,      
       year
     }, httpOptions);
   }
-  getAuthStatus(){
-    return false;
-  }
+ 
 }

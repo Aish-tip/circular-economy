@@ -63,6 +63,9 @@
       <label for="lastname">Last Name: </label><br>
       <input id="lastname" type="text" formControlName="lastname" placeholder="enter lastname">
       <br>
+      <label for="role">role: </label><br>
+      <input id="role" type="text" formControlName="role" placeholder="enter role">
+      <br>
       <label for="mobile">Mobile Number: </label><br>
       <input id="mobile" type="number" formControlName="mobile" placeholder="enter mobile">
       <br>
@@ -76,10 +79,8 @@
       <input id="password" type="password" formControlName="password" placeholder="enter password">
       <br>
       <button id="acc-btn" type="submit" [disabled]="!profileForm.valid">Create Account</button>
-      <!-- <button routerLink="/login" id="acc-btn" type="submit">Create Account</button> -->
       <a (click)="login()" id="login-page" >Already registered?<span style="color:#007074">Log in</span></a>
-      <!-- <a routerLink="/login" id="login-page" >Already registered?<span style="color:#007074">Log in</span></a> -->
-    </form>
-    
+      
+    </form>    
   </div>
 </div>

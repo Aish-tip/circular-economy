@@ -9,6 +9,12 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
+  
+  dashboard = true;
+  user = false;
+  request = false;
+  userlist: any;
+  item: any;
 
   constructor(private authservice:AuthService,private http:HttpClient){ }
 
@@ -30,7 +36,7 @@ export class AddProductComponent implements OnInit {
     var srl = this.productForm.value.serial;
     var brand = this.productForm.value.brand;
     var year = this.productForm.value.year;
-    this.authservice.addproduct(name, qty, dsc, loc, srl, brand, year).subscribe({
+    this.authservice.addproduct(name, dsc, qty, brand, loc, srl, year).subscribe({
       next:Response => {
         console.log(Response);
         location.reload();
@@ -40,7 +46,32 @@ export class AddProductComponent implements OnInit {
       }
     });    
   } 
-
+    func_dashboard(e: any){
+      console.log(e);
+      this.dashboard = true;
+      this.user = false;
+      this.request = false;
+    }
+    func_user(e: any){
+      console.log(e);
+      this.http.get("http://localhost:3000/api/ecousers").subscribe(Response =>{
+        console.log(Response);
+        this.userlist = Response;
+      });
+      this.dashboard = false;
+      this.user = true;
+      this.request = false;
+    }
+    func_request(e: any){
+      console.log(e);
+      this.http.get('http://localhost:3000/api/requestItems').subscribe(Response =>{
+      this.item = Response;
+        })
+      this.dashboard = false;
+      this.user = false;
+      this.request = true;
+    }
+    getcolor(){}
   ngOnInit(): void {
   }
 

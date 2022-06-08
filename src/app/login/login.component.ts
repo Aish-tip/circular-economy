@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     profileForm = new FormGroup({
       firstname: new FormControl(''),
       lastname:new FormControl(''),
+      role:new FormControl(''),
       mobile:new FormControl(''),
       email: new FormControl(''),
       username: new FormControl(''), 
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
     this.authservice.login(emailid, password).subscribe({
       next :Response => {
         console.log(Response);
-        this.router.navigate(['/landing']);
+
+        // this.router.navigate(['/landing']);
       },
       error: err => {
         alert("error login");
@@ -44,21 +46,26 @@ export class LoginComponent implements OnInit {
   onRegister(){
     var firstname = this.profileForm.value.firstname;
     var lastname = this.profileForm.value.lastname;
+    var role = this.profileForm.value.role;
     var mobile=this.profileForm.value.mobile;
     var email=this.profileForm.value.email;
     var password=this.profileForm.value.password;
     var username=this.profileForm.value.username; 
-    this.authservice.register(firstname, lastname, email, password, username, mobile).subscribe({
+    this.authservice.register(firstname, lastname, role, email, password, username, mobile).subscribe({
     next: Response => {
       console.log(Response);
       location.reload();
       // this.router.navigate(['/login']);
-      alert("registration successful");
+      // alert("registration successful");
     },
     error: err => {
       alert("registration failed");
     }   
   });
+  this.http.post<any>('http://localhost:3000/api/ecousers',{firstname,lastname,mobile,username,email,password}).subscribe(res =>{
+    console.log(res);
+    alert("registration successful");
+  })
   }
 
   register(){

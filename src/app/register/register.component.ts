@@ -34,20 +34,20 @@ export class RegisterComponent implements OnInit {
     var username=this.profileForm.value.username;   
     
 
-  this.authService.register(firstname, lastname, email, password, username, mobile).subscribe({
-    next: Response => {
-      console.log(Response);
-      this.router.navigate(['/login']);
-      alert("registration successful");
-      // this.isSuccessful = true;
-      // this.isSignUpFailed = false;
-    },
-    error: err => {
-      alert("registration failed");
-      // this.errorMessage = err.error.message;
-      // this.isSignUpFailed = true;
-    }
-  });
+  // this.authService.register(firstname, lastname, email, password, username, mobile).subscribe({
+  //   next: Response => {
+  //     console.log(Response);
+  //     this.router.navigate(['/login']);
+  //     alert("registration successful");
+  //     // this.isSuccessful = true;
+  //     // this.isSignUpFailed = false;
+  //   },
+  //   error: err => {
+  //     alert("registration failed");
+  //     // this.errorMessage = err.error.message;
+  //     // this.isSignUpFailed = true;
+  //   }
+  // });
   }
 
   ngOnInit(): void {

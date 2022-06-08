@@ -6,3 +6,11 @@
   padding: 2%;
   display:inline-block;
 }
+button{
+  background: #007074;
+  border-radius: 8px;
+  color:#ffffff;
+  border: none;
+  margin: 3%;
+  padding: 1%;
+}

@@ -56,6 +56,9 @@
       <form [formGroup]="requestForm" (ngSubmit)="openpop()" class="form-container">
         <h1>Item Request</h1>
 
+        <label for="employeename"><b>Employee Name</b></label>
+        <input type="text" placeholder="Enter Employee Name" formControlName="employeename" required>
+
         <label for="name"><b>Item Name</b></label>
         <input type="text" placeholder="Enter Item Name" formControlName="name" required>
     

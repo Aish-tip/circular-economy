@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../_services/token-storage.service';
 import {HttpClient} from '@angular/common/http';
+import { Urls } from '../constants/urls';
 
 @Component({
   selector: 'app-profile',
@@ -9,25 +10,22 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
   
-  res=sessionStorage.getItem('resp');
-    userid = sessionStorage.getItem('userid');  
-    id = sessionStorage.getItem('id')
+ activeuser :any;
   constructor( private http:HttpClient) {}
 
-    
+    user:any;
+   
   ngOnInit(): void {
-    
-    // this.http.get('http://localhost:3000/api/Users/'+this.id).subscribe(Response=>{
-    //   console.log(Response);   
-    // })  ;
+    this.user = JSON.parse(localStorage.getItem('currentUser')!);
+    console.log(this.user);
+    this.http.get(`${Urls.USERS}/${this.user.userId}?access_token=${this.user.id}`).subscribe((res: any) => {
+      this.activeuser = res;
+      console.log(this.activeuser)
+           
+    })
+  }
 
-    fetch('http://localhost:3000/api/Users/',{
-      method:'GET',
-      body: JSON.stringify({"id":this.id})
 
-      })
-      // .subscribe(Response => { console.log(Response)});
-    }
       
       
       

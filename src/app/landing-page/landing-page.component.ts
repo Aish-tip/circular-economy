@@ -22,6 +22,7 @@ export class LandingPageComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   requestForm = new FormGroup({
+    employeename:new FormControl(''),
     name: new FormControl(''),
     quantity:new FormControl('')
   });
@@ -41,7 +42,7 @@ export class LandingPageComponent implements OnInit {
   openpop(){
     
     console.log(this.requestForm.value)
-    this.http.post<any>('http://localhost:3000/api/requestItems',{name:this.requestForm.value.name, quantity:this.requestForm.value.quantity})
+    this.http.post<any>('http://localhost:3000/api/requestItems',{employeename:this.requestForm.value.employeename,name:this.requestForm.value.name, quantity:this.requestForm.value.quantity})
     .subscribe(Response =>{
         console.log(Response);
         alert("successful");

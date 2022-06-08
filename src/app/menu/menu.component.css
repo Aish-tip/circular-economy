@@ -48,7 +48,7 @@ hr.line{
     display: flex;
 }
 li{
-  margin:1% 5% 1% 7%;
+  margin:1% 10% 1% 10%;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -58,9 +58,12 @@ li{
   color: #1D5C63;
   cursor: pointer;
 }
-/* .active, .btn:hover{
-  border-bottom : 3px solid #417D7A;
-} */
+.logout{
+  border: navajowhite;
+    background: #ffffff;
+    padding: 2%;
+}
+
 
 
 
