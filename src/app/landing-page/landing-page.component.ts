@@ -46,7 +46,7 @@ export class LandingPageComponent implements OnInit {
   openpop(){
     
     console.log(this.requestForm.value)
-    this.http.post<any>('http://localhost:3000/api/requestItems',{employeename:this.requestForm.value.employeename,name:this.requestForm.value.name, quantity:this.requestForm.value.quantity})
+    this.http.post<any>('http://3.111.188.154:3000/api/requestItems',{employeename:this.requestForm.value.employeename,name:this.requestForm.value.name, quantity:this.requestForm.value.quantity})
     .subscribe(Response =>{
         console.log(Response);
         alert("successful");

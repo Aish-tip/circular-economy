@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
       alert("registration failed");
     }   
   });
-  this.http.post<any>('http://localhost:3000/api/ecousers',{firstname,lastname,mobile,username,email,password}).subscribe(res =>{
+  this.http.post<any>('http://3.111.188.154:3000/api/ecousers',{firstname,lastname,mobile,username,email,password}).subscribe(res =>{
     console.log(res);
     alert("registration successful");
   })
