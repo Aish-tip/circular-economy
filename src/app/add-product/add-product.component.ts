@@ -54,7 +54,7 @@ export class AddProductComponent implements OnInit {
     }
     func_user(e: any){
       console.log(e);
-      this.http.get("http://localhost:3000/api/ecousers").subscribe(Response =>{
+      this.http.get("http://3.111.188.154:3000/api/ecousers").subscribe(Response =>{
         console.log(Response);
         this.userlist = Response;
       });
@@ -64,7 +64,7 @@ export class AddProductComponent implements OnInit {
     }
     func_request(e: any){
       console.log(e);
-      this.http.get('http://localhost:3000/api/requestItems').subscribe(Response =>{
+      this.http.get('http://3.111.188.154:3000/api/requestItems').subscribe(Response =>{
       this.item = Response;
         })
       this.dashboard = false;

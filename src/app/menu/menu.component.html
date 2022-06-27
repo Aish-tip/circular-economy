@@ -8,14 +8,34 @@
    <button class="logout" (click)="LogOut()">LogOut</button>
 </div>
 <hr class="line">
-<div class="menu">
- <ul id="menu-items" class="menu-item">
-    <li  routerLink="/landing">Home</li>
-    <li  routerLink="/inventory">Inventory</li>
-    <!-- <li  routerLink="/messages">Messages</li> -->
-    <!-- <li  routerLink="/reports">Reports</li> -->
-    <!-- <li  routerLink="/about">About</li> -->
-    <li  routerLink="/profile">Profile</li>
-    <li routerLink="/add-product">Admin-panel</li>
- </ul>
+<div *ngIf="LoggedIn()">
+   <div *ngIf="admin" >
+      <div class="menu">
+         <ul id="menu-items" class="admin-menu-item">
+            <li  routerLink="/landing">Home</li>
+            <li  routerLink="/inventory">Inventory</li>
+            <!-- <li  routerLink="/messages">Messages</li> -->
+            <!-- <li  routerLink="/reports">Reports</li> -->
+            <!-- <li  routerLink="/about">About</li> -->
+            <li  routerLink="/profile">Profile</li>
+            <li routerLink="/add-product">Admin-panel</li>
+         </ul>
+      </div>
+   </div>
+   <div *ngIf="user" >
+      <div class="menu">
+         <ul id="menu-items" class="user-menu-item">
+            <li  routerLink="/landing">Home</li>
+            <li  routerLink="/inventory">Inventory</li>
+            <!-- <li  routerLink="/messages">Messages</li> -->
+            <!-- <li  routerLink="/reports">Reports</li> -->
+            <!-- <li  routerLink="/about">About</li> -->
+            <li  routerLink="/profile">Profile</li>
+            <!-- <li routerLink="/add-product">Admin-panel</li> -->
+         </ul>
+      </div>
+   </div>
 </div>
+
+
+

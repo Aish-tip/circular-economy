@@ -13,6 +13,9 @@ const httpOptions = {
 })
 export class AuthService {
   constructor(private http: HttpClient,  private router: Router) { }
+
+
+
   login(email: any, password: any): Observable<any> {
     return this.http.post<any>(`${Urls.LOGIN}`, {email, password, returnSecureToken: true})
     .pipe(map(user => {
@@ -21,12 +24,17 @@ export class AuthService {
       this.http.get(`${Urls.USERS}/${user.userId}?access_token=${user.id}`).subscribe(res => {
         let data: any = res;
         localStorage.setItem("userName", data.username);
+        sessionStorage.setItem('role',data.role);
+        
       });
       if (user && user.id) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
+        
+
       }
       this.router.navigate(['/landing']);
+      // location.reload();
       return user;
     }));
         
@@ -40,6 +48,8 @@ export class AuthService {
       console.log("Logged out");
       localStorage.removeItem('currentUser');
       localStorage.removeItem('userName');
+      // localStorage.removeItem('role');
+      sessionStorage.clear();
       this.router.navigate(['/login']);
     })
 

@@ -11,8 +11,15 @@
       <p>Username: {{activeuser.username}}</p>
       <p>Role: {{activeuser.role}}</p>
       <p>Mobile Number: {{activeuser.mobile}}</p>
-
     </div>
+  <form [formGroup]="editform" (ngSubmit)="save_modified_form()"class="profile_card" >
+   <p>Firstname:<input type="text" placeholder="{{activeuser.firstname}}"></p>
+   <p>Lastname:<input type="text" placeholder="{{activeuser.lastname}}"></p>
+   <p>Email:<input type="text" placeholder="{{activeuser.email}}"></p>
+   <p>Username:<input type="text" placeholder="{{activeuser.username}}"></p>
+   <p>Mobile Number:<input type="text" placeholder="{{activeuser.mobile}}"></p>
+   <button id="submit" type="submit">Save Details</button>    
+  </form>
   
 </div>
 <!-- <button routerLink="/add-product">

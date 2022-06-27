@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/api/requestItems').subscribe(Response =>{
+    this.http.get('http://3.111.188.154:3000/api/requestItems').subscribe(Response =>{
       this.item = Response;
   })
   }

@@ -26,15 +26,15 @@ export class LoginComponent implements OnInit {
       username: new FormControl(''), 
       password: new FormControl('')        
     });
-
+    role:any;
   onSubmit() { 
     var emailid = this.LoginForm.value.email;
     var password = this.LoginForm.value.password;
     this.authservice.login(emailid, password).subscribe({
       next :Response => {
         console.log(Response);
-
-        // this.router.navigate(['/landing']);
+        // this.role= localStorage.getItem("role");
+    // console.log(this.role);
       },
       error: err => {
         alert("error login");

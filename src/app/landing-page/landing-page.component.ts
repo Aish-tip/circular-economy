@@ -21,6 +21,10 @@ export class LandingPageComponent implements OnInit {
 
   constructor(private http:HttpClient) { }
 
+  ngOnInit(): void {
+    
+  }
+
   requestForm = new FormGroup({
     employeename:new FormControl(''),
     name: new FormControl(''),
@@ -54,8 +58,7 @@ export class LandingPageComponent implements OnInit {
     // }
   }
 
-  ngOnInit(): void {
-  }
+  
   data:Asset[]=assetdata;
 
 }

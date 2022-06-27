@@ -43,11 +43,26 @@ hr.line{
   color: #000000;
   margin-left: 5%;
 }
-.menu-item{
+.admin-menu-item{
     list-style: none;
     display: flex;
 }
-li{
+.user-menu-item{
+  list-style: none;
+  display: flex;
+}
+.user-menu-item li{
+  margin:1% 15% 1% 14%;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #1D5C63;
+  cursor: pointer;
+}
+.admin-menu-item li{
   margin:1% 10% 1% 10%;
   font-family: 'Poppins';
   font-style: normal;
