@@ -19,7 +19,7 @@
 
   <!-- user login -->
 
-  <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" id="userlogin">
+  <form [formGroup]="UserLoginForm" (ngSubmit)="onSubmitUser()" id="userlogin">
     <label for="email">Email</label><br>
     <input id="email1" type="text" formControlName="email" placeholder="enter your email here" [email]="true">
     <br>
@@ -35,12 +35,12 @@
 
   <!-- admin login -->
 
-  <form id="adminlogin">
+  <form [formGroup]="AdminLoginForm" (ngSubmit)="onSubmitAdmin()"  id="adminlogin">
     <label for="email">Email</label><br>
-    <input id="email-admin" type="text" placeholder="enter your admin-email here">
+    <input id="email-admin" type="text" formControlName="admin_email" placeholder="enter your admin-email here" [email]="true">
     <br>
     <label for="password">Password</label><br>
-    <input id="password-admin" type="password" placeholder="enter your password">
+    <input id="password-admin" formControlName="admin_password" type="password" placeholder="enter your password">
     <br>
     <button id="admin-submit" type="submit">Submit</button>
     <!-- <button routerLink="/landing" id="admin-submit" type="submit">Submit</button> -->
@@ -63,8 +63,14 @@
       <label for="lastname">Last Name: </label><br>
       <input id="lastname" type="text" formControlName="lastname" placeholder="enter lastname">
       <br>
-      <label for="role">role: </label><br>
-      <input id="role" type="text" formControlName="role" placeholder="enter role">
+      <!-- <label for="role">role: </label><br>
+      <input id="role" type="text" formControlName="role" placeholder="enter role"> -->
+      <label for="role">Role</label><br>
+      <select name="role" id="role" formControlName="role">
+        <option value="" disabled selected hidden>Select role</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+      </select>
       <br>
       <label for="mobile">Mobile Number: </label><br>
       <input id="mobile" type="number" formControlName="mobile" placeholder="enter mobile">

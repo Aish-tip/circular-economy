@@ -220,5 +220,21 @@ font-size: 18px;
 line-height: 27px;
 color: #4D5959;
 }
+select#role{
+    background: #EFF0F2;
+    border-radius: 8px;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+}
+option{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+/* line-height: 30px; */
+color: #838383;
+}
 
 

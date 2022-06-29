@@ -4,6 +4,7 @@ import {FormGroup,FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { AuthService } from '../_services/auth.service';
+import { Urls } from '../constants/urls';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,9 +13,14 @@ import { AuthService } from '../_services/auth.service';
 export class LoginComponent implements OnInit {
   constructor(private authservice:AuthService,private http : HttpClient, private router :Router,private tokenStorage: TokenStorageService) {}
 
-    LoginForm = new FormGroup({
+    UserLoginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
+    });
+
+    AdminLoginForm = new FormGroup({
+      admin_email: new FormControl(''),
+      admin_password: new FormControl('')
     });
 
     profileForm = new FormGroup({
@@ -27,20 +33,60 @@ export class LoginComponent implements OnInit {
       password: new FormControl('')        
     });
     role:any;
-  onSubmit() { 
-    var emailid = this.LoginForm.value.email;
-    var password = this.LoginForm.value.password;
-    this.authservice.login(emailid, password).subscribe({
+    userdetails:any
+    user:any
+    activeuser:any
+    userrole:any
+    // userdetails:any
+    ngOnInit(){}
+      
+    
+  onSubmitUser() { 
+    var useremailid = this.UserLoginForm.value.email;
+    var userpassword = this.UserLoginForm.value.password;
+    this.authservice.login(useremailid, userpassword).subscribe({
       next :Response => {
-        console.log(Response);
-        // this.role= localStorage.getItem("role");
-    // console.log(this.role);
+        this.userdetails = Response;
+        this.user = JSON.parse(localStorage.getItem('currentUser')!);
+        this.userrole = localStorage.getItem("roleuser");
+        // console.log("check",localStorage.getItem("roleuser"));
+        if(this.userrole == 'admin'){
+          console.log("test");
+          this.authservice.logout(this.user);
+          localStorage.removeItem('currentUser');
+          // this.router.navigate(['/login']);
+          alert('admin trying to login through user panel');
+          location.reload();
+        }        
       },
       error: err => {
         alert("error login");
       }
     });
 
+  }
+
+  onSubmitAdmin(){
+    var adminemailid = this.AdminLoginForm.value.admin_email;
+    var adminpassword = this.AdminLoginForm.value.admin_password;
+    this.authservice.login(adminemailid, adminpassword).subscribe({
+      next :Response => {
+        // this.userdetails = Response;
+        this.user = JSON.parse(localStorage.getItem('currentUser')!);
+        this.userrole = localStorage.getItem("roleuser");
+        if(this.userrole == 'user'){
+          console.log("test");
+          this.authservice.logout(this.user);
+          localStorage.removeItem('currentUser');
+          // this.router.navigate(['/login']);
+          alert('user trying to login through admin panel');
+          location.reload();
+        }        
+      },
+      error: err => {
+        alert("error login");
+      }
+    });
   }
 
   onRegister(){
@@ -142,7 +188,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  
 }
   
 

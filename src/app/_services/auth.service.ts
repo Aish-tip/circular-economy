@@ -24,8 +24,9 @@ export class AuthService {
       this.http.get(`${Urls.USERS}/${user.userId}?access_token=${user.id}`).subscribe(res => {
         let data: any = res;
         localStorage.setItem("userName", data.username);
-        sessionStorage.setItem('role',data.role);
-        
+        sessionStorage.setItem('role',data.role);  
+        localStorage.setItem("roleuser",data.role);
+        // console.log("check",localStorage.getItem("roleuser"));      
       });
       if (user && user.id) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
