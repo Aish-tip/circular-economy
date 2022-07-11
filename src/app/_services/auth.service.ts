@@ -14,8 +14,6 @@ const httpOptions = {
 export class AuthService {
   constructor(private http: HttpClient,  private router: Router) { }
 
-
-
   login(email: any, password: any): Observable<any> {
     return this.http.post<any>(`${Urls.LOGIN}`, {email, password, returnSecureToken: true})
     .pipe(map(user => {
@@ -49,7 +47,7 @@ export class AuthService {
       console.log("Logged out");
       localStorage.removeItem('currentUser');
       localStorage.removeItem('userName');
-      // localStorage.removeItem('role');
+      localStorage.removeItem('roleuser');
       sessionStorage.clear();
       this.router.navigate(['/login']);
     })
@@ -57,17 +55,27 @@ export class AuthService {
   }
 
   register(firstname:any, lastname:any, role:any, email:any, password:any, username:any, mobile:any): Observable<any> {
-    return this.http.post(`${Urls.USERS}`, {firstname,lastname,role,username,email,password,mobile}, httpOptions);
+    return this.http.post(`${Urls.USERS}`, {
+      firstname,
+      lastname,
+      role,
+      username,
+      email,
+      password,
+      mobile
+    }, httpOptions);
   }
-  addproduct(name:any, description:any, quantity:any, brand:any, location:any, serial:any, year:any): Observable<any>{
-    return this.http.post('http://localhost:3000/api/products', {
+
+  addproduct(name:any, description:any, quantity:any, brand:any, location:any, serial:any, year:any, imagename:any): Observable<any>{
+    return this.http.post(`${Urls.PRODUCT}`, {
       name,
       description,
       quantity,
       brand,      
       location,
       serial,      
-      year
+      year,
+      imagename
     }, httpOptions);
   }
  

@@ -97,18 +97,17 @@ export class LoginComponent implements OnInit {
     var email=this.profileForm.value.email;
     var password=this.profileForm.value.password;
     var username=this.profileForm.value.username; 
-    this.authservice.register(firstname, lastname, role, email, password, username, mobile).subscribe({
-    next: Response => {
-      console.log(Response);
-      location.reload();
-      // this.router.navigate(['/login']);
-      // alert("registration successful");
-    },
-    error: err => {
-      alert("registration failed");
-    }   
-  });
-  this.http.post<any>('http://3.111.188.154:3000/api/ecousers',{firstname,lastname,mobile,username,email,password}).subscribe(res =>{
+  //   this.authservice.register(firstname, lastname, role, email, password, username, mobile).subscribe({
+  //   next: Response => {
+  //     console.log(Response);
+  //     location.reload();
+     
+  //   },
+  //   error: err => {
+  //     alert("registration failed");
+  //   }   
+  // });
+  this.http.post<any>(`${Urls.ECOUSER}`,{firstname,lastname,role,mobile,username,email,password}).subscribe(res =>{
     console.log(res);
     alert("registration successful");
   })

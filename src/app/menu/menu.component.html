@@ -1,38 +1,44 @@
 <div class="main">
    <img class="logo" src="../../assets/images/circular economy logo.png" alt="logo">
    <div class="topnav">
-     <input type="text" placeholder="I am looking for?">
+     <input type="text" placeholder="I am looking for?" [(ngModel)]="term">
      <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
    </div>
-   <span class="track">Track Your Request</span>
-   <button class="logout" (click)="LogOut()">LogOut</button>
+   <span routerLink="/track" class="track">Track Your Request</span>
+   <!-- <button class="logout" (click)="LogOut()">LogOut</button> -->
+   <div class="dropdown">
+      <img src="../../assets/images/profile.jpg" alt="profile" style="width:45%">
+      <div class="dropdown-content">
+         <a routerLink="/profile">Profile</a>
+         <a routerLink="/">Notifications</a>
+         <a (click)="LogOut()">Logout</a>
+      </div>
+   </div>
 </div>
 <hr class="line">
 <div *ngIf="LoggedIn()">
    <div *ngIf="admin" >
       <div class="menu">
-         <ul id="menu-items" class="admin-menu-item">
-            <li  routerLink="/landing">Home</li>
-            <li  routerLink="/inventory">Inventory</li>
-            <!-- <li  routerLink="/messages">Messages</li> -->
-            <!-- <li  routerLink="/reports">Reports</li> -->
-            <!-- <li  routerLink="/about">About</li> -->
-            <li  routerLink="/profile">Profile</li>
-            <li routerLink="/add-product">Admin-panel</li>
-         </ul>
+         <div id="menu-items" class="admin-menu-item">
+            <span routerLink="/landing">Home</span>
+            <span routerLink="/inventory">Inventory</span>
+            <!-- <li  routerLink="/profile">Profile</li> -->
+            <span routerLink="/add-product">Admin</span>
+         </div>
       </div>
    </div>
    <div *ngIf="user" >
       <div class="menu">
-         <ul id="menu-items" class="user-menu-item">
-            <li  routerLink="/landing">Home</li>
-            <li  routerLink="/inventory">Inventory</li>
+         <div id="menu-items" class="user-menu-item">
+            <span  routerLink="/landing">Home</span>
+            <span routerLink="/inventory">Inventory</span>
+            <!-- <li  routerLink="/inventory"></li> -->
             <!-- <li  routerLink="/messages">Messages</li> -->
             <!-- <li  routerLink="/reports">Reports</li> -->
             <!-- <li  routerLink="/about">About</li> -->
-            <li  routerLink="/profile">Profile</li>
+            <!-- <li  routerLink="/profile">Profile</li> -->
             <!-- <li routerLink="/add-product">Admin-panel</li> -->
-         </ul>
+         </div>
       </div>
    </div>
 </div>

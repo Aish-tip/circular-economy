@@ -1,9 +1,10 @@
+<div>
+    <app-menu></app-menu>
+</div>
 <div class="main-div row" > 
     <div class="vertical-div col-2">    
-        <div>
-            <img routerLink="/landing" class="admin-logo" src="../../assets/images/circular economy logo.png" alt="logo">
-            <p class="options" [ngStyle]="{color:getcolor()}"
-            (click)="func_dashboard($event)">
+            <!-- <img routerLink="/landing" class="admin-logo" src="../../assets/images/circular economy logo.png" alt="logo"> -->
+            <p class="options" (click)="func_dashboard($event)">
                 <span class="icon"><img src="../../assets/images/dashboard.svg" alt="dashboard"></span>
                 <span class="text">Dashboard</span>
             </p>
@@ -16,22 +17,20 @@
             (click)="func_request($event)">
                 <span class="icon"><img src="../../assets/images/request.svg" alt="dashboard"></span>
                 <span class="text">Request</span>
-            </p>
-
-           </div>  
-        <hr class="line">
-                
+            </p>        
+        <!-- <hr class="line">                 -->
     </div>
     <div class="col-10">
         <div class="profile-icons">
             <img src="../../assets/images/notification.svg" alt="notification"> 
-            <img src="../../assets/images/Message.svg" alt="message">
-            
+            <img src="../../assets/images/Message.svg" alt="message">            
         </div>  
         <div *ngIf="dashboard" class="content-div" >
             <div class="drag-area">
                 <span class="icon-file">
-                    <input id="imgfile" type="file" id="img" name="img" accept="image/*">
+                    <!-- <button color="tertiary" (click)="uploadFile()">Upload</button> -->
+                    <!-- <button color="danger" (click)="deletephoto()">Delete</button> -->
+                    <button><input #imageInput type="file" accept="image/*" (change)="processFile($event)"></button>                    
                 </span>
             </div> 
             <div class="product-form">
@@ -61,14 +60,17 @@
                     <label for="year">Year of Product Manufacture </label><br>
                     <input id="year" type="date" formControlName="year" placeholder="enter manufacture date">   
                     <br>
-                    <button class="product-submit" type="submit">Submit</button>
+                    <button class="product-submit" type="submit" (click)="uploadFile()">Submit</button>
                 </form>
             </div>
         </div> 
         <div *ngIf="user" class="user_div">
+            
             <!-- <div>users</div> -->
             <div class="search_user">
-                <input type="search" placeholder="search">
+                <!-- <app-searchbar (searchTextChanged)="onSearchTextEntered($event)"></app-searchbar> -->
+                <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+                <!-- <input type="search" placeholder="search"> -->
                 <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
             </div>
             <div>
@@ -78,51 +80,54 @@
                         <th>CompanyId</th>
                         <th>Action</th>
                     </tr>
-                    
-                    <tr *ngFor="let list of userlist" class="user_data">
-                        <td class="user_name">{{list.firstname}}</td>
-                        <td class="user_id">{{list.id}}</td>
-                        <td>
-                            <button class="accept-btn">Accept</button>
-                            <button class="decline-btn">Decline</button>
-                        </td>
-                        <hr>
-                    </tr>
-                    <hr>
+                    <!-- *ngIf="searchtext === '' || list.firstname.toLowerCase().includes(searchtext)" -->
+                        <tr *ngFor="let list of userlist | filter:term"  class="user_data">
+                            <td class="user_name">{{list.firstname}}</td>
+                            <td class="user_id">{{list.id}}</td>
+                            <td>
+                                <button (click)="adduser(list)" class="accept-btn">Accept</button>
+                                <button (click)="deleteuser(list)" class="decline-btn">Decline</button>
+                            </td>
+                            <hr>                                                   
+                        </tr>
+                        <hr>                    
                 </table>
-            </div>
-    
+            </div>    
         </div>
         <div *ngIf="request">
-            <!-- <p>Requests</p> -->
             <div class="search_user">
-                <input type="search" placeholder="search">
+                <!-- <app-searchbar (searchTextChanged)="onSearchTextEntered($event)"></app-searchbar> -->
+                <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+                <!-- <input type="search" placeholder="search"> -->
                 <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
             </div>
-            <!-- <h1 style="text-align:center">Requested Items</h1> -->
+            
             <ng-container>
-                <div id="reqitem">
+                <div id="reqitem">                    
                     <table>
-                        <tr class="headings">
-                            <th>Name</th>
-                            <th>Item</th>
-                            <th>Available</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr *ngFor="let req of item">
-                            <td>{{req.employeename}}</td>
-                            <td>{{req.name}}</td>
-                            <td>{{req.quantity}}</td>
-                            <td>
-                                <button class="accept-btn">Accept</button>
-                                <button class="decline-btn">Decline</button>
-                            </td>
-                            <hr>
-                        </tr>
+                        
+                            <tr class="headings">
+                                <th>Name</th>
+                                <th>Item</th>
+                                <th>Available</th>
+                                <th>Action</th>
+                            </tr>
+                        
+                            <!-- *ngIf="searchtext === '' || req.employeename.toLowerCase().includes(searchtext)" -->
+                            <tr *ngFor="let req of item | filter:term">
+                                <td>{{req.employeename}}</td>
+                                <td>{{req.name}}</td>
+                                <td>{{req.quantity}}</td>
+                                <td>
+                                    <button (click)="processRequest(req)" class="accept-btn">Accept</button>
+                                    <button class="decline-btn">Decline</button>
+                                </td>
+                                <hr>
+                            </tr>
+                        
+                        
                         <hr>
                     </table>
-                    <!-- <p>Asset Name: {{req.name}}</p>
-                    <p>Qunatity: {{req.quantity}}</p> -->
                 </div>
             </ng-container>
         </div>

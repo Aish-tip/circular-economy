@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { Router} from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-menu',
@@ -13,6 +14,7 @@ export class MenuComponent implements OnInit {
  user:any;
  admin:any;
  userlogged : any;
+ term:string;
   constructor(private authservice : AuthService,private router :Router) { }
   role:any;
   ngOnInit(): void {

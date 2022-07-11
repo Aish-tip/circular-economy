@@ -13,7 +13,7 @@
           <span><img src="../../assets/images/location.svg" alt="location"></span>
           <span style="margin-left:8%">Hyderabad</span>
         </p>
-        <button (click)="openForm()" class="request">Request Item</button>
+        <button class="request">Request Item</button>
       </div>
       <div class="col-2"></div>
       <div class="col-5 ">
@@ -30,8 +30,58 @@
     
     <hr class="line">
   </div>
-  <div id="inventory" style="padding: 12px;" >        
-    <ng-container *ngFor="let asset of data ">
+  <div id="inventory" style="padding: 12px;">     
+    <ng-container *ngFor="let prods of productlist" >
+      <div id="products">
+        <div>
+          <div id="product-img">
+            <img src="http://3.111.188.154:3000/api/containers/images/download/{{prods.imagename}}"/>
+          </div>          
+          <div style="padding: 10px;">
+            <p>
+              <span class="asset-title">{{prods.name}}</span>
+              <span class="asset-stock">{{prods.quantity}} available</span>
+            </p>
+            <span><img src="../../assets/images/location.svg" alt="location"></span>
+            <span style="margin-left:1%">{{prods.location}}</span>
+            <div>
+              <button (click)="openForm(prods)" class="asset-btn">Request Item</button>
+              <!-- (click)="openForm()"  -->
+            </div>         
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="form-popup" id="myForm">
+      <form [formGroup]="requestForm" (ngSubmit)="openpop()" class="form-container">
+        <h1>Item Request</h1>
+
+        <label for="employeename"><b>Employee Name</b></label>
+        <!-- <input type="text" placeholder="Enter Employee Name" formControlName="employeename" required> -->
+        <p>{{activeusername}}</p>
+
+        <label for="name"><b>Item Name</b></label>
+        <!-- <input type="text" placeholder="Enter Item Name" formControlName="name" required> -->
+        <p>{{productname}}</p>
+    
+        <label for="quantity"><b>quantity</b></label>
+        <!-- <input type="number" placeholder="Enter quantity" formControlName="quantity" min="1" max="{{productStock}}" required> -->
+        <div class="input-group">
+          <input class="plusminus" (click)="decrement()" value="-" readonly>
+          <input type="number" class="num" min="1" max="{{productStock}}" value="1" [(ngModel)]="value" formControlName="quantity" readonly>
+          <input class="plusminus" (click)="increment()" value="+" max="{{productStock}}" readonly>
+        </div>
+    
+        <button type="submit" class="btn">Submit</button>
+        <button type="button" (click)="closeForm()" class="btn cancel">Close</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+<app-footer></app-footer>
+
+ <!-- <ng-container *ngFor="let asset of data ">
       <div id="products">
         <div>
           <div id="product-img">
@@ -51,26 +101,4 @@
           </div>
         </div>
       </div>
-    </ng-container>
-    <div class="form-popup" id="myForm">
-      <form [formGroup]="requestForm" (ngSubmit)="openpop()" class="form-container">
-        <h1>Item Request</h1>
-
-        <label for="employeename"><b>Employee Name</b></label>
-        <input type="text" placeholder="Enter Employee Name" formControlName="employeename" required>
-
-        <label for="name"><b>Item Name</b></label>
-        <input type="text" placeholder="Enter Item Name" formControlName="name" required>
-    
-        <label for="quantity"><b>quantity</b></label>
-        <input type="number" placeholder="Enter quantity" formControlName="quantity" required>
-    
-        <button type="submit" class="btn">Submit</button>
-        <button type="button" (click)="closeForm()" class="btn cancel">Close</button>
-      </form>
-    </div>
-
-  </div>
-</div>
-<app-footer></app-footer>
-
+    </ng-container> -->

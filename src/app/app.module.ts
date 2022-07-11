@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { InventoryComponent } from './inventory/inventory.component';
@@ -26,6 +29,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthGuard } from './services/auth.guard';
 import { FooterComponent } from './footer/footer.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { TrackingComponent } from './tracking/tracking.component';
 
 
 //googleChartsConfigSubject.next(config);
@@ -45,7 +50,9 @@ import { AddProductComponent } from './add-product/add-product.component';
     MenuComponent,
     LandingPageComponent,
     FooterComponent,
-    AddProductComponent
+    AddProductComponent,
+    SearchbarComponent,
+    TrackingComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +63,9 @@ import { AddProductComponent } from './add-product/add-product.component';
     MatToolbarModule,
     MatButtonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]

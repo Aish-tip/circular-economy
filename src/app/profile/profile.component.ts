@@ -34,18 +34,38 @@ export class ProfileComponent implements OnInit {
   }
 
   save_modified_form(){
+    const p1 = document.getElementById("profile_details");
+    const p2 = document.getElementById("profile_edit");
+    if(p1 && p2){
+      p1.style.display = "block";
+      p2.style.display = "none";
+    }
     this.user = JSON.parse(localStorage.getItem('currentUser')!);
-    // this.http.patch(`${Urls.USERS}/${this.user.userId}?access_token=${this.user.id}`,{
-    //   "firstname" : this.editform.value.firstname,
-    //   "lastname" : this.editform.value.lastname,
-    //   "email" : this.editform.value.email,
-    //   "username" : this.editform.value.username,
-    //   "mobile" : this.editform.value.mobile
-    // }    
-    // ).subscribe( ((res:any) =>{
-    //     console.log(res);
-    // }
-    // ))
+    var fname = this.editform.value.firstname;
+    var lname = this.editform.value.lastname;
+    var email = this.editform.value.email;
+    var uname = this.editform.value.username;
+    var mbl = this.editform.value.mobile;
+    this.http.patch(`${Urls.USERS}/${this.user.userId}?access_token=${this.user.id}`,{
+      "firstname" : fname,
+      "lastname" : lname,
+      "email" : email,
+      "username" : uname,
+      "mobile" : mbl
+    }    
+    ).subscribe( ((res:any) =>{
+        console.log(res);
+    }
+    ))
+  }
+
+  editdetails(){
+    const p1 = document.getElementById("profile_details");
+    const p2 = document.getElementById("profile_edit");
+    if(p1 && p2){
+      p1.style.display = "none";
+      p2.style.display = "block";
+    }
   }
 }
   

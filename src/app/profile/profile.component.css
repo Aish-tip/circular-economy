@@ -25,3 +25,9 @@ button{
     margin: 3%;
     padding: 1%;
   }
+  #profile_edit{
+    display:none;
+  }
+  #profile_details{
+    display:block;
+  }
