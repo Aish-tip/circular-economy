@@ -1,4 +1,13 @@
 <div>
     <app-menu></app-menu>
 </div>
-<p>tracking works!</p>
+<div>
+    <div class="item-card" *ngFor="let track of item">
+        <p>Item Name: {{track.name}}</p>
+        <p>Quantity: {{track.quantity}}</p>
+        <p [ngStyle]="{color:getreviewstatus(track)}">Request Reviewed</p>
+        <p [ngStyle]="{color:getprocessstatus(track)}">Request processed</p>
+        <p [ngStyle]="{color:getacceptstatus(track)}">Request accepted</p>
+        <p [ngStyle]="{color:getdeliverstatus(track)}">Request delivered</p>
+    </div>
+</div>

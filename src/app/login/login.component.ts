@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { AuthService } from '../_services/auth.service';
 import { Urls } from '../constants/urls';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -38,56 +39,57 @@ export class LoginComponent implements OnInit {
     activeuser:any
     userrole:any
     // userdetails:any
-    ngOnInit(){}
-      
-    
-  onSubmitUser() { 
-    var useremailid = this.UserLoginForm.value.email;
-    var userpassword = this.UserLoginForm.value.password;
-    this.authservice.login(useremailid, userpassword).subscribe({
-      next :Response => {
-        this.userdetails = Response;
-        this.user = JSON.parse(localStorage.getItem('currentUser')!);
-        this.userrole = localStorage.getItem("roleuser");
-        // console.log("check",localStorage.getItem("roleuser"));
-        if(this.userrole == 'admin'){
-          console.log("test");
-          this.authservice.logout(this.user);
-          localStorage.removeItem('currentUser');
-          // this.router.navigate(['/login']);
-          alert('admin trying to login through user panel');
-          location.reload();
-        }        
-      },
-      error: err => {
-        alert("error login");
-      }
-    });
+    ngOnInit(){
+      // console.log("check",localStorage.getItem("roleuser"));
+    }
 
-  }
-
-  onSubmitAdmin(){
-    var adminemailid = this.AdminLoginForm.value.admin_email;
-    var adminpassword = this.AdminLoginForm.value.admin_password;
-    this.authservice.login(adminemailid, adminpassword).subscribe({
-      next :Response => {
-        // this.userdetails = Response;
-        this.user = JSON.parse(localStorage.getItem('currentUser')!);
-        this.userrole = localStorage.getItem("roleuser");
-        if(this.userrole == 'user'){
-          console.log("test");
-          this.authservice.logout(this.user);
-          localStorage.removeItem('currentUser');
-          // this.router.navigate(['/login']);
-          alert('user trying to login through admin panel');
-          location.reload();
-        }        
-      },
-      error: err => {
-        alert("error login");
-      }
-    });
-  }
+    onSubmitUser() { 
+      var useremailid = this.UserLoginForm.value.email;
+      var userpassword = this.UserLoginForm.value.password;
+      this.authservice.login(useremailid, userpassword).subscribe({
+        next :Response => {
+          this.userdetails = Response;
+          this.user = JSON.parse(localStorage.getItem('currentUser')!);
+          this.userrole = localStorage.getItem("roleuser");
+          // console.log("check",localStorage.getItem("roleuser"));
+          if(this.userrole == 'admin'){
+            console.log("test");
+            this.authservice.logout(this.user);
+            localStorage.removeItem('currentUser');
+            // this.router.navigate(['/login']);
+            alert('admin trying to login through user panel');
+            location.reload();
+          }        
+        },
+        error: err => {
+          alert("error login");
+        }
+      });
+  
+    }
+  
+    onSubmitAdmin(){
+      var adminemailid = this.AdminLoginForm.value.admin_email;
+      var adminpassword = this.AdminLoginForm.value.admin_password;
+      this.authservice.login(adminemailid, adminpassword).subscribe({
+        next :Response => {
+          // this.userdetails = Response;
+          this.user = JSON.parse(localStorage.getItem('currentUser')!);
+          this.userrole = localStorage.getItem("roleuser");
+          if(this.userrole == 'user'){
+            console.log("test");
+            this.authservice.logout(this.user);
+            localStorage.removeItem('currentUser');
+            // this.router.navigate(['/login']);
+            alert('user trying to login through admin panel');
+            location.reload();
+          }        
+        },
+        error: err => {
+          alert("error login");
+        }
+      });
+    }
 
   onRegister(){
     var firstname = this.profileForm.value.firstname;

@@ -119,8 +119,11 @@
                                 <td>{{req.name}}</td>
                                 <td>{{req.quantity}}</td>
                                 <td>
-                                    <button (click)="processRequest(req)" class="accept-btn">Accept</button>
-                                    <button class="decline-btn">Decline</button>
+                                    <button [ngStyle]="{background:getcolorreview(req)}" (click)="reviewRequest(req)" class="review-btn" id="review">Review</button>
+                                    <button [ngStyle]="{background:getcolorprocess(req)}"  (click)="processRequest(req)" class="process-btn" id="process">Process</button>
+                                    <button [ngStyle]="{background:getcoloraccept(req)}" (click)="acceptRequest(req)" class="accept-btn" id="accept">Accept</button>
+                                    <button [ngStyle]="{background:getcolordeliver(req)}" (click)="deliverRequest(req)" class="deliver-btn" id="deliver">Deliver</button>
+                                    <button (click)="deleterequest(req)" class="decline-btn">Decline</button>
                                 </td>
                                 <hr>
                             </tr>

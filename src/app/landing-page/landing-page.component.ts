@@ -99,7 +99,12 @@ export class LandingPageComponent implements OnInit {
       "employeeid": this.cuser.userId,
       "name": this.productname,
       "quantity": this.value,
-      "track":[
+      "track":[ {
+        "review": false,
+        "process": false,
+        "accept": false,
+        "deliver": false
+      }
         
       ]
     })

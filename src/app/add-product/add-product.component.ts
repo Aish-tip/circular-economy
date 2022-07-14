@@ -62,10 +62,12 @@ export class AddProductComponent implements OnInit {
     console.log(this.user);
     this.http.get(`${Urls.USERS}/${this.cuser.userId}?access_token=${this.cuser.id}`).subscribe((res: any) => {
       this.activeuser = res;
-      console.log(this.activeuser)
-           
+      console.log(this.activeuser)           
     })
+    
   }
+
+ 
 
   onImagePicked(imageData: string | File) {
     let imageFile;
@@ -189,7 +191,7 @@ export class AddProductComponent implements OnInit {
       console.log(e);
       this.http.get(`${Urls.RITEM}?access_token=${this.cuser.id}`).subscribe(Response =>{
       this.item = Response;
-      this.tempData(this.item);
+      console.log(this.item)
         })
       this.dashboard = false;
       this.user = false;
@@ -220,28 +222,68 @@ export class AddProductComponent implements OnInit {
       this.searchtext = searchvalue;
       console.log(this.searchtext);
     }
-    temp:any[] = []
-    tempData(d:any){
-      for(var i=0;i<d.length;i++){
-        var trackinfo = {
-          "name": '',
-          "product": '',
-          "review": false,
-          "process": false,
-          "accept": false,
-          "deliver": false          
-        }
-        trackinfo.name = d[i].employeename;
-        trackinfo.product = d[i].name;
-        this.temp = this.temp.concat(trackinfo);
-        console.log(d[i]);
-      }
-      console.log(this.temp);      
+
+
+    bgcolor:any
+    acceptRequest(r:any){   
+   
+      this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
+        "track":[{
+          "review":true,
+          "process":true,
+          "accept":true,
+          "deliver":false           
+        }]
+      }).subscribe(res=>{
+        console.log(res);
+        alert("request accepted");
+        location.reload();
+      })
     }
 
     processRequest(r:any){
-      console.log("rqid",r.id);
-      console.log("temp",this.temp);
+      // const process = document.getElementById("process");
+      // if(process){
+      //   process.style.background = '#007074'
+      // }
+      this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
+        "track":[{
+          "review":true,
+          "process":true,
+          "accept":false,
+          "deliver":false         
+        }]
+      }).subscribe(res=>{
+        console.log(res);
+        alert("request processed");
+        location.reload();
+      })
+    }
+
+    deliverRequest(r:any){
+       
+      this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
+        "track":[{
+          "review":true,
+          "process":true,
+          "accept":true,
+          "deliver":true          
+        }]
+      }).subscribe(res=>{
+        console.log(res);
+        // const deliver = document.getElementById("deliver");
+        alert("request delivered");
+        location.reload();
+      })
+    }
+
+    reviewbg:any
+    reviewRequest(r:any){      
+      // const review = document.getElementById("review");
+      // if(review){
+      //   review.style.background = '#007074'
+      // }
+      
       this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
         "track":[{
           "review":true,
@@ -251,9 +293,51 @@ export class AddProductComponent implements OnInit {
         }]
       }).subscribe(res=>{
         console.log(res);
-      })
-      
+        this.reviewbg = res;
+        // console.log(this.reviewbg.track[0])
+       
+        alert("request under review");     
+        location.reload();   
+      })      
+    }  
+    
+    getcolorreview(r:any){
+      let color = '#B4B4B4';
+      if(r.track[0].review == true){
+        color = '#007074';
+      }
+      return color;
     }
+    getcolorprocess(r:any){
+      let color = '#B4B4B4';
+      if(r.track[0].process == true){
+        color = '#007074';
+      }
+      return color;
+    }
+    getcoloraccept(r:any){
+      let color = '#B4B4B4';
+      if(r.track[0].accept == true){
+        color = '#007074';
+      }
+      return color;
+    }
+    getcolordeliver(r:any){
+      let color = '#B4B4B4';
+      if(r.track[0].deliver == true){
+        color = '#007074';
+      }
+      return color;
+    }
+
+    deleterequest(r:any){
+      console.log("test")
+      this.http.delete(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`).subscribe(res=>{
+        console.log(res);
+        alert("request deleted");
+      })
+    }
+
 }
 
 

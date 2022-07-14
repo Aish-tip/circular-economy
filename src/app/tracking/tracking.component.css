@@ -1,0 +1,7 @@
+.item-card{
+    box-shadow: 5px 10px 8px #888888;
+    margin: 5% auto;
+    padding: 4%;
+    border: 1px solid;
+    width: 50%;
+}

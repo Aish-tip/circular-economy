@@ -119,62 +119,45 @@ margin-left: 5%;
     width: 100%;
     outline:none;
 }
-/* .headings{
-    padding: 0 70% 0 70%;
-} */
-/* .content span{
-    padding: 0 65% 0 70%;
-} */
-/* .user_name{
-    padding: 0 65% 0 70%;
-}
-.user_id{
-    padding: 0 65% 0 70%;
-} */
-/* .user_data td{
-    padding: 0 70% 0 70%;
-}*/
+
 table{
-    width:75%;
+    width:90%;
     margin-left: 0%;
 }
 
 .user_div{
     width:100%;
 }
-.accept-btn{
+.accept-btn, .review-btn, .process-btn, .deliver-btn{
     width: 130px;
     height: 44px;
     left: 1070px;
     top: 375px;
-    background: #007074;
     border-radius: 8px;
     color:#ffffff;
     border:none;
     margin-right:5%;
     margin-top: 5%;
 }
+#review, #process, #accept, #deliver{
+    background: #B4B4B4;
+}
 .decline-btn{
     width: 130px;
 height: 44px;
 left: 1207px;
 top: 375px;
-
 background: #B4B4B4;
 border-radius: 8px;
 border:none;
 color:#ffffff;
 }
+
 hr{
     position: absolute;
     left: 0%;
-    width: 85%;
+    width: 90%;
     height: 1px
 }
-/* .headings span{
-    margin: 5% 10%;
-} */
-/* .requests span{
-    margin: 5% 10%;
-} */
+
 

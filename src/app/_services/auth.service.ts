@@ -22,9 +22,10 @@ export class AuthService {
       this.http.get(`${Urls.USERS}/${user.userId}?access_token=${user.id}`).subscribe(res => {
         let data: any = res;
         localStorage.setItem("userName", data.username);
-        sessionStorage.setItem('role',data.role);  
+        sessionStorage.setItem('role',data.role); 
+        console.log("user-role",sessionStorage.getItem('role')) 
         localStorage.setItem("roleuser",data.role);
-        // console.log("check",localStorage.getItem("roleuser"));      
+        console.log("check",localStorage.getItem('roleuser'));      
       });
       if (user && user.id) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -47,12 +48,11 @@ export class AuthService {
       console.log("Logged out");
       localStorage.removeItem('currentUser');
       localStorage.removeItem('userName');
-      localStorage.removeItem('roleuser');
+      // localStorage.removeItem('roleuser');
+      // sessionStorage.removeItem("role");
       sessionStorage.clear();
       this.router.navigate(['/login']);
-    })
-
-  }
+    })}
 
   register(firstname:any, lastname:any, role:any, email:any, password:any, username:any, mobile:any): Observable<any> {
     return this.http.post(`${Urls.USERS}`, {
