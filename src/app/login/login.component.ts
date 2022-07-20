@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { AuthService } from '../_services/auth.service';
 import { Urls } from '../constants/urls';
-import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   constructor(private authservice:AuthService,private http : HttpClient, private router :Router,private tokenStorage: TokenStorageService) {}
 
@@ -33,14 +34,15 @@ export class LoginComponent implements OnInit {
       username: new FormControl(''), 
       password: new FormControl('')        
     });
+
     role:any;
     userdetails:any
     user:any
     activeuser:any
     userrole:any
-    // userdetails:any
+
     ngOnInit(){
-      // console.log("check",localStorage.getItem("roleuser"));
+      
     }
 
     onSubmitUser() { 
@@ -49,23 +51,24 @@ export class LoginComponent implements OnInit {
       this.authservice.login(useremailid, userpassword).subscribe({
         next :Response => {
           this.userdetails = Response;
-          this.user = JSON.parse(localStorage.getItem('currentUser')!);
-          this.userrole = localStorage.getItem("roleuser");
-          // console.log("check",localStorage.getItem("roleuser"));
-          if(this.userrole == 'admin'){
-            console.log("test");
-            this.authservice.logout(this.user);
-            localStorage.removeItem('currentUser');
-            // this.router.navigate(['/login']);
-            alert('admin trying to login through user panel');
-            location.reload();
-          }        
+          console.log("user",this.userdetails)
+          this.http.get(`${Urls.USERS}/${this.userdetails.userId}?access_token=${this.userdetails.id}`).subscribe(res=>{
+            this.userrole = localStorage.getItem("roleuser");
+            console.log("check",this.userrole);
+            if(this.userrole == "admin")
+            {
+              console.log("test");
+              this.authservice.logout();
+              // localStorage.removeItem('currentUser');
+              alert('admin trying to login through user panel');
+              location.reload();
+            }        
+          });         
         },
         error: err => {
           alert("error login");
         }
-      });
-  
+      });  
     }
   
     onSubmitAdmin(){
@@ -73,17 +76,20 @@ export class LoginComponent implements OnInit {
       var adminpassword = this.AdminLoginForm.value.admin_password;
       this.authservice.login(adminemailid, adminpassword).subscribe({
         next :Response => {
-          // this.userdetails = Response;
-          this.user = JSON.parse(localStorage.getItem('currentUser')!);
-          this.userrole = localStorage.getItem("roleuser");
-          if(this.userrole == 'user'){
-            console.log("test");
-            this.authservice.logout(this.user);
-            localStorage.removeItem('currentUser');
-            // this.router.navigate(['/login']);
-            alert('user trying to login through admin panel');
-            location.reload();
-          }        
+          this.userdetails = Response;
+          console.log("user",this.userdetails)
+          this.http.get(`${Urls.USERS}/${this.userdetails.userId}?access_token=${this.userdetails.id}`).subscribe(res=>{
+            this.userrole = localStorage.getItem("roleuser");
+            console.log("check",this.userrole);
+            if(this.userrole == "user")
+            {
+              console.log("test");
+              this.authservice.logout();
+              // localStorage.removeItem('currentUser');
+              alert('user trying to login through user panel');
+              location.reload();
+            }        
+          });       
         },
         error: err => {
           alert("error login");

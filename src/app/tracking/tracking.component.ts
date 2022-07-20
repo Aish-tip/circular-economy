@@ -11,27 +11,36 @@ import { Urls } from '../constants/urls';
 export class TrackingComponent implements OnInit {
 
   constructor(private authservice:AuthService,private http:HttpClient) { }
-  cuser:any
+  user:any
   activeuser:any
   item:any
   review:any
   show:any
+  username:any
   ngOnInit() {
-    this.cuser = JSON.parse(localStorage.getItem('currentUser')!);
-    console.log(this.cuser);
-    this.http.get(`${Urls.USERS}/${this.cuser.userId}?access_token=${this.cuser.id}`).subscribe((res: any) => {
+    this.user = JSON.parse(localStorage.getItem('currentUser')!);
+    console.log("cuser",this.user);
+    this.http.get(`${Urls.USERS}/${this.user.userId}?access_token=${this.user.id}`).subscribe((res: any) => {
       this.activeuser = res;
-      console.log("user",this.activeuser);           
+      this.username = this.activeuser.firstname;
+      console.log("user",this.username);           
     })    
 
-    this.http.get(`${Urls.RITEM}?filter=[where][employeeid]=${this.cuser.userId}&access_token=${this.cuser.id}`)
-    .subscribe (res=>{
-      console.log("item",res);
-      this.item = res;
-      for(let i=0;i<this.item.length;i++){
-        // console.log(this.item.track[0].review)
-      }
-    })   
+    this.http.get(`${Urls.RITEM}?access_token=${this.user.id}`)
+    .subscribe ((res :any)=>{
+      console.log(res);
+      this.item=res;
+      
+    })
+    
+    // this.http.get(`http://3.111.188.154:3000/api/requestItems?filter[where][employeename]=${this.username}`)
+    // .subscribe ((res :any)=>{
+    //   console.log(res);
+    //   // http://3.111.188.154:3000/api/requestItems?filter[where][employeename]=aishu
+    //   // `${Urls.RITEM}?filter[where][employeename]=${this.username}`
+    // })
+
+
              
   }
 

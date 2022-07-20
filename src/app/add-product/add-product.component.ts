@@ -65,9 +65,7 @@ export class AddProductComponent implements OnInit {
       console.log(this.activeuser)           
     })
     
-  }
-
- 
+  } 
 
   onImagePicked(imageData: string | File) {
     let imageFile;
