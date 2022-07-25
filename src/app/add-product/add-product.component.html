@@ -4,27 +4,29 @@
 <div class="main-div row" > 
     <div class="vertical-div col-2" style="cursor:pointer">    
             <!-- <img routerLink="/landing" class="admin-logo" src="../../assets/images/circular economy logo.png" alt="logo"> -->
-            <p class="options" (click)="func_dashboard($event)">
+            <p class="options" (click)="func_dashboard($event)" [ngStyle]="{color:getdcolor()}">
                 <span class="icon"><img src="../../assets/images/dashboard.svg" alt="dashboard"></span>
                 <span class="text">Dashboard</span>
             </p>
-            <p class="options" [ngStyle]="{'border-bottom':(user==true)? '2px solid var(--ion-color-primary)': 'none'}"
-            (click)="func_user($event)">
+            <p class="options" (click)="func_product($event)" [ngStyle]="{color:getpcolor()}">
+                <span class="icon"><img src="../../assets/images/manage user.svg" alt="dashboard"></span>
+                <span class="text">Manage Products</span>
+            </p>
+            <p class="options" (click)="func_user($event)" [ngStyle]="{color:getucolor()}">
                 <span class="icon"><img src="../../assets/images/manage user.svg" alt="dashboard"></span>
                 <span class="text">Manage User</span>
             </p>
-            <p class="options"  [ngStyle]="{'border-bottom':(request==true)? '2px solid var(--ion-color-primary)': 'none'}"
-            (click)="func_request($event)">
+            <p class="options" (click)="func_request($event)" [ngStyle]="{color:getrcolor()}">
                 <span class="icon"><img src="../../assets/images/request.svg" alt="dashboard"></span>
                 <span class="text">Request</span>
             </p>        
         <!-- <hr class="line">                 -->
     </div>
     <div class="col-10">
-        <div class="profile-icons">
+        <!-- <div class="profile-icons">
             <img src="../../assets/images/notification.svg" alt="notification"> 
             <img src="../../assets/images/Message.svg" alt="message">            
-        </div>  
+        </div>   -->
         <div *ngIf="dashboard" class="content-div" >
             <div class="drag-area">
                 <span class="icon-file">
@@ -64,8 +66,7 @@
                 </form>
             </div>
         </div> 
-        <div *ngIf="user" class="user_div">
-            
+        <div *ngIf="user" class="user_div">            
             <!-- <div>users</div> -->
             <div class="search_user">
                 <!-- <app-searchbar (searchTextChanged)="onSearchTextEntered($event)"></app-searchbar> -->
@@ -85,7 +86,7 @@
                             <td class="user_name">{{list.firstname}}</td>
                             <td class="user_id">{{list.id}}</td>
                             <td>
-                                <button (click)="adduser(list)" class="accept-btn">Accept</button>
+                                <button (click)="adduser(list)" class="accept-button">Accept</button>
                                 <button (click)="deleteuser(list)" class="decline-btn">Decline</button>
                             </td>
                             <hr>                                                   
@@ -100,40 +101,135 @@
                 <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
                 <!-- <input type="search" placeholder="search"> -->
                 <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
-            </div>
-            
+            </div>            
             <ng-container>
                 <div id="reqitem">                    
-                    <table>
+                    <table class="req-table">
                         
                             <tr class="headings">
                                 <th>Name</th>
                                 <th>Item</th>
-                                <th>Available</th>
+                                <th>Quantity</th>
                                 <th>Action</th>
+                                <!-- <th>Delete</th> -->
                             </tr>
                         
                             <!-- *ngIf="searchtext === '' || req.employeename.toLowerCase().includes(searchtext)" -->
                             <tr *ngFor="let req of item | filter:term">
-                                <td>{{req.employeename}}</td>
+                                <td><p>{{req.employeename}}</p>
+                                <p style="color:#1D5C63;">{{req.requestDate}}</p></td>
                                 <td>{{req.name}}</td>
                                 <td>{{req.quantity}}</td>
-                                <td>
+                                <!-- <td>
                                     <button [ngStyle]="{background:getcolorreview(req)}" (click)="reviewRequest(req)" class="review-btn" id="review">Review</button>
                                     <button [ngStyle]="{background:getcolorprocess(req)}"  (click)="processRequest(req)" class="process-btn" id="process">Process</button>
                                     <button [ngStyle]="{background:getcoloraccept(req)}" (click)="acceptRequest(req)" class="accept-btn" id="accept">Accept</button>
                                     <button [ngStyle]="{background:getcolordeliver(req)}" (click)="deliverRequest(req)" class="deliver-btn" id="deliver">Deliver</button>
                                     <button (click)="deleterequest(req)" class="decline-btn">Decline</button>
+                                </td> -->
+                                <td>
+                                    <div class="row justify-content-between">
+                                        <div id="order" class="order-tracking" (click)="reviewRequest(req)" [class.completed]="req.track[0].review === true">
+                                            <span class="is-complete"></span>
+                                            <p>Reviewed</p>
+                                            <p>{{req.track[0].reviewdate}}</p>
+                                        </div>
+                                        <div id="process" class="order-tracking" (click)="processRequest(req)" [class.completed]="req.track[0].process === true">
+                                            <span class="is-complete"></span>
+                                            <p>Processed</p>
+                                            <p>{{req.track[0].processdate}}</p>
+                                        </div>
+                                        <div id="accept" class="order-tracking" (click)="acceptRequest(req)" [class.completed]="req.track[0].accept=== true">
+                                            <span class="is-complete"></span>
+                                            <p>Accepted</p>
+                                        </div>
+                                        <div id="deliver" class="order-tracking" (click)="deliverRequest(req)" [class.completed]="req.track[0].deliver === true">
+                                            <span class="is-complete"></span>
+                                            <p>Delivered</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- <button (click)="deleterequest(req)" class="decline-btn">Decline</button> -->
+                                </td>
+                                <td>
+                                    <!-- <img src="../../assets/images/delete.png" alt="delete" style="width:80%" (click)="deleterequest(req)"> -->
+                                    <img src="../../assets/images/delete.png" alt="delete" style="width:80%" (click)="opendeletepopup()">
                                 </td>
                                 <hr>
-                            </tr>
-                        
-                        
+                                <div id="id01" class="modal">
+                                    <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+                                    <form class="modal-content">
+                                      <div class="container">
+                                        <h1>Delete Account</h1>
+                                        <p>Are you sure you want to delete your account?</p>
+                                  
+                                        <div class="clearfix">
+                                          <button class="modal-button" type="button" class="cancelbtn" (click)="cancelbtn()">Cancel</button>
+                                          <button class="modal-button" type="button" class="deletebtn" (click)="deleterequest(req)">Delete</button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                            </tr>                  
                         <hr>
                     </table>
                 </div>
             </ng-container>
         </div>
-    
+        <div *ngIf="product">
+            <div class="search_user">
+                <!-- <app-searchbar (searchTextChanged)="onSearchTextEntered($event)"></app-searchbar> -->
+                <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+                <!-- <input type="search" placeholder="search"> -->
+                <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+            </div>  
+            <ng-container>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Product</th>
+                            <th>Product Name</th>
+                            <th>Location</th>
+                            <th>Stock</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr *ngFor="let prod of productlist | filter:term;let i=index">
+                            <td class="prod-img">
+                                <img src="http://3.111.188.154:3000/api/containers/images/download/{{prod.imagename}}"/>
+                            </td>
+                            <td>{{prod.name}}</td>
+                            <td>{{prod.location}}</td>
+                            <td>{{prod.quantity}}</td>
+                            <td>
+                                <div class="action-tab">
+                                    <img src="../../assets/images/edit.png" alt="edit" (click)="openpopup(prod)">
+                                    <img src="../../assets/images/delete.png" alt="delete" (click)="deleteproduct(prod)">
+                                </div>
+                                
+                            </td>
+                            <hr>
+                        </tr>
+                        <hr>
+                    </table>
+                </div>
+            </ng-container>
+            <div class="loginPopup">
+                <div class="formPopup" id="popupForm">
+                  <form class="formContainer" [formGroup]="editform" (ngSubmit)="save_modified_form()">
+                    <div>
+                        <p><span>Product Name</span><br>
+                            <input type="text" placeholder="{{productinfo}}" formControlName="pname"></p>
+                        <p><span>Location</span><br>
+                            <input type="text" placeholder="{{productlocation}}" formControlName="ploc"></p>
+                        <p><span>Stock</span><br>
+                            <input type="text" placeholder="{{productstock}}" formControlName="pstock"></p>
+                    </div>
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
+                  </form>
+                </div>
+              </div>
+
+        </div>
     </div>
 </div>

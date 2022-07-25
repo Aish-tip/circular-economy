@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import assetdata from '../data.json';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Urls } from '../constants/urls';
+import { DatePipe } from '@angular/common';
 
 
 interface Asset {  
@@ -20,7 +21,7 @@ interface Asset {
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,public datepipe: DatePipe) { }
   cuser:any
   activeuser:any
   productlist:any
@@ -32,17 +33,17 @@ export class LandingPageComponent implements OnInit {
     this.http.get(`${Urls.USERS}/${this.cuser.userId}?access_token=${this.cuser.id}`).subscribe((res: any) => {
       this.activeuser = res;
       this.activeusername = this.activeuser.firstname;
-      console.log(this.activeuser)
-           
+      console.log(this.activeuser)           
     })
     this.http.get(`${Urls.PRODUCT}?access_token=${this.cuser.id}`).subscribe((res:any) =>{
       this.productlist=res;
       console.log(this.productlist);
-
+      this.productlist.map((item:any)=> {
+        item.value = 1;
+        })
     })
 
     this.imagecall();
-
   }
   images:any
   imagecall(){
@@ -52,6 +53,23 @@ export class LandingPageComponent implements OnInit {
       this.images = res;
     })
   }
+content:any
+  newArray: any
+  searchThis(data:any) {
+    this.content = this.newArray
+    console.log(data)
+    if (data) {
+      this.content = this.content.filter(function (ele:any, i:any, array:any=[]) {
+        let arrayelement = ele.name.toLowerCase()
+        return arrayelement.includes(data)
+      })
+    }
+    else {
+      console.log(this.content)
+    }
+    console.log(this.content)
+  }
+
 
   requestForm = new FormGroup({
    
@@ -60,69 +78,81 @@ export class LandingPageComponent implements OnInit {
   productname:any
   productStock:any
   qty:number
-  
-  openForm(p:any) {
-    console.log(p)
+
+  openpop(p:any){
+    console.log("product",p)
     this.productname = p.name;
     this.productStock = p.quantity;
-    const form = document.getElementById("myForm");
-    if(form){
-      form.style.display = "block";
-    }
-  }  
-  closeForm() {
-    const form = document.getElementById("myForm");
-    if(form){
-      form.style.display = "none";
-    }
-  }
-  value=1
-  increment(){
-    if(this.value < this.productStock){
-      this.value++; 
-    }
-  }
-
-  decrement(){
-    if(this.value > 1){
-      this.value--;
-    }
-     
-  }
-
-  openpop(){
-    console.log(this.activeuser.userId);
-    console.log(this.value);
-    console.log(this.requestForm.value)
+    // console.log("active user",this.cuser.userId);
+    // console.log("name",this.activeuser.firstname)
+    // console.log("stock",this.productStock)
+    // console.log("qty",this.value);
+    // console.log("value",this.productname)
+    let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');  
+      console.log(currentDateTime);
     this.http.post<any>(`${Urls.RITEM}`,
     {"employeename": this.activeuser.firstname,
       "employeeid": this.cuser.userId,
       "name": this.productname,
       "quantity": this.value,
+      "requestDate": currentDateTime,
       "track":[ {
         "review": false,
+        "reviewdate":'',
         "process": false,
+        "processdate": '',
         "accept": false,
-        "deliver": false
-      }
-        
-      ]
-    })
-    .subscribe(Response =>{
+        "acceptdate": '',
+        "deliver": false,
+        "deliverdate":''
+      }]
+    }).subscribe(Response =>{
         console.log(Response);
         alert("successful");
-    })
-    const form = document.getElementById("myForm");
-    if(form){
-      form.style.display = "none";
+    });    
+  }
+
+  value=1
+  // tmp:any[]=[]
+  quantity:any;
+  increment(p:any){
+    console.log(this.value);
+    console.log(p.quantity)
+    if(p.value < p.quantity)
+    {
+      p.value++; 
+      console.log("after if",this.value)
     }
   }
 
-  getproduct(p:any){
-    console.log(p);
+  decrement(p:any){
+    if(p.value > 1){
+      p.value--;
+    }     
+  } 
+  role1:any
+  admin1:any
+  user1:any
+  LoggedIn1(){
+    if(localStorage.getItem('currentUser'))
+    {
+      this.role1= sessionStorage.getItem("role");
+      // console.log(this.role);
+      if(this.role1 == 'admin')
+      {
+        this.admin1=true;
+      }
+      else if(this.role1== 'user')
+      {
+        this.user1=true;
+      }
+      return true;
+    }
+    else{
+      return false;
+    }    
   }
-  
- 
+
 
 }
 

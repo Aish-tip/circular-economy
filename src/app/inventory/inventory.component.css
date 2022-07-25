@@ -43,3 +43,72 @@ div#high-stock{
   text-align: center;
   color: #000000;
   }
+
+  /* quantity box */
+
+
+.input-group input {
+  -webkit-appearance: button;
+  cursor: pointer;
+  /* border: none; */
+  /* background-color: #FFFFFF; */
+}
+
+.num{
+  background: none;
+}
+
+.input-group {
+  clear: both;
+  margin: 15px 0;
+  position: relative;
+  width: 50%;
+}
+
+.input-group input[type='button'] {
+  /* background-color: #ffffff; */
+  min-width: 38px;
+  width: auto;
+  transition: all 300ms ease;
+}
+
+input.plusminus{
+  width: 20%;
+    text-align: center;
+    border: none;
+    border-radius: 8px !important;
+    background: #1D5C63;
+    color: #ffffff;
+    padding: 5%;
+    margin: 3%;
+}
+input.num{
+  width: 20%;
+    text-align: end;
+    border: 1px solid black;
+    border-radius: 8px !important;
+    margin: 3%;
+}
+.quantity-div{
+  display:flex;
+}
+.submit-div{
+  float: right;
+  width: 50%;
+
+}
+
+.asset-btn{
+  background: #1D5C63;
+  border-radius: 8px;
+  color:#ffffff;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  border: none;
+  padding: 5% 25%;
+  margin: 10% 27%;
+}

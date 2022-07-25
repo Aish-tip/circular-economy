@@ -1,28 +1,64 @@
 <div>
-<app-menu></app-menu>
+  <app-menu></app-menu>
 </div>
-<div>
-  <h1>Profile</h1>
-  
-  <div id="profile_details" class="profile_card">      
-    <p>Firstname: {{activeuser.firstname}}</p>            
-    <p>Lastname: {{activeuser.lastname}}</p>
-    <p>Email: {{activeuser.email}}</p>
-    <p>Username: {{activeuser.username}}</p>
-    <p>Role: {{activeuser.role}}</p>
-    <p>Mobile Number: {{activeuser.mobile}}</p>
-    <button (click)="editdetails()">Edit details</button>
+<div style="margin-bottom:10%">
+  <div id="profile_details">
+    <div class="profile-details">
+      <h1>Profile</h1>
+    <hr> 
+    </div>
+    <div>
+      <div class="profile-card">
+        <img src="../../assets/images/profile.jpg" alt="profile">
+      </div>
+      <div  class="profile_card"> 
+        <img src="../../assets/images/edit.png" alt="edit" (click)="editdetails()">
+        <div>
+          <p>Firstname: {{activeuser.firstname}}</p>            
+          <p>Lastname: {{activeuser.lastname}}</p>
+          <p>Email: {{activeuser.email}}</p>
+          <p>Username: {{activeuser.username}}</p>
+          <p>Role: {{activeuser.role}}</p>
+          <p>Mobile Number: {{activeuser.mobile}}</p>
+          <!-- <button>Edit details</button> -->
+        </div>         
+      </div>
+    </div>    
   </div>
-  <form id="profile_edit" [formGroup]="editform" (ngSubmit)="save_modified_form()" class="profile_card">
-   <p>Firstname:<input type="text" placeholder="{{activeuser.firstname}}" formControlName="firstname"></p>
-   <p>Lastname:<input type="text" placeholder="{{activeuser.lastname}}" formControlName="lastname"></p>
-   <p>Email:<input type="text" placeholder="{{activeuser.email}}" formControlName="email"></p>
-   <p>Username:<input type="text" placeholder="{{activeuser.username}}" formControlName="username"></p>
-   <p>Mobile Number:<input type="number" placeholder="{{activeuser.mobile}}" formControlName="mobile"></p>
-   <button id="submit" type="submit">Save Details</button>    
-  </form>
   
+  <div id="profile_edit">
+    <div class="edit-profile">
+      <h2>Edit Profile</h2>
+      <hr>
+    </div>    
+    <form class="row"  [formGroup]="editform" (ngSubmit)="save_modified_form()">
+      <div class="col-3">
+        <img class="profile-img" src="../../assets/images/profile.jpg" alt="profile">
+      </div>
+      <div class="col-9">
+        <div class="row form-label">
+          <p class="col-6"><span>Firstname:</span><br>
+            <input type="text" placeholder="{{activeuser.firstname}}" formControlName="firstname"></p>
+          <p class="col-6"><span>Lastname:</span><br>
+            <input type="text" placeholder="{{activeuser.lastname}}" formControlName="lastname"></p>
+        </div>
+        <div class="row form-label">
+          <p class="col-6"><span>Email:</span><br>
+            <input type="text" placeholder="{{activeuser.email}}" formControlName="email"></p>
+          <p class="col-6"><span>Username:</span><br>
+            <input type="text" placeholder="{{activeuser.username}}" formControlName="username"></p>
+        </div>
+        <div class="row form-label">
+          <p class="col-6"><span>Mobile Number:</span><br>
+            <input type="number" placeholder="{{activeuser.mobile}}" formControlName="mobile"></p>
+        </div>          
+          <button id="submit" type="submit">Submit</button>   
+      </div>       
+    </form>     
+  </div>  
 </div>
+<app-footer>
+</app-footer>
 
 
   

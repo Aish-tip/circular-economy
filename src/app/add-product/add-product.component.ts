@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import {HttpClient} from '@angular/common/http';
 import { Urls } from '../constants/urls';
+import { DatePipe } from '@angular/common';
 
 function base64toBlob(base64Data: string, contentType: string) {
   contentType = contentType || '';
@@ -34,6 +35,7 @@ export class AddProductComponent implements OnInit {
   
   dashboard = true;
   user = false;
+  product = false;
   request = false;
   userlist: any;
   item: any;
@@ -43,8 +45,11 @@ export class AddProductComponent implements OnInit {
   finalimageFile: any;
   generateName: any
   term: string;
+  userslist:any
+  userListName:any
+  productlist:any
 
-  constructor(private authservice:AuthService,private http:HttpClient){ }
+  constructor(private authservice:AuthService,private http:HttpClient, public datepipe: DatePipe){ }
 
   productForm = new FormGroup({
     nameproduct: new FormControl(''),
@@ -55,6 +60,13 @@ export class AddProductComponent implements OnInit {
     brand: new FormControl(''),
     year: new FormControl('')
   });
+
+  editform = new FormGroup({
+    pname: new FormControl(''),
+    ploc: new FormControl(''),
+    pstock: new FormControl('')
+  });
+
   cuser:any
   activeuser:any
   ngOnInit(): void {
@@ -64,6 +76,8 @@ export class AddProductComponent implements OnInit {
       this.activeuser = res;
       console.log(this.activeuser)           
     })
+
+    
     
   } 
 
@@ -134,14 +148,15 @@ export class AddProductComponent implements OnInit {
     });    
     console.log("imgname",this.pickedFilename)
   } 
+
     func_dashboard(e: any){
       console.log(e);
       this.dashboard = true;
+      this.product = false;
       this.user = false;
       this.request = false;
     }
-    userslist:any
-    userListName:any
+    
     func_user(e: any){
       console.log(e);
       // this.http.get(`${Urls.USERS}`).subscribe(res=>{
@@ -154,9 +169,11 @@ export class AddProductComponent implements OnInit {
       });
       
       this.dashboard = false;
+      this.product = false;
       this.user = true;
       this.request = false;
     }
+
     adduser(u:any){
       this.authservice.register(u.firstname, u.lastname, u.role, u.email, u.password, u.username, u.mobile).subscribe({
         next: Response => {
@@ -192,10 +209,20 @@ export class AddProductComponent implements OnInit {
       console.log(this.item)
         })
       this.dashboard = false;
+      this.product = false;
       this.user = false;
-      this.request = true;
-      
+      this.request = true;      
     }    
+    func_product(e:any){
+      this.http.get(`${Urls.PRODUCT}?access_token=${this.cuser.id}`).subscribe((res:any) =>{
+        this.productlist=res;
+        console.log(this.productlist);  
+      })
+      this.dashboard = false;
+      this.user = false;
+      this.product = true;
+      this.request = false;
+    }
 
     selecteImage: any;
     uploadFile() {
@@ -222,7 +249,58 @@ export class AddProductComponent implements OnInit {
     }
 
 
-    bgcolor:any
+    bgcolor:any   
+
+    reviewbg:any
+    reviewtime:any
+    reviewRequest(r:any){     
+      console.log(r);
+      let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');  
+      // this.reviewtime= currentDateTime;
+      // console.log(this.reviewtime);
+      this.http.patch(`${Urls.RITEM}/${r.id}`,{
+        "track":[{
+          "review":true,
+          "process":false,
+          "accept":false,
+          "deliver":false
+        }]
+      }).subscribe(res=>{
+        
+        this.reviewbg = res;
+        console.log("reviewbg",this.reviewbg);   
+        alert("request under review");     
+        // this.reviewtime= this.reviewbg.track[0].reviewdate;
+        // console.log("time",this.reviewtime)
+        location.reload();   
+      })      
+       
+    }  
+    
+    review:any
+    processtime:any
+    processbg:any
+    processRequest(r:any){
+      let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');  
+      console.log(currentDateTime);
+      this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
+        "track":[{
+          "review":true, 
+          "process":true,
+          "accept":false,
+          "deliver":false         
+        }]
+      }).subscribe(res=>{
+        this.processbg = res;
+        console.log(this.processbg);
+        alert("request processed");
+        location.reload();
+        // this.processtime = this.processbg.track[0].processdate;
+        // console.log(this.processtime);
+
+      })
+    }
+
     acceptRequest(r:any){   
    
       this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
@@ -239,27 +317,7 @@ export class AddProductComponent implements OnInit {
       })
     }
 
-    processRequest(r:any){
-      // const process = document.getElementById("process");
-      // if(process){
-      //   process.style.background = '#007074'
-      // }
-      this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
-        "track":[{
-          "review":true,
-          "process":true,
-          "accept":false,
-          "deliver":false         
-        }]
-      }).subscribe(res=>{
-        console.log(res);
-        alert("request processed");
-        location.reload();
-      })
-    }
-
-    deliverRequest(r:any){
-       
+    deliverRequest(r:any){       
       this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
         "track":[{
           "review":true,
@@ -275,67 +333,109 @@ export class AddProductComponent implements OnInit {
       })
     }
 
-    reviewbg:any
-    reviewRequest(r:any){      
-      // const review = document.getElementById("review");
-      // if(review){
-      //   review.style.background = '#007074'
-      // }
-      
-      this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
-        "track":[{
-          "review":true,
-          "process":false,
-          "accept":false,
-          "deliver":false
-        }]
-      }).subscribe(res=>{
-        console.log(res);
-        this.reviewbg = res;
-        // console.log(this.reviewbg.track[0])
-       
-        alert("request under review");     
-        location.reload();   
-      })      
-    }  
-    
-    getcolorreview(r:any){
-      let color = '#B4B4B4';
-      if(r.track[0].review == true){
-        color = '#007074';
-      }
-      return color;
-    }
-    getcolorprocess(r:any){
-      let color = '#B4B4B4';
-      if(r.track[0].process == true){
-        color = '#007074';
-      }
-      return color;
-    }
-    getcoloraccept(r:any){
-      let color = '#B4B4B4';
-      if(r.track[0].accept == true){
-        color = '#007074';
-      }
-      return color;
-    }
-    getcolordeliver(r:any){
-      let color = '#B4B4B4';
-      if(r.track[0].deliver == true){
-        color = '#007074';
-      }
-      return color;
-    }
-
     deleterequest(r:any){
       console.log("test")
       this.http.delete(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`).subscribe(res=>{
         console.log(res);
         alert("request deleted");
+        location.reload();
       })
     }
 
+    editproduct(p:any){
+      console.log(p);
+
+    }
+
+    deleteproduct(p:any){
+      console.log(p);
+      this.http.delete(`${Urls.PRODUCT}/${p.id}?access_token=${this.cuser.id}`).subscribe(res=>{
+        console.log(res);
+        alert("product deleted");
+        location.reload();
+      })
+    }
+    productinfo:any
+    productstock:any
+    productlocation:any
+    pid:any
+    openpopup(p:any){
+      console.log(p)
+      this.pid= p.id;
+      this.productinfo =p.name;
+      this.productlocation = p.location;
+      this.productstock =p.quantity;
+      console.log("open")
+      var pop = document.getElementById("popupForm");
+      if(pop){
+        pop.style.display = 'block';
+      }
+    }
+
+    save_modified_form(){
+      console.log("save");
+      this.http.patch(`${Urls.PRODUCT}/${this.pid}?access_token=${this.cuser.id}`,{
+        "name" : this.editform.value.pname,
+        "quantity" : this.editform.value.pstock,
+        "location" : this.editform.value.ploc
+      }).subscribe(res=>{
+        console.log(res);
+        location.reload();
+      });
+      var pop = document.getElementById("popupForm");
+      if(pop){
+        pop.style.display = 'none';
+      }
+    }
+
+    closeForm(){
+      var pop = document.getElementById("popupForm");
+      if(pop){
+        pop.style.display = 'none';
+      }
+    }
+
+    getdcolor(){      
+      var color= '#838383';
+      if(this.dashboard == true){
+        color= '#417D7A';
+      }      
+      return color;
+    }
+
+    getpcolor(){      
+      var color= '#838383';
+      if(this.product == true){
+        color= '#417D7A';
+      }
+      return color;
+    }
+
+    getucolor(){      
+      var color= '#838383';
+      if(this.user == true){
+        color= '#417D7A';
+      }
+      return color;
+    }
+
+    getrcolor(){      
+      var color= '#838383';
+      if(this.request == true){
+        color= '#417D7A';
+      }
+      return color;
+    }
+
+    opendeletepopup(){
+      const open = document.getElementById("id01");
+      open.style.display = 'block';
+    }
+
+    cancelbtn(){
+      const open = document.getElementById("id01");
+      open.style.display = 'none';
+    }
 }
 
 

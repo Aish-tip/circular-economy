@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { Router} from '@angular/router';
 // import { FormControl, FormGroup } from '@angular/forms';
@@ -14,18 +14,24 @@ export class MenuComponent implements OnInit {
   admin:any;
   userlogged : any;
   term:string;
+  searchword:any
   constructor(private authservice : AuthService,private router :Router) { }
   role:any;
   ngOnInit(): void {}
 
+
+
   LoggedIn(){
-    if(localStorage.getItem('currentUser')){
+    if(localStorage.getItem('currentUser'))
+    {
       this.role= sessionStorage.getItem("role");
-      console.log(this.role);
-      if(this.role == 'admin'){
+      // console.log(this.role);
+      if(this.role == 'admin')
+      {
         this.admin=true;
       }
-      else if(this.role == 'user'){
+      else if(this.role == 'user')
+      {
         this.user=true;
       }
       return true;

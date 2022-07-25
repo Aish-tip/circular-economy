@@ -16,14 +16,18 @@ export class TrackingComponent implements OnInit {
   item:any
   review:any
   show:any
-  username:any
+  username:any=[]
+  user_name:any
+  details:any
+  total:any= []
+  element:any
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser')!);
     console.log("cuser",this.user);
     this.http.get(`${Urls.USERS}/${this.user.userId}?access_token=${this.user.id}`).subscribe((res: any) => {
       this.activeuser = res;
-      this.username = this.activeuser.firstname;
-      console.log("user",this.username);           
+      // this.user_name = this.activeuser.firstname;
+      // console.log("user",this.user_name);           
     })    
 
     this.http.get(`${Urls.RITEM}?access_token=${this.user.id}`)
@@ -33,50 +37,63 @@ export class TrackingComponent implements OnInit {
       
     })
     
-    // this.http.get(`http://3.111.188.154:3000/api/requestItems?filter[where][employeename]=${this.username}`)
-    // .subscribe ((res :any)=>{
-    //   console.log(res);
-    //   // http://3.111.188.154:3000/api/requestItems?filter[where][employeename]=aishu
-    //   // `${Urls.RITEM}?filter[where][employeename]=${this.username}`
-    // })
-
-
-             
+    this.http.get(`${Urls.RITEM}?access_token=${this.user.id}`)
+    .subscribe ((res :any)=>{
+      this.details = res;
+      for(let i=0;i<this.details.length;i++){
+        if(this.details[i].employeeid == this.user.userId){
+          console.log("print");
+          this.username = this.details[i];
+          console.log("prod",this.username)          
+        } 
+        this.total=this.total.concat(this.username);     
+      }
+      this.total=this.total.filter(
+        (element: any,i: any) => i == this.total.indexOf(element)
+      );
+      console.log("total",this.total)   
+    })
+    // this.totalprods=[]             
   }
 
  getreviewstatus(t:any){
-  let color = 'red';
+  console.log("review",t);
+  var order = document.getElementById("order");
   if(t.track[0].review == true){
-    color = '	#32CD32';
+    console.log("true")
+    order.classList.add("completed");    
   }
-  return color;
-
-  }
+ }
 
   getprocessstatus(t:any){
-    let color = 'red';
+    // let color = 'red';
+    var process = document.getElementById("process");
     if(t.track[0].process == true){
-      color = '	#32CD32';
+      // color = '	#32CD32';
+      process.classList.add("completed")
     }
-    return color;
-  
-    }
+    // return color;
+  }
 
     getacceptstatus(t:any){
-      let color = 'red';
+      // let color = 'red';
+      var accept = document.getElementById("accept");
       if(t.track[0].accept == true){
-        color = '	#32CD32';
+        // color = '	#32CD32';
+        accept.classList.add("completed")
       }
-      return color;
+      
     
       }
 
       getdeliverstatus(t:any){
-        let color = 'red';
+        // let color = 'red';
+        var deliver = document.getElementById("deliver");
         if(t.track[0].deliver == true){
-          color = '	#32CD32';
+          // color = '	#32CD32';
+          deliver.classList.add("completed")
         }
-        return color;
+        // return color;
       
         }
 

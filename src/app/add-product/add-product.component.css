@@ -87,7 +87,7 @@ font-weight: 600;
 font-size: 14px;
 line-height: 21px;
 text-align: center;
-color: #838383;
+/* color: #838383; */
 margin-left: 5%;
 }
 .profile-icons{
@@ -128,6 +128,18 @@ table{
 .user_div{
     width:100%;
 }
+.accept-button{
+    background: #007074;
+    width: 130px;
+    height: 44px;
+    left: 1070px;
+    top: 375px;
+    border-radius: 8px;
+    color:#ffffff;
+    border:none;
+    margin-right:5%;
+    margin-top: 5%;
+}
 .accept-btn, .review-btn, .process-btn, .deliver-btn{
     width: 130px;
     height: 44px;
@@ -139,8 +151,9 @@ table{
     margin-right:5%;
     margin-top: 5%;
 }
-#review, #process, #accept, #deliver{
-    background: #B4B4B4;
+#order, #process, #accept, #deliver{
+    /* background: #B4B4B4; */
+    cursor:pointer;
 }
 .decline-btn{
     width: 130px;
@@ -160,4 +173,308 @@ hr{
     height: 1px
 }
 
+/* track */
+
+.justify-content-between{
+    width: 100%;
+    margin: 10% auto;
+}
+
+#order{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 15px;
+line-height: 22px;
+color: #1D5C63;
+}
+
+.hh-grayBox {
+	background-color: #FFFFFF;
+	margin-bottom: 20px;
+	padding: 35px;
+  margin-top: 20px;
+}
+.pt45{padding-top:45px;}
+.order-tracking{
+	text-align: center;
+	width: 25%;
+	position: relative;
+	display: block;
+}
+.order-tracking .is-complete{
+	display: block;
+	position: relative;
+	border-radius: 50%;
+	height: 30px;
+	width: 30px;
+	border: 4px solid #C4C4C4;
+	background-color: #C4C4C4;
+	margin: 0 auto;
+	transition: background 0.25s linear;
+	-webkit-transition: background 0.25s linear;
+	z-index: 2;
+}
+.order-tracking .is-complete:after {
+	display: block;
+	position: absolute;
+	content: '';
+	height: 14px;
+	width: 7px;
+	top: 0px;
+	bottom: 0;
+	left: 5px;
+	margin: auto 0;
+	border: 0px solid #AFAFAF;
+	border-width: 0px 2px 2px 0;
+	transform: rotate(45deg);
+	opacity: 0;
+}
+.order-tracking.completed .is-complete{
+	border-color: #27aa80;
+	border-width: 3px;
+	background-color: #ffffff;
+}
+.order-tracking.completed .is-complete:after {
+	border-color: 
+    #417D7A;
+    border-width: 10px;
+    width: 10px;
+    border-radius: 50%;
+    left: 2px;
+    opacity: 1;
+}
+.order-tracking p {
+	color: #A4A4A4;
+	font-size: 16px;
+	margin-top: 8px;
+	margin-bottom: 0;
+	line-height: 20px;
+}
+.order-tracking p span{font-size: 14px;}
+.order-tracking.completed p{color:  #1D5C63;;}
+.order-tracking::before {
+	content: '';
+    display: block;
+    height: 3px;
+    width: calc(100% - 40px);
+    background-color: #ffffff;
+    top: 13px;
+    position: absolute;
+    border-color: #C4C4C4;
+    border-style: dashed;
+    left: calc(-50% + 20px);
+    z-index: 0;
+}
+.order-tracking:first-child:before{display: none;}
+.order-tracking.completed:before{
+    background-color: #ffffff;
+    border-style: dashed;
+    border-color: #417D7A;
+}
+
+.req-table th{
+    text-align: center;
+}
+.req-table td{
+    text-align: center;
+}
+.action-tab{
+    margin: 5% 0%;
+}
+.action-tab img{
+    padding: 7% 3%;
+}
+.prod-img{
+    width:10%;
+}
+.prod-img img{
+    width: 50%;
+}
+th{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+text-align: center;
+color: #838383;
+}
+td{
+    /* text-align: center; */
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+text-align: center;
+color: #838383;
+}
+
+/* popup */
+
+.loginPopup {
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  .formPopup {
+    display: none;
+    position: fixed;
+    left: 45%;
+    top: 5%;
+    transform: translate(-50%, 5%);
+    border: 3px solid #999999;
+    z-index: 9;
+  }
+  .formContainer {
+    max-width: 300px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  .formContainer input[type=text],
+  .formContainer input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 20px 0;
+    border: none;
+    background: #eee;
+  }
+  .formContainer input[type=text]:focus,
+  .formContainer input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  .formContainer .btn {
+    background: #007074;
+    width: 100%;
+    height: 44px;
+    left: 1070px;
+    top: 375px;
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    margin-right: 5%;
+    margin-top: 5%;
+  }
+  .formContainer .cancel {
+    width: 100%;
+    height: 44px;
+    left: 1207px;
+    top: 375px;
+    background: #B4B4B4;
+    border-radius: 8px;
+    border: none;
+    color: #ffffff;
+  }
+  /* .formContainer .btn:hover,
+  .openButton:hover {
+    opacity: 1;
+  } */
+
+  .formContainer span{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #838383;
+  }
+
+  #id01{
+    display:none;
+  }
+
+  /* float pop up */
+
+  .modal-button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .modal-button:hover {
+    opacity:1;
+  }
+  
+  /* Float cancel and delete buttons and add an equal width */
+  .cancelbtn, .deletebtn {
+    float: left;
+    width: 47%;
+  }
+  
+  /* Add a color to the cancel button */
+  .cancelbtn {
+    background-color: #ccc;
+    color: black;
+    margin-right: 5%;
+  }
+  
+  /* Add a color to the delete button */
+  .deletebtn {
+    background-color: #f44336;
+  }
+  
+  /* Add padding and center-align text to the container */
+  .container {
+    padding: 16px;
+    text-align: center;
+  }
+  
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    /* z-index: 1;  */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    /* background-color: #474e5d; */
+    padding-top: 50px;
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 35%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* Style the horizontal ruler */
+  /* hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  } */
+   
+  /* The Modal Close Button (x) */
+  .close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #f44336;
+    cursor: pointer;
+  }
+  
+  /* Clear floats */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 

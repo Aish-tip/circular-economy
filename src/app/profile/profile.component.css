@@ -1,29 +1,24 @@
 .profile_card{
     text-align: justify;
-    background: #FFFFFF;
+    background: #EFF0F2;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-    width: 25%;
+    width: 50%;
     position: relative;
-    margin: 2% auto;
-    padding: 2%;
+    margin: -3% auto;
+    padding: 5%;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-}
-h1{
-    font-family: 'Poppins';
-    font-style: normal;
-    text-align: center;
-    margin: 5%;
+    /* z-index: -1; */
 }
 button{
     background: #007074;
     border-radius: 8px;
     color:#ffffff;
     border: none;
-    margin: 3%;
-    padding: 1%;
+    margin: 2% 0%;
+    padding: 1% 5%;
   }
   #profile_edit{
     display:none;
@@ -31,3 +26,62 @@ button{
   #profile_details{
     display:block;
   }
+
+/* edit profile */
+
+.edit-profile{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: left;
+  color: #006666;
+  margin: 5%;
+}
+.profile-img{
+  width:40%;
+  margin:10% 25%;
+}
+.form-label span{
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+text-align: left;
+color: #417D7A;
+}
+.form-label input{
+  width: 85%;
+  background: #EFF0F2;
+  border: 1px solid rgba(169, 169, 169, 0.15);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+hr{
+  height:3px;
+}
+
+/* profile */
+
+.profile-details{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: left;
+  color: #006666;
+  margin: 5%;
+}
+.profile-card{
+  display: flex;
+  justify-content: center;
+}
+.profile-card img{
+  width: 10%;
+}
+.profile_card img{
+  float: right;
+}
