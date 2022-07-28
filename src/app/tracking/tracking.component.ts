@@ -58,10 +58,10 @@ export class TrackingComponent implements OnInit {
 
  getreviewstatus(t:any){
   console.log("review",t);
-  var order = document.getElementById("order");
+  var review = document.getElementById("review");
   if(t.track[0].review == true){
     console.log("true")
-    order.classList.add("completed");    
+    review.classList.add("completed");    
   }
  }
 

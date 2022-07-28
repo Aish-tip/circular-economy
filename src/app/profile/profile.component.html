@@ -38,19 +38,19 @@
       <div class="col-9">
         <div class="row form-label">
           <p class="col-6"><span>Firstname:</span><br>
-            <input type="text" placeholder="{{activeuser.firstname}}" formControlName="firstname"></p>
+            <input type="text" formControlName="firstname" [(ngModel)]="activeuser.firstname"></p>
           <p class="col-6"><span>Lastname:</span><br>
-            <input type="text" placeholder="{{activeuser.lastname}}" formControlName="lastname"></p>
+            <input type="text" formControlName="lastname" [(ngModel)]="activeuser.lastname"></p>
         </div>
         <div class="row form-label">
           <p class="col-6"><span>Email:</span><br>
-            <input type="text" placeholder="{{activeuser.email}}" formControlName="email"></p>
+            <input type="text" formControlName="email"  [(ngModel)]="activeuser.email"></p>
           <p class="col-6"><span>Username:</span><br>
-            <input type="text" placeholder="{{activeuser.username}}" formControlName="username"></p>
+            <input type="text" formControlName="username"  [(ngModel)]="activeuser.username"></p>
         </div>
         <div class="row form-label">
           <p class="col-6"><span>Mobile Number:</span><br>
-            <input type="number" placeholder="{{activeuser.mobile}}" formControlName="mobile"></p>
+            <input type="number" formControlName="mobile"  [(ngModel)]="activeuser.mobile"></p>
         </div>          
           <button id="submit" type="submit">Submit</button>   
       </div>       

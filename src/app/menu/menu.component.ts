@@ -29,6 +29,8 @@ export class MenuComponent implements OnInit {
       if(this.role == 'admin')
       {
         this.admin=true;
+        var t = document.getElementById("track");
+        t.style.visibility = 'hidden';
       }
       else if(this.role == 'user')
       {

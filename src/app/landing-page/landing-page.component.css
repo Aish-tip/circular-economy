@@ -47,10 +47,10 @@ margin-left: 10%;
   font-family: 'Poppins';
 font-style: normal;
 font-weight: 600;
-font-size: 48px;
+font-size: 32px;
 line-height: 72px;
 color: #1D5C63;
-padding: 0% 4%;
+padding: 1% 4% 0% 4%;
 }
 hr.line{
   text-decoration-line: underline;
@@ -62,8 +62,8 @@ hr.line{
 #products{
   background: #FFFFFF;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  width: 27%;
-  margin: 3%;
+  width: 29%;
+  margin: 2%;
   display:inline-block;
 }
 #product-img img{
@@ -109,7 +109,10 @@ color: #000000;
 }
 .prod{
   float:right;
-  margin-top: 2%;
+  margin-top: 1%;
+}
+.prod-div{
+  margin-bottom: 3%;
 }
 .prod label{
   /* margin-left: -20%; */

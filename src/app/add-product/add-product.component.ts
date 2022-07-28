@@ -61,17 +61,22 @@ export class AddProductComponent implements OnInit {
     year: new FormControl('')
   });
 
-  editform = new FormGroup({
-    pname: new FormControl(''),
-    ploc: new FormControl(''),
-    pstock: new FormControl('')
+
+  editproductForm = new FormGroup({
+    nameproduct: new FormControl(''),
+    quantity: new FormControl(''),
+    description: new FormControl(''),
+    location: new FormControl(''),
+    serial: new FormControl(''),
+    brand: new FormControl(''),
+    year: new FormControl('')
   });
 
   cuser:any
   activeuser:any
   ngOnInit(): void {
     this.cuser = JSON.parse(localStorage.getItem('currentUser')!);
-    console.log(this.user);
+    console.log(this.cuser);
     this.http.get(`${Urls.USERS}/${this.cuser.userId}?access_token=${this.cuser.id}`).subscribe((res: any) => {
       this.activeuser = res;
       console.log(this.activeuser)           
@@ -155,6 +160,7 @@ export class AddProductComponent implements OnInit {
       this.product = false;
       this.user = false;
       this.request = false;
+
     }
     
     func_user(e: any){
@@ -183,13 +189,13 @@ export class AddProductComponent implements OnInit {
          
         },
         error: err => {
-          alert("registration failed");
+          // alert("registration failed");
         }   
       });
 
       this.http.delete(`${Urls.ECOUSER}/${u.id}?access_token=${this.cuser.id}`).subscribe((res=>{
         console.log(res);
-        alert("request deleted")
+        // alert("request deleted")
         location.reload();
       }));
     }
@@ -214,14 +220,22 @@ export class AddProductComponent implements OnInit {
       this.request = true;      
     }    
     func_product(e:any){
-      this.http.get(`${Urls.PRODUCT}?access_token=${this.cuser.id}`).subscribe((res:any) =>{
-        this.productlist=res;
-        console.log(this.productlist);  
-      })
       this.dashboard = false;
       this.user = false;
       this.product = true;
       this.request = false;
+      this.http.get(`${Urls.PRODUCT}?access_token=${this.cuser.id}`).subscribe((res:any) =>{
+        this.productlist=res;
+        console.log(this.productlist);  
+      })
+      var add = document.getElementById("add");
+      if(add){
+        add.style.display = 'block';
+      }
+      var edit = document.getElementById("edit");
+      if(edit){
+        edit.style.display = 'none';
+      }
     }
 
     selecteImage: any;
@@ -341,10 +355,26 @@ export class AddProductComponent implements OnInit {
         location.reload();
       })
     }
-
+    eprod:any
     editproduct(p:any){
-      console.log(p);
-
+      
+      this.dashboard = false;
+      this.user = false;
+      this.product = true;
+      this.request = false;
+      var add = document.getElementById("add");
+      if(add){
+        add.style.display = 'none';
+      }
+      var edit = document.getElementById("edit");
+      
+      if(edit){
+        edit.style.display = 'block';
+        console.log(edit)
+      }
+      this.eprod = p;
+      this.pid = this.eprod.id;
+      console.log(this.pid);
     }
 
     deleteproduct(p:any){
@@ -355,38 +385,45 @@ export class AddProductComponent implements OnInit {
         location.reload();
       })
     }
-    productinfo:any
-    productstock:any
-    productlocation:any
     pid:any
-    openpopup(p:any){
-      console.log(p)
-      this.pid= p.id;
-      this.productinfo =p.name;
-      this.productlocation = p.location;
-      this.productstock =p.quantity;
-      console.log("open")
-      var pop = document.getElementById("popupForm");
-      if(pop){
-        pop.style.display = 'block';
+    
+
+    onSave(){
+      console.log(this.eprod);
+      this.http.patch(`${Urls.PRODUCT}/${this.pid}?access_token=${this.cuser.id}`,{
+        "name" : this.editproductForm.value.nameproduct,
+        "description": this.editproductForm.value.description,
+        "quantity": this.editproductForm.value.quantity,
+        "brand": this.editproductForm.value.brand,
+        "location": this.editproductForm.value.location,
+        "serial": this.editproductForm.value.serial,
+        "year": this.editproductForm.value.year
+      }).subscribe(res=>{
+        console.log("patch",res);
+        alert("product info updated");
+      });
+      var add = document.getElementById("add");
+      if(add){
+        add.style.display = 'block';
+      }
+      var edit = document.getElementById("edit");
+      if(edit){
+        edit.style.display = 'none';
+      }
+
+    }
+
+    cancel(){
+      var add = document.getElementById("add");
+      if(add){
+        add.style.display = 'block';
+      }
+      var edit = document.getElementById("edit");
+      if(edit){
+        edit.style.display = 'none';
       }
     }
 
-    save_modified_form(){
-      console.log("save");
-      this.http.patch(`${Urls.PRODUCT}/${this.pid}?access_token=${this.cuser.id}`,{
-        "name" : this.editform.value.pname,
-        "quantity" : this.editform.value.pstock,
-        "location" : this.editform.value.ploc
-      }).subscribe(res=>{
-        console.log(res);
-        location.reload();
-      });
-      var pop = document.getElementById("popupForm");
-      if(pop){
-        pop.style.display = 'none';
-      }
-    }
 
     closeForm(){
       var pop = document.getElementById("popupForm");

@@ -41,11 +41,11 @@ export class ProfileComponent implements OnInit {
       p2.style.display = "none";
     }
     this.user = JSON.parse(localStorage.getItem('currentUser')!);
-    var fname = this.editform.value.firstname;
-    var lname = this.editform.value.lastname;
-    var email = this.editform.value.email;
-    var uname = this.editform.value.username;
-    var mbl = this.editform.value.mobile;
+    var fname = this.activeuser.firstname;
+    var lname = this.activeuser.lastname;
+    var email = this.activeuser.email;
+    var uname = this.activeuser.username;
+    var mbl = this.activeuser.mobile;
     this.http.patch(`${Urls.USERS}/${this.user.userId}?access_token=${this.user.id}`,{
       "firstname" : fname,
       "lastname" : lname,
@@ -55,6 +55,7 @@ export class ProfileComponent implements OnInit {
     }    
     ).subscribe( ((res:any) =>{
         console.log(res);
+        alert("information updated")
     }
     ))
   }

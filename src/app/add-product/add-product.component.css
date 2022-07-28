@@ -1,3 +1,11 @@
+/* #EFF0F2 */
+
+.form-control:focus{
+  box-shadow:none;
+  background: #EFF0F2;
+}
+
+
 .row{
     --bs-gutter-x: 0 !important;
   }
@@ -6,9 +14,9 @@
     margin: 5% 5%;
 }
 hr.line{    
-  height: 730px;
-  width: 1px;
-  margin-left: 85%;
+  height: 850px;
+  width: 2px;
+  margin-left: 15%;
 }
 .vertical-div{
     display: block;
@@ -35,22 +43,28 @@ label{
 font-style: normal;
 font-weight: 500;
 font-size: 20px;
-line-height: 30px;
+line-height: 35px;
 color: #4D5959;
 }
-.product-form{
+.add-product-form{
     width:1000px;
+}
+#add{
+  display:block;
+}
+#edit{
+  display: none;
 }
 input{
     margin: 0px 0 15px 0;
-    padding:10px;
+    padding:12px;
     width:90%;
     border-radius: 8px;
     background-color: #EFF0F2;
     border: none;
 }
 .form-details{
-    margin: 8% 0%;
+    margin: 5% 0%;
 }
 ::placeholder{
     font-family: 'Poppins';
@@ -76,7 +90,26 @@ input{
 textarea{
     background-color: #EFF0F2;
     border: none;
+    padding: 12px;
+    width:90%;
 }
+#edit .product-submit{
+  position: relative;
+}
+#edit .decline-btn{
+  width: 10%;
+    padding: 10px;
+    background: #B4B4B4;
+    border-radius: 8px;
+    border: none;
+    color: #ffffff;
+    margin: 2%;
+    font-size: 26px;
+
+}
+/* #edit textarea{
+  width:90%;
+} */
 input#img{
     background-color: transparent;
 }
@@ -166,11 +199,18 @@ border:none;
 color:#ffffff;
 }
 
-hr{
-    position: absolute;
+hr.divider{
+    position: relative;
     left: 0%;
-    width: 90%;
-    height: 1px
+    width: 80%;
+    height: 2px
+}
+
+hr{
+  position: absolute;
+  left:0%;
+  width: 90%;
+  height: 1px;
 }
 
 /* track */
@@ -476,5 +516,12 @@ color: #838383;
     content: "";
     clear: both;
     display: table;
+  }
+
+  .editp{
+    cursor:pointer;
+  }
+  .deletep{
+    cursor:pointer;
   }
 

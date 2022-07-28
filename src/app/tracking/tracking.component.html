@@ -11,19 +11,23 @@
 <div>
     <app-menu></app-menu>
 </div>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="hh-grayBox pt45 pb20">
             <div class="item-card" *ngFor="let track of total;let i =index">
-                <div class="col-3">
+                <div class="col-2">
                     <p class="prod-name">{{track.name}}</p>
                     <p class="prod-quantity">Quantity: {{track.quantity}}</p>
                     <p style="color:#1D5C63;">{{track.requestDate}}</p>
                 </div>                                    
-                <div class="row justify-content-between">
-                    <div id="order" class="order-tracking" [class.completed]="track.track[0].review === true">
+                <div class="row col-10">
+                    <div id="order" class="order-tracking completed">
                         <span class="is-complete"></span>
                         <p>Ordered</p>
+                    </div>
+                    <div id="review" class="order-tracking" [class.completed]="track.track[0].review === true">
+                        <span class="is-complete"></span>
+                        <p>Reviewed</p>
                     </div>
                     <div id="process" class="order-tracking" [class.completed]="track.track[0].process === true">
                         <span class="is-complete"></span>
