@@ -267,11 +267,9 @@ export class AddProductComponent implements OnInit {
     reviewbg:any
     reviewtime:any
     // reviewid:any
-    reviewRequest(r:any){
-      // this.reviewid = r.id; 
-      // console.log(i);
-      this.colorchange(r.id);
-      console.log(r);
+    reviewRequest(r:any,i:any){
+      var order = document.getElementById("order"+ i);
+      order.classList.add("completed"); 
       let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');  
       // this.reviewtime= currentDateTime;
       // console.log(this.reviewtime);
@@ -291,18 +289,13 @@ export class AddProductComponent implements OnInit {
         // this.reviewtime= this.reviewbg.track[0].reviewdate;
         // console.log("time",this.reviewtime)
         // location.reload();   
-      })      
-       
-    } 
-    colorchange(r:any){
-     
-    } 
-    
+      })            
+    }     
     review:any
     processtime:any
     processbg:any
-    processRequest(r:any){
-      var process = document.getElementById("process");
+    processRequest(r:any,i:any){
+      var process = document.getElementById("process"+i);
       process.classList.add("completed"); 
       let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');  
       console.log(currentDateTime);
@@ -326,8 +319,8 @@ export class AddProductComponent implements OnInit {
       })
     }
 
-    acceptRequest(r:any){   
-      var accept = document.getElementById("accept");
+    acceptRequest(r:any,i:any){   
+      var accept = document.getElementById("accept" + i);
       accept.classList.add("completed");
       this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
         "track":[{
@@ -345,8 +338,8 @@ export class AddProductComponent implements OnInit {
       })
     }
 
-    deliverRequest(r:any){       
-      var deliver = document.getElementById("deliver");
+    deliverRequest(r:any,i:any){       
+      var deliver = document.getElementById("deliver" + i);
       deliver.classList.add("completed");
       this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
         "track":[{

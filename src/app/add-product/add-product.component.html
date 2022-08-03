@@ -171,21 +171,21 @@
                                 <td>{{req.quantity}}</td>
                                 <td>
                                     <div class="row justify-content-between">
-                                        <div id="order" class="order-tracking" (click)="reviewRequest(req)" [class.completed]="req.track[0].review === true">
+                                        <div id="order{{i}}" class="order-tracking" (click)="reviewRequest(req,i)" [class.completed]="req.track[0].review === true">
                                             <span class="is-complete"></span>
                                             <p>Reviewed</p>
                                             <p>{{req.track[0].reviewdate}}</p>
                                         </div>
-                                        <div id="process" class="order-tracking" (click)="processRequest(req)" [class.completed]="req.track[0].process === true">
+                                        <div id="process{{i}}" class="order-tracking" (click)="processRequest(req,i)" [class.completed]="req.track[0].process === true">
                                             <span class="is-complete"></span>
                                             <p>Processed</p>
                                             <p>{{req.track[0].processdate}}</p>
                                         </div>
-                                        <div id="accept" class="order-tracking" (click)="acceptRequest(req)" [class.completed]="req.track[0].accept=== true">
+                                        <div id="accept{{i}}" class="order-tracking" (click)="acceptRequest(req,i)" [class.completed]="req.track[0].accept=== true">
                                             <span class="is-complete"></span>
                                             <p>Accepted</p>
                                         </div>
-                                        <div id="deliver" class="order-tracking" (click)="deliverRequest(req)" [class.completed]="req.track[0].deliver === true">
+                                        <div id="deliver{{i}}" class="order-tracking" (click)="deliverRequest(req,i)" [class.completed]="req.track[0].deliver === true">
                                             <span class="is-complete"></span>
                                             <p>Delivered</p>
                                         </div>
