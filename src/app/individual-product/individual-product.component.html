@@ -1,0 +1,42 @@
+<!-- <p>individual-product works!</p> -->
+<app-menu></app-menu>
+<div class="row product-desc-div">
+    <div class="col-5">
+        <img class="pimage" src="http://3.111.188.154:3000/api/containers/images/download/{{pd.imagename}}"/>
+    </div>
+    <div class="col-7">
+        <p><span>name:</span> {{pd.name}}</p>
+        <p><span>brand: </span>{{pd.brand}}</p>
+        <p>{{pd.description}}</p>
+        <div *ngIf="LoggedIn1()">
+            <div *ngIf="user1">
+              <div class="quantity-div">
+                <div class="input-group">                
+                  <input class="plusminus" (click)="decrement()" value="-" readonly>
+                  <input type="number" class="num" min="1" max="{{productStock}}" value="1" [(ngModel)]="value" readonly>
+                  <input class="plusminus" (click)="increment()" value="+" max="{{productStock}}" readonly>
+                </div>
+                <div class="submit-div">
+                  <button (click)="openpop(pd)" class="asset-btn">Submit</button>
+                </div>
+              </div>
+            </div>
+        <p>{{pd.quantity}} <span>available</span></p>
+        <p>{{pd.location}}</p>
+
+    </div>
+</div>
+<div id="id02" class="modal">
+    <form class="modal-content">
+        <img class="modal-icon" src="../../assets/images/Success.svg" alt="trash">
+        <div class="container">
+          <h1 class="modal-heading">SUCCESS</h1>
+          <p>Thank you for your request</p>
+  
+            <div class="clearfix">
+                <button class="modal-button" type="button" class="okaybtn" (click)="okaypopup()">Okay</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- <app-footer></app-footer> -->

@@ -1,0 +1,37 @@
+
+<div>
+     <!-- <div>users</div> -->
+     <div class="search_user">
+        <!-- <app-searchbar (searchTextChanged)="onSearchTextEntered($event)"></app-searchbar> -->
+        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        <!-- <input type="search" placeholder="search"> -->
+        <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+    </div>
+    <!-- <div>
+        <h4>Users</h4>
+        <hr>
+        <table></table>
+    </div> -->
+    <div>
+        <h4>User Requests</h4>
+        <!-- <hr> -->
+        <table>
+            <tr class="headings">
+                <th>Name</th>
+                <th>CompanyId</th>
+                <th>Action</th>
+            </tr>
+            <!-- *ngIf="searchtext === '' || list.firstname.toLowerCase().includes(searchtext)" -->
+            <tr *ngFor="let list of userlist | filter:term"  class="user_data">
+                    <td class="user_name">{{list.firstname}}</td>
+                    <td class="user_id">{{list.id}}</td>
+                    <td>
+                        <button (click)="adduser(list)" class="accept-button">Accept</button>
+                        <button (click)="deleteuser(list)" class="decline-btn">Decline</button>
+                    </td>
+                    <hr>                                                   
+                </tr>
+                <hr>                    
+        </table>
+    </div>  
+</div>

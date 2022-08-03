@@ -63,7 +63,7 @@ hr.line{
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  color: #1D5C63;
+  color: #000000;
   cursor: pointer;
 }
 .admin-menu-item span{
@@ -74,7 +74,7 @@ hr.line{
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  color: #1D5C63;
+  color: #000000;
   cursor: pointer;
 }
 .logout{
@@ -126,6 +126,19 @@ hr.line{
 
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
+}
+.active-role{
+  font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #1D5C63;
+    margin:0px !important;
+}
+.active{
+  color:#1D5C63 !important;
 }
 
 

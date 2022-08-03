@@ -7,7 +7,8 @@
    <span id="track" routerLink="/track" class="track">Track Your Request</span>
    <!-- <button class="logout" (click)="LogOut()">LogOut</button> -->
    <div class="dropdown" style="cursor:pointer">
-      <img src="../../assets/images/profile.jpg" alt="profile" style="width:45%">
+      <img src="../../assets/images/profile.jpg" alt="profile" style="width:45%;margin-left: 28%;">
+      <p class="active-role">{{arole}}</p>
       <div class="dropdown-content">
          <a routerLink="/profile">Profile</a>
          <a routerLink="/">Notifications</a>
@@ -20,18 +21,18 @@
    <div *ngIf="admin" >
       <div class="menu">
          <div id="menu-items" class="admin-menu-item">
-            <span routerLink="/landing">Home</span>
-            <span routerLink="/inventory">Inventory</span>
+            <span routerLink="/landing"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</span>
+            <span routerLink="/inventory"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inventory</span>
             <!-- <li  routerLink="/profile">Profile</li> -->
-            <span routerLink="/add-product">Admin</span>
+            <span routerLink="/add-product"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Dashboard</span>
          </div>
       </div>
    </div>
    <div *ngIf="user" >
       <div class="menu">
          <div id="menu-items" class="user-menu-item">
-            <span  routerLink="/landing">Home</span>
-            <span routerLink="/inventory">Inventory</span>
+            <span  routerLink="/landing"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</span>
+            <span routerLink="/inventory"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inventory</span>
             <!-- <li  routerLink="/inventory"></li> -->
             <!-- <li  routerLink="/messages">Messages</li> -->
             <!-- <li  routerLink="/reports">Reports</li> -->

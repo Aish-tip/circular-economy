@@ -4,6 +4,7 @@ import assetdata from '../data.json';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Urls } from '../constants/urls';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 interface Asset {  
@@ -21,7 +22,7 @@ interface Asset {
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private http:HttpClient,public datepipe: DatePipe) { }
+  constructor(private http:HttpClient,public datepipe: DatePipe,private router:Router) { }
   cuser:any
   activeuser:any
   productlist:any
@@ -83,6 +84,7 @@ content:any
     console.log("product",p)
     this.productname = p.name;
     this.productStock = p.quantity;
+    this.productStock= this.productStock - this.value;
     // console.log("active user",this.cuser.userId);
     // console.log("name",this.activeuser.firstname)
     // console.log("stock",this.productStock)
@@ -107,9 +109,17 @@ content:any
         "deliverdate":''
       }]
     }).subscribe(Response =>{
+      const success = document.getElementById("id02");
+      success.style.display = 'block';
         console.log(Response);
-        alert("successful");
-    });    
+        // alert("successful");
+    }); 
+    this.http.patch(`${Urls.PRODUCT}/${p.id}`,{
+      "quantity":this.productStock
+    }).subscribe(res=>{
+      console.log("patchstock",res);
+      // location.reload();
+    })   
   }
 
   value=1
@@ -151,6 +161,17 @@ content:any
     else{
       return false;
     }    
+  }
+
+  getproductdetails(p:any){
+    this.router.navigate(['/product-description',p.id]);
+  }
+
+  okaypopup(){
+    const open = document.getElementById("id02");
+    open.style.display = 'none';
+    location.reload();
+
   }
 
 

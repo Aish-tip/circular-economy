@@ -6,7 +6,7 @@
             <!-- <img routerLink="/landing" class="admin-logo" src="../../assets/images/circular economy logo.png" alt="logo"> -->
             <p class="options" (click)="func_dashboard($event)" [ngStyle]="{color:getdcolor()}">
                 <span class="icon"><img src="../../assets/images/dashboard.svg" alt="dashboard"></span>
-                <span class="text">Dashboard</span>
+                <span class="text">Add product</span>
             </p>
             <hr class="divider">
             <p class="options" (click)="func_product($event)" [ngStyle]="{color:getpcolor()}">
@@ -22,8 +22,7 @@
             <p class="options" (click)="func_request($event)" [ngStyle]="{color:getrcolor()}">
                 <span class="icon"><img src="../../assets/images/request.svg" alt="dashboard"></span>
                 <span class="text">Request</span>
-            </p>        
-                       
+            </p>                               
     </div>
     <hr class="line"> 
     <div class="col-9">
@@ -69,6 +68,19 @@
                         <br>
                         <button class="product-submit" type="submit" (click)="uploadFile()">Submit</button>
                     </form>
+                    <div id="id02" class="modal">
+                        <form class="modal-content">
+                            <img class="modal-icon" src="../../assets/images/Success.svg" alt="trash">
+                            <div class="container">
+                              <h1 class="modal-heading">SUCCESS</h1>
+                              <p>Thank you for your request</p>
+                      
+                            <div class="clearfix">
+                              <button class="modal-button" type="button" class="okaybtn" (click)="okaypopup()">Okay</button>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,14 +105,46 @@
                             <td class="user_id">{{list.id}}</td>
                             <td>
                                 <button (click)="adduser(list)" class="accept-button">Accept</button>
-                                <button (click)="deleteuser(list)" class="decline-btn">Decline</button>
+                                <button (click)="opendeletepop(list)" class="decline-btn">Decline</button>
                             </td>
                             <hr>                                                   
                         </tr>
                         <hr>                    
                 </table>
-            </div>    
+            </div> 
+            <div id="id02" class="modal">
+                <form class="modal-content">
+                    <img class="modal-icon" src="../../assets/images/Success.svg" alt="trash">
+                    <div class="container">
+                      <h1 class="modal-heading">SUCCESS</h1>
+                      <p>Thank you for your request</p>
+              
+                        <div class="clearfix">
+                            <button class="modal-button" type="button" class="okaybtn" (click)="okaypopup()">Okay</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="id01" class="modal">
+                <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+                <form class="modal-content">
+                    <img class="modal-icon" src="../../assets/images/Trash.svg" alt="trash">
+                    <div class="container">
+                      <h1 class="modal-heading">Are you sure?</h1>
+                      <p>Do you Really want to delete these records?<br>
+                      This process cannot be undone</p>
+              
+                    <div class="clearfix">
+                      <button class="modal-button" type="button" class="cancelbtn" (click)="cancelbtn()">Cancel</button>
+                      <button class="modal-button" type="button" class="deletebtn" (click)="deleteuser(uid)">Delete</button>
+                    </div>
+                  </div>
+                </form>
+              </div>   
         </div>
+        <!-- <div *ngIf="request">
+            <app-product-request></app-product-request>
+        </div> -->
         <div *ngIf="request">
             <div class="search_user">
                 <!-- <app-searchbar (searchTextChanged)="onSearchTextEntered($event)"></app-searchbar> -->
@@ -118,21 +162,13 @@
                                 <th>Quantity</th>
                                 <th>Action</th>
                                 <!-- <th>Delete</th> -->
-                            </tr>
-                        
+                            </tr>                        
                             <!-- *ngIf="searchtext === '' || req.employeename.toLowerCase().includes(searchtext)" -->
-                            <tr *ngFor="let req of item | filter:term">
+                            <tr *ngFor="let req of item | filter:term;let i=index">
                                 <td><p>{{req.employeename}}</p>
                                 <p style="color:#1D5C63;">{{req.requestDate}}</p></td>
                                 <td>{{req.name}}</td>
                                 <td>{{req.quantity}}</td>
-                                <!-- <td>
-                                    <button [ngStyle]="{background:getcolorreview(req)}" (click)="reviewRequest(req)" class="review-btn" id="review">Review</button>
-                                    <button [ngStyle]="{background:getcolorprocess(req)}"  (click)="processRequest(req)" class="process-btn" id="process">Process</button>
-                                    <button [ngStyle]="{background:getcoloraccept(req)}" (click)="acceptRequest(req)" class="accept-btn" id="accept">Accept</button>
-                                    <button [ngStyle]="{background:getcolordeliver(req)}" (click)="deliverRequest(req)" class="deliver-btn" id="deliver">Deliver</button>
-                                    <button (click)="deleterequest(req)" class="decline-btn">Decline</button>
-                                </td> -->
                                 <td>
                                     <div class="row justify-content-between">
                                         <div id="order" class="order-tracking" (click)="reviewRequest(req)" [class.completed]="req.track[0].review === true">
@@ -159,29 +195,47 @@
                                 </td>
                                 <td>
                                     <!-- <img src="../../assets/images/delete.png" alt="delete" style="width:80%" (click)="deleterequest(req)"> -->
-                                    <img src="../../assets/images/delete.png" alt="delete" style="width:80%" (click)="opendeletepopup()">
+                                    <img src="../../assets/images/delete.png" alt="delete" style="width:80%" (click)="opendeletepopup(req)">
                                 </td>
                                 <hr>
-                                <div id="id01" class="modal">
-                                    <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
-                                    <form class="modal-content">
-                                      <div class="container">
-                                        <h1>Delete Account</h1>
-                                        <p>Are you sure you want to delete your account?</p>
-                                  
-                                        <div class="clearfix">
-                                          <button class="modal-button" type="button" class="cancelbtn" (click)="cancelbtn()">Cancel</button>
-                                          <button class="modal-button" type="button" class="deletebtn" (click)="deleterequest(req)">Delete</button>
-                                        </div>
-                                      </div>
-                                    </form>
-                                  </div>
                             </tr>                  
                         <hr>
                     </table>
                 </div>
             </ng-container>
+            <div id="id02" class="modal">
+                <form class="modal-content">
+                    <img class="modal-icon" src="../../assets/images/Success.svg" alt="trash">
+                    <div class="container">
+                      <h1 class="modal-heading">SUCCESS</h1>
+                      <p>Thank you for your request</p>
+              
+                        <div class="clearfix">
+                            <button class="modal-button" type="button" class="okaybtn" (click)="okaypopup()">Okay</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="id01" class="modal">
+                <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+                <form class="modal-content">
+                    <img class="modal-icon" src="../../assets/images/Trash.svg" alt="trash">
+                  <div class="container">
+                    <h1 class="modal-heading">Are you sure?</h1>
+                    <p>Do you Really want to delete these records?<br>
+                    This process cannot be undone</p>
+              
+                    <div class="clearfix">
+                      <button class="modal-button" type="button" class="cancelbtn" (click)="cancelbtn()">Cancel</button>
+                      <button class="modal-button" type="button" class="deletebtn" (click)="deleterequest(rid)">Delete</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
         </div>
+        <!-- <div *ngIf="product">
+            <app-manage-product></app-manage-product>
+        </div> -->
         <div id="add">
             <div *ngIf="product">
                 <div class="search_user">
@@ -211,11 +265,26 @@
                                     <div class="action-tab">
                                         <!-- <img src="../../assets/images/edit.png" alt="edit" (click)="openpopup(prod)"> -->
                                         <img class="editp" src="../../assets/images/edit.png" alt="edit" (click)="editproduct(prod)">
-                                        <img class="deletep" src="../../assets/images/delete.png" alt="delete" (click)="deleteproduct(prod)">
-                                    </div>
-                                    
+                                        <img class="deletep" src="../../assets/images/delete.png" alt="delete" (click)="opendeleteproduct(prod)">
+                                    </div>                                    
                                 </td>
                                 <hr>
+        
+                                <div id="id01" class="modal">
+                                    <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+                                    <form class="modal-content">
+                                        <img class="modal-icon" src="../../assets/images/Trash.svg" alt="trash">
+                                        <div class="container">
+                                          <h1 class="modal-heading">Are you sure?</h1>
+                                          <p>Do you Really want to delete these records?<br>
+                                          This process cannot be undone</p>                                 
+                                        <div class="clearfix">
+                                          <button class="modal-button" type="button" class="cancelbtn" (click)="cancelbtn()">Cancel</button>
+                                          <button class="modal-button" type="button" class="deletebtn" (click)="deleteproduct(prodid)">Delete</button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                </div>
                             </tr>
                             <hr>
                         </table>
@@ -256,12 +325,23 @@
                             <button class="product-submit" type="submit" (click)="onSave()">Save</button>
                             <button class="decline-btn" (click)="cancel()">Cancel</button>
                         </div>
-                        
                     </form>
+    
                 </div>
             </div>
-        </div>
-         
-    </div>
-        
+        </div>  
+        <div id="id02" class="modal">
+            <form class="modal-content">
+                <img class="modal-icon" src="../../assets/images/Success.svg" alt="trash">
+                <div class="container">
+                  <h1 class="modal-heading">SUCCESS</h1>
+                  <p>Thank you for your request</p>
+          
+                <div class="clearfix">
+                  <button class="modal-button" type="button" class="okaybtn" (click)="okaypopup()">Okay</button>
+                </div>
+              </div>
+            </form>
+        </div>       
+    </div>        
 </div>

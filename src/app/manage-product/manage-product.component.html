@@ -1,0 +1,91 @@
+   <div id="add">
+        <div class="search_user">
+            <!-- <app-searchbar (searchTextChanged)="onSearchTextEntered($event)"></app-searchbar> -->
+            <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+            <!-- <input type="search" placeholder="search"> -->
+            <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+        </div>  
+        <ng-container>
+            <div>
+                <table>
+                    <tr>
+                        <th>Product</th>
+                        <th>Product Name</th>
+                        <th>Location</th>
+                        <th>Stock</th>
+                        <th>Action</th>
+                    </tr>
+                    <hr>
+                    <tr *ngFor="let prod of productlist | filter:term;let i=index">
+                        <td class="prod-img">
+                            <img src="http://3.111.188.154:3000/api/containers/images/download/{{prod.imagename}}"/>
+                        </td>
+                        <td>{{prod.name}}</td>
+                        <td>{{prod.location}}</td>
+                        <td>{{prod.quantity}}</td>
+                        <td>
+                            <div class="action-tab">
+                                <!-- <img src="../../assets/images/edit.png" alt="edit" (click)="openpopup(prod)"> -->
+                                <img class="editp" src="../../assets/images/edit.png" alt="edit" (click)="editproduct(prod)">
+                                <img class="deletep" src="../../assets/images/delete.png" alt="delete" (click)="opendeletepopup()">
+                            </div>                     
+                        </td>
+                        <hr>
+                        <div id="id01" class="modal">
+                            <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+                            <form class="modal-content">
+                              <div class="container">
+                                    <h1>Delete Account</h1>
+                                    <p>Are you sure you want to delete the product?</p>
+                          
+                                    <div class="clearfix">
+                                        <button class="modal-button" type="button" class="cancelbtn" (click)="cancelbtn()">Cancel</button>
+                                        <button class="modal-button" type="button" class="deletebtn" (click)="deleteproduct(prod)">Delete</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </tr>
+                </table>
+            </div>
+        </ng-container>
+    </div>
+    <div id="edit">
+        <div class="content-div">
+            <div class="add-product-form">
+                <form [formGroup]="editproductForm" class="form-details">
+                    <!-- [formGroup]="productForm" (ngSubmit)="onSubmit()" -->
+                    <label for="nameproduct">Name of Product </label><br>
+                    <input id="nameproduct" type="text" formControlName="nameproduct" [(ngModel)]="pname">
+                    <br>
+                    <label for="quantity">Quantity:</label><br>
+                    <input type="number" id="quantity" formControlName="quantity" min="0" max="100" step="10" value="30" [(ngModel)]="pquantity" >
+                    <br>
+                    <label for="description">Description of Product </label><br>
+                    <textarea id="description" rows="4" formControlName="description" [(ngModel)]="pdesc"></textarea>
+                    <br>
+                    <label for="location">Location of Product </label><br>
+                    <input id="location" type="text" formControlName="location" [(ngModel)]="ploc">
+                    <br>
+                    <label for="serial">Serial Number of Product </label><br>
+                    <input id="serial" type="text" formControlName="serial" [(ngModel)]="pserial">
+                    <br>
+                    <label for="brand">Brand of product </label><br>
+                    <input id="brand" type="text" formControlName="brand" [(ngModel)]="pbrand">   
+                    <br>
+                    <!-- <label for="age">Enter Age: </label>
+                    <input id="age" type="number" formControlName="age">   
+                    <br>   -->
+                    <label for="year">Year of Product Manufacture </label><br>
+                    <input id="year" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" formControlName="year" [(ngModel)]="pyear">   
+                    <br>
+                    <div>
+                        <button class="product-submit" type="submit" (click)="onSave()">Save</button>
+                        <button class="decline-btn" (click)="cancel()">Cancel</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    

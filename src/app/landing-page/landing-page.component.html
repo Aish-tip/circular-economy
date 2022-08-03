@@ -36,11 +36,11 @@
       <div id="products">
         <div>
           <div id="product-img">
-            <img src="http://3.111.188.154:3000/api/containers/images/download/{{prods.imagename}}"/>
+            <img (click)="getproductdetails(prods)" src="http://3.111.188.154:3000/api/containers/images/download/{{prods.imagename}}" style="cursor:pointer"/>
           </div>          
           <div style="padding: 10px;">
             <p>
-              <span class="asset-title">{{prods.name}}</span>
+              <span (click)="getproductdetails(prods)" class="asset-title" style="cursor:pointer">{{prods.name}}</span>
               <span class="asset-stock">{{prods.quantity}} available</span>
             </p>
             <span><img src="../../assets/images/location.svg" alt="location"></span>
@@ -65,6 +65,19 @@
         </div>
       </div>
     </ng-container> 
+    <div id="id02" class="modal">
+      <form class="modal-content">
+          <img class="modal-icon" src="../../assets/images/Success.svg" alt="trash">
+          <div class="container">
+            <h1 class="modal-heading">SUCCESS</h1>
+            <p>Thank you for your request</p>
+    
+              <div class="clearfix">
+                  <button class="modal-button" type="button" class="okaybtn" (click)="okaypopup()">Okay</button>
+              </div>
+          </div>
+      </form>
+  </div>
   </div>
 </div>
 <app-footer></app-footer>

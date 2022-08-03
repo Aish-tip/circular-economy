@@ -13,6 +13,10 @@ import { MenuComponent } from './menu/menu.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { TrackingComponent } from './tracking/tracking.component';
+import { ManageProductComponent } from './manage-product/manage-product.component';
+import { ProductRequestComponent } from './product-request/product-request.component';
+import { ManageUserComponent } from './manage-user/manage-user.component';
+import { IndividualProductComponent } from './individual-product/individual-product.component';
 import { AuthGuard } from './services/auth.guard';
 import { NoauthGuard } from './services/noauth.guard';
 
@@ -29,7 +33,11 @@ const routes: Routes = [
   {path:'track', component:TrackingComponent, canActivate:[AuthGuard]},
   {path:'menu',component:MenuComponent},
   {path:'landing',component:LandingPageComponent, canActivate :[AuthGuard]},
-  {path:'add-product',component:AddProductComponent, canActivate :[AuthGuard]}
+  {path:'add-product',component:AddProductComponent, canActivate :[AuthGuard]},
+  {path:'manage-product',component:ManageProductComponent, canActivate: [AuthGuard]},
+  {path:'product-request',component:ProductRequestComponent, canActivate: [AuthGuard]},
+  {path:'manage-user', component:ManageUserComponent, canActivate: [AuthGuard]},
+  {path:'product-description/:id', component:IndividualProductComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

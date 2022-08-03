@@ -6,11 +6,11 @@
         <div id="products">
           <div>
             <div id="product-img">
-              <img src="http://3.111.188.154:3000/api/containers/images/download/{{prods.imagename}}"/>
+              <img (click)="getproductdetails(prods)" src="http://3.111.188.154:3000/api/containers/images/download/{{prods.imagename}}" style="cursor:pointer"/>
             </div>          
             <div style="padding: 10px;">
               <p>
-                <span class="asset-title">{{prods.name}}</span>
+                <span (click)="getproductdetails(prods)" class="asset-title" style="cursor:pointer">{{prods.name}}</span>
                 <span class="asset-stock">{{prods.quantity}} available</span>
               </p>
               <span><img src="../../assets/images/location.svg" alt="location"></span>
@@ -28,50 +28,26 @@
                     </div>
                   </div>
                 </div>
-
-              </div>
-                       
+              </div>                       
             </div>
           </div>
         </div>
-      </ng-container>
-  
-    </div>
-    <!-- <div id="inventory" style="padding: 12px;" > -->
-        
-                <!-- <ng-container *ngFor="let asset of data ">
-                <div id="high-stock" style="margin-bottom: 2%;">
-                <div style="box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);margin:12px">
-                <img src="../../assets/images/macbook pro.png"/>
-                <div style="padding: 10px;">
-                    <p>{{asset.title}}</p>
-                    <span>price:{{asset.price}}</span><br>
-                    <span>stock:{{asset.stock}}</span>
+      </ng-container>  
+      <div id="id02" class="modal">
+        <form class="modal-content">
+            <img class="modal-icon" src="../../assets/images/Success.svg" alt="trash">
+            <div class="container">
+              <h1 class="modal-heading">SUCCESS</h1>
+              <p>Thank you for your request</p>
+      
+                <div class="clearfix">
+                    <button class="modal-button" type="button" class="okaybtn" (click)="okaypopup()">Okay</button>
                 </div>
             </div>
-            </div>
-            </ng-container> -->
-
-            <!-- <ng-container *ngFor="let prods of productlist ">
-                <div id="products">
-                  <div>
-                    <div id="product-img">
-                      <img src="http://3.111.188.154:3000/api/containers/images/download/{{prods.imagename}}"/>
-                    </div>          
-                    <div style="padding: 10px;">
-                      <p>
-                        <span class="asset-title">{{prods.name}}</span>
-                        <span class="asset-stock">{{prods.quantity}} available</span>
-                      </p>
-                      <span><img src="../../assets/images/location.svg" alt="location"></span>
-                      <span style="margin-left:1%">{{prods.location}}</span>
-                              
-                    </div>
-                  </div>
-                </div>
-              </ng-container>
-            
+        </form>
     </div>
- -->
+    </div>
+    <app-footer></app-footer>
+    
 
 

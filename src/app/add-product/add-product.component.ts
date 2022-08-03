@@ -80,10 +80,7 @@ export class AddProductComponent implements OnInit {
     this.http.get(`${Urls.USERS}/${this.cuser.userId}?access_token=${this.cuser.id}`).subscribe((res: any) => {
       this.activeuser = res;
       console.log(this.activeuser)           
-    })
-
-    
-    
+    })    
   } 
 
   onImagePicked(imageData: string | File) {
@@ -145,6 +142,8 @@ export class AddProductComponent implements OnInit {
     this.authservice.addproduct(name, dsc, qty, brand, loc, srl, year, this.pickedFilename).subscribe({
       next:Response => {
         console.log(Response);
+        const success = document.getElementById("id02");
+        success.style.display = 'block';
         location.reload();
       },
       error:err => {
@@ -183,10 +182,10 @@ export class AddProductComponent implements OnInit {
     adduser(u:any){
       this.authservice.register(u.firstname, u.lastname, u.role, u.email, u.password, u.username, u.mobile).subscribe({
         next: Response => {
-          console.log(Response);
-          alert("request accepted");
-          location.reload();
-         
+          const success = document.getElementById("id02");
+      success.style.display = 'block';
+          console.log(Response);   
+          location.reload();      
         },
         error: err => {
           // alert("registration failed");
@@ -196,12 +195,12 @@ export class AddProductComponent implements OnInit {
       this.http.delete(`${Urls.ECOUSER}/${u.id}?access_token=${this.cuser.id}`).subscribe((res=>{
         console.log(res);
         // alert("request deleted")
-        location.reload();
+        // location.reload();
       }));
     }
 
     deleteuser(user: any){  
-      this.http.delete(`${Urls.ECOUSER}/${user.id}?access_token=${this.cuser.id}`).subscribe((res=>{
+      this.http.delete(`${Urls.ECOUSER}/${user}?access_token=${this.cuser.id}`).subscribe((res=>{
         console.log(res);
         alert("request deleted")
         location.reload();
@@ -267,7 +266,11 @@ export class AddProductComponent implements OnInit {
 
     reviewbg:any
     reviewtime:any
-    reviewRequest(r:any){     
+    // reviewid:any
+    reviewRequest(r:any){
+      // this.reviewid = r.id; 
+      // console.log(i);
+      this.colorchange(r.id);
       console.log(r);
       let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');  
       // this.reviewtime= currentDateTime;
@@ -280,21 +283,27 @@ export class AddProductComponent implements OnInit {
           "deliver":false
         }]
       }).subscribe(res=>{
-        
-        this.reviewbg = res;
+        const success = document.getElementById("id02");
+        success.style.display = 'block';
+        this.reviewbg = res; 
         console.log("reviewbg",this.reviewbg);   
         alert("request under review");     
         // this.reviewtime= this.reviewbg.track[0].reviewdate;
         // console.log("time",this.reviewtime)
-        location.reload();   
+        // location.reload();   
       })      
        
-    }  
+    } 
+    colorchange(r:any){
+     
+    } 
     
     review:any
     processtime:any
     processbg:any
     processRequest(r:any){
+      var process = document.getElementById("process");
+      process.classList.add("completed"); 
       let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');  
       console.log(currentDateTime);
       this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
@@ -305,10 +314,12 @@ export class AddProductComponent implements OnInit {
           "deliver":false         
         }]
       }).subscribe(res=>{
+        const success = document.getElementById("id02");
+      success.style.display = 'block';
         this.processbg = res;
         console.log(this.processbg);
-        alert("request processed");
-        location.reload();
+        // alert("request processed");
+        // location.reload();
         // this.processtime = this.processbg.track[0].processdate;
         // console.log(this.processtime);
 
@@ -316,7 +327,8 @@ export class AddProductComponent implements OnInit {
     }
 
     acceptRequest(r:any){   
-   
+      var accept = document.getElementById("accept");
+      accept.classList.add("completed");
       this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
         "track":[{
           "review":true,
@@ -325,13 +337,17 @@ export class AddProductComponent implements OnInit {
           "deliver":false           
         }]
       }).subscribe(res=>{
+        const success = document.getElementById("id02");
+      success.style.display = 'block';
         console.log(res);
-        alert("request accepted");
-        location.reload();
+        // alert("request accepted");
+        // location.reload();
       })
     }
 
     deliverRequest(r:any){       
+      var deliver = document.getElementById("deliver");
+      deliver.classList.add("completed");
       this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
         "track":[{
           "review":true,
@@ -340,24 +356,27 @@ export class AddProductComponent implements OnInit {
           "deliver":true          
         }]
       }).subscribe(res=>{
+        const success = document.getElementById("id02");
+      success.style.display = 'block';
         console.log(res);
         // const deliver = document.getElementById("deliver");
-        alert("request delivered");
-        location.reload();
+        // alert("request delivered");
+        // location.reload();
       })
     }
 
     deleterequest(r:any){
       console.log("test")
-      this.http.delete(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`).subscribe(res=>{
+      console.log(r);
+      this.http.delete(`${Urls.RITEM}/${r}?access_token=${this.cuser.id}`).subscribe(res=>{
         console.log(res);
         alert("request deleted");
         location.reload();
       })
     }
+
     eprod:any
-    editproduct(p:any){
-      
+    editproduct(p:any){      
       this.dashboard = false;
       this.user = false;
       this.product = true;
@@ -379,7 +398,7 @@ export class AddProductComponent implements OnInit {
 
     deleteproduct(p:any){
       console.log(p);
-      this.http.delete(`${Urls.PRODUCT}/${p.id}?access_token=${this.cuser.id}`).subscribe(res=>{
+      this.http.delete(`${Urls.PRODUCT}/${p}?access_token=${this.cuser.id}`).subscribe(res=>{
         console.log(res);
         alert("product deleted");
         location.reload();
@@ -400,7 +419,9 @@ export class AddProductComponent implements OnInit {
         "year": this.editproductForm.value.year
       }).subscribe(res=>{
         console.log("patch",res);
-        alert("product info updated");
+        const success = document.getElementById("id02");
+      success.style.display = 'block';
+        // alert("product info updated");
       });
       var add = document.getElementById("add");
       if(add){
@@ -410,7 +431,6 @@ export class AddProductComponent implements OnInit {
       if(edit){
         edit.style.display = 'none';
       }
-
     }
 
     cancel(){
@@ -463,16 +483,35 @@ export class AddProductComponent implements OnInit {
       }
       return color;
     }
-
-    opendeletepopup(){
+    rid:any
+    opendeletepopup(r:any){
+      this.rid= r.id;
+      const open = document.getElementById("id01");
+      open.style.display = 'block';
+      // console.log(r);
+    }
+    prodid:any
+    opendeleteproduct(r:any){
+      this.prodid= r.id;
       const open = document.getElementById("id01");
       open.style.display = 'block';
     }
-
+    uid:any
+    opendeletepop(u:any){
+      this.uid = u.id;
+      const open = document.getElementById("id01");
+      open.style.display = 'block';
+    }
     cancelbtn(){
       const open = document.getElementById("id01");
       open.style.display = 'none';
     }
-}
+    
+    okaypopup(){
+      const open = document.getElementById("id02");
+      open.style.display = 'none';
+
+    }
+  }
 
 

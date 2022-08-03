@@ -105,20 +105,29 @@ export class LoginComponent implements OnInit {
     var email=this.profileForm.value.email;
     var password=this.profileForm.value.password;
     var username=this.profileForm.value.username; 
-  //   this.authservice.register(firstname, lastname, role, email, password, username, mobile).subscribe({
-  //   next: Response => {
-  //     console.log(Response);
-  //     location.reload();
-     
-  //   },
-  //   error: err => {
-  //     alert("registration failed");
-  //   }   
-  // });
-  this.http.post<any>(`${Urls.ECOUSER}`,{firstname,lastname,role,mobile,username,email,password}).subscribe(res =>{
-    console.log(res);
-    alert("registration successful");
-  })
+  if(role === 'user'){
+    console.log("user")
+    this.http.post<any>(`${Urls.ECOUSER}`,{firstname,lastname,role,mobile,username,email,password}).subscribe(res =>{
+      console.log(res);
+      alert("registration successful");
+      location.reload();
+     })
+  }
+  else if(role === 'admin'){
+    console.log("admin");
+    this.authservice.register(firstname, lastname, role, email, password, username, mobile).subscribe({
+      next: Response => {
+        console.log(Response);
+        alert("request accepted");
+        location.reload();
+       
+      },
+      error: err => {
+        alert("registration failed");
+      }   
+    });
+  }
+  
   }
 
   register(){

@@ -32,6 +32,11 @@ import { FooterComponent } from './footer/footer.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { TrackingComponent } from './tracking/tracking.component';
+import { ManageProductComponent } from './manage-product/manage-product.component';
+import { ProductRequestComponent } from './product-request/product-request.component';
+import { ManageUserComponent } from './manage-user/manage-user.component';
+import { ContactComponent } from './contact/contact.component';
+import { IndividualProductComponent } from './individual-product/individual-product.component';
 
 
 //googleChartsConfigSubject.next(config);
@@ -53,7 +58,12 @@ import { TrackingComponent } from './tracking/tracking.component';
     FooterComponent,
     AddProductComponent,
     SearchbarComponent,
-    TrackingComponent
+    TrackingComponent,
+    ManageProductComponent,
+    ProductRequestComponent,
+    ManageUserComponent,
+    ContactComponent,
+    IndividualProductComponent
   ],
   imports: [
     BrowserModule,

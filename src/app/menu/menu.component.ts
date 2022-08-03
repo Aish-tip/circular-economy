@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import { Urls } from '../constants/urls';
 // import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -11,13 +13,25 @@ import { Router} from '@angular/router';
 
 export class MenuComponent implements OnInit {
   user:any;
+  cuser:any
   admin:any;
   userlogged : any;
   term:string;
   searchword:any
-  constructor(private authservice : AuthService,private router :Router) { }
+  activeuser:any
+  arole:any
+  constructor(private authservice : AuthService,private router :Router,private http:HttpClient) { }
   role:any;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cuser = JSON.parse(localStorage.getItem('currentUser')!);
+    console.log(this.cuser);
+    this.http.get(`${Urls.USERS}/${this.cuser.userId}?access_token=${this.cuser.id}`).subscribe((res: any) => {
+      this.activeuser = res;
+      this.arole=this.activeuser.role;
+      console.log(this.activeuser)
+           
+    })
+  }
 
 
 

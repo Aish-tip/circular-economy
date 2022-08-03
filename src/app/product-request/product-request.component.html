@@ -1,0 +1,73 @@
+<div>
+    <div class="search_user">
+        <!-- <app-searchbar (searchTextChanged)="onSearchTextEntered($event)"></app-searchbar> -->
+        <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        <!-- <input type="search" placeholder="search"> -->
+        <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+    </div>            
+    <ng-container>
+        <div id="reqitem">                    
+            <table class="req-table">
+                
+                    <tr class="headings">
+                        <th>Name</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                        <!-- <th>Delete</th> -->
+                    </tr>                        
+                    <!-- *ngIf="searchtext === '' || req.employeename.toLowerCase().includes(searchtext)" -->
+                    <tr *ngFor="let req of item | filter:term">
+                        <td><p>{{req.employeename}}</p>
+                        <p style="color:#1D5C63;">{{req.requestDate}}</p></td>
+                        <td>{{req.name}}</td>
+                        <td>{{req.quantity}}</td>
+                        <td>
+                            <div class="row justify-content-between">
+                                <div id="order" class="order-tracking" (click)="reviewRequest(req)" [class.completed]="req.track[0].review === true">
+                                    <span class="is-complete"></span>
+                                    <p>Reviewed</p>
+                                    <p>{{req.track[0].reviewdate}}</p>
+                                </div>
+                                <div id="process" class="order-tracking" (click)="processRequest(req)" [class.completed]="req.track[0].process === true">
+                                    <span class="is-complete"></span>
+                                    <p>Processed</p>
+                                    <p>{{req.track[0].processdate}}</p>
+                                </div>
+                                <div id="accept" class="order-tracking" (click)="acceptRequest(req)" [class.completed]="req.track[0].accept=== true">
+                                    <span class="is-complete"></span>
+                                    <p>Accepted</p>
+                                </div>
+                                <div id="deliver" class="order-tracking" (click)="deliverRequest(req)" [class.completed]="req.track[0].deliver === true">
+                                    <span class="is-complete"></span>
+                                    <p>Delivered</p>
+                                </div>
+                                
+                            </div>
+                            <!-- <button (click)="deleterequest(req)" class="decline-btn">Decline</button> -->
+                        </td>
+                        <td>
+                            <!-- <img src="../../assets/images/delete.png" alt="delete" style="width:80%" (click)="deleterequest(req)"> -->
+                            <img src="../../assets/images/delete.png" alt="delete" style="width:80%" (click)="opendeletepopup()">
+                        </td>
+                        <hr>
+                        <div id="id01" class="modal">
+                            <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+                            <form class="modal-content">
+                              <div class="container">
+                                    <h1>Delete Account</h1>
+                                    <p>Are you sure you want to delete the product request?</p>
+                          
+                                    <div class="clearfix">
+                                        <button class="modal-button" type="button" class="cancelbtn" (click)="cancelbtn()">Cancel</button>
+                                        <button class="modal-button" type="button" class="deletebtn" (click)="deleterequest(req)">Delete</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </tr>                  
+                <hr>
+            </table>
+        </div>
+    </ng-container>
+</div>

@@ -4,8 +4,6 @@
   box-shadow:none;
   background: #EFF0F2;
 }
-
-
 .row{
     --bs-gutter-x: 0 !important;
   }
@@ -425,6 +423,23 @@ color: #838383;
   #id01{
     display:none;
   }
+  #id02{
+    display:none;
+  }
+
+  .okaybtn{
+    background: #34B36A;
+border-radius: 20px;
+width:30%; 
+padding: 2%;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+text-align: center;
+color: #FFFFFF;
+border: none;
+  }
 
   /* float pop up */
 
@@ -444,26 +459,33 @@ color: #838383;
   }
   
   /* Float cancel and delete buttons and add an equal width */
-  .cancelbtn, .deletebtn {
+  /* .cancelbtn, .deletebtn {
     float: left;
     width: 47%;
-  }
+  } */
   
   /* Add a color to the cancel button */
   .cancelbtn {
-    background-color: #ccc;
-    color: black;
-    margin-right: 5%;
+    width: 30%;   
+    background: #E6E6E6;
+    border-radius: 20px;
+    padding:2%;
+    margin: 0% 5%;
+    border:none;
   }
   
   /* Add a color to the delete button */
   .deletebtn {
-    background-color: #f44336;
+    width: 30%;
+    padding:2%; 
+background: #D86262;
+border-radius: 20px;
+border:none;
   }
   
   /* Add padding and center-align text to the container */
   .container {
-    padding: 16px;
+    padding: 0% 0% 5% 0%;
     text-align: center;
   }
   
@@ -483,9 +505,11 @@ color: #838383;
   
   /* Modal Content/Box */
   .modal-content {
-    background-color: #fefefe;
+    /* background-color: #fefefe; */
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
+    background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 20px;
     width: 35%; /* Could be more or less, depending on screen size */
   }
   
@@ -523,5 +547,32 @@ color: #838383;
   }
   .deletep{
     cursor:pointer;
+  }
+  .modal-icon{
+    width:10%;
+    margin: 2% auto;
+  }
+  .modal-heading{
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+/* line-height: 59px; */
+/* identical to box height */
+
+text-align: center;
+
+color: #27AE60;
+  }
+  .container p{
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+/* line-height: 38px; */
+text-align: center;
+
+color: #4A4A4A;
+
   }
 
