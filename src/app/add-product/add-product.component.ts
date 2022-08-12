@@ -4,6 +4,7 @@ import { AuthService } from '../_services/auth.service';
 import {HttpClient} from '@angular/common/http';
 import { Urls } from '../constants/urls';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 function base64toBlob(base64Data: string, contentType: string) {
   contentType = contentType || '';
@@ -35,6 +36,7 @@ export class AddProductComponent implements OnInit {
   
   dashboard = true;
   user = false;
+  userslist = false;
   product = false;
   request = false;
   userlist: any;
@@ -45,11 +47,10 @@ export class AddProductComponent implements OnInit {
   finalimageFile: any;
   generateName: any
   term: string;
-  userslist:any
   userListName:any
   productlist:any
 
-  constructor(private authservice:AuthService,private http:HttpClient, public datepipe: DatePipe){ }
+  constructor(private authservice:AuthService,private http:HttpClient, public datepipe: DatePipe,private router:Router){ }
 
   productForm = new FormGroup({
     nameproduct: new FormControl(''),
@@ -159,15 +160,12 @@ export class AddProductComponent implements OnInit {
       this.product = false;
       this.user = false;
       this.request = false;
+      this.userslist = false;
 
     }
     
     func_user(e: any){
       console.log(e);
-      // this.http.get(`${Urls.USERS}`).subscribe(res=>{
-      //   console.log(res);
-      //   this.userslist = res;
-      // })
       this.http.get(`${Urls.ECOUSER}`).subscribe(Response =>{
         console.log(Response);
         this.userlist = Response;
@@ -177,15 +175,41 @@ export class AddProductComponent implements OnInit {
       this.product = false;
       this.user = true;
       this.request = false;
+      this.userslist = false;
     }
-
+    users:any
+    func_userlist(e:any){
+      this.userslist = true;
+      this.dashboard = false;
+      this.product = false;
+      this.user = false;
+      this.request = false;
+      this.http.get(`${Urls.ULIST}`).subscribe(res=>{
+        this.users=res;
+        console.log(res);
+      })
+     
+    }
+    acceptuser:any
     adduser(u:any){
       this.authservice.register(u.firstname, u.lastname, u.role, u.email, u.password, u.username, u.mobile).subscribe({
         next: Response => {
           const success = document.getElementById("id02");
       success.style.display = 'block';
-          console.log(Response);   
-          location.reload();      
+          this.acceptuser = Response; 
+          console.log(this.acceptuser);  
+          this.http.post(`${Urls.ULIST}`,{
+            "Userid": this.acceptuser.id,
+            "firstname": this.acceptuser.firstname,
+            "lastname": this.acceptuser.lastname,
+            "mobile": this.acceptuser.mobile,
+            "username": this.acceptuser.username,
+            "email": this.acceptuser.email,
+            "role": this.acceptuser.role
+          }).subscribe(res=>{
+            console.log("userlist", res)
+          });
+          // location.reload();      
         },
         error: err => {
           // alert("registration failed");
@@ -216,13 +240,16 @@ export class AddProductComponent implements OnInit {
       this.dashboard = false;
       this.product = false;
       this.user = false;
-      this.request = true;      
+      this.request = true; 
+      this.userslist = false;     
     }    
+
     func_product(e:any){
       this.dashboard = false;
       this.user = false;
       this.product = true;
       this.request = false;
+      this.userslist = false;
       this.http.get(`${Urls.PRODUCT}?access_token=${this.cuser.id}`).subscribe((res:any) =>{
         this.productlist=res;
         console.log(this.productlist);  
@@ -341,12 +368,14 @@ export class AddProductComponent implements OnInit {
     deliverRequest(r:any,i:any){       
       var deliver = document.getElementById("deliver" + i);
       deliver.classList.add("completed");
+      let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');
       this.http.patch(`${Urls.RITEM}/${r.id}?access_token=${this.cuser.id}`,{
         "track":[{
           "review":true,
           "process":true,
           "accept":true,
-          "deliver":true          
+          "deliver":true,
+           "deliverdate": currentDateTime       
         }]
       }).subscribe(res=>{
         const success = document.getElementById("id02");
@@ -469,6 +498,14 @@ export class AddProductComponent implements OnInit {
       return color;
     }
 
+    getulcolor(){
+      var color= '#838383';
+      if(this.userslist == true){
+        color= '#417D7A';
+      }
+      return color;
+    }
+
     getrcolor(){      
       var color= '#838383';
       if(this.request == true){
@@ -495,6 +532,60 @@ export class AddProductComponent implements OnInit {
       const open = document.getElementById("id01");
       open.style.display = 'block';
     }
+    ulid:any
+    opendeleteuser(r:any){
+      this.ulid = r.id;
+      const open = document.getElementById("id01");
+      open.style.display = 'block';
+    }
+    individualuser:any
+    iufirstname:any
+    iulastname:any
+    iumobile:any
+    iuusername:any
+    iuemail:any
+    iuid:any
+    userrequest:any
+    username:any
+    total:any = []
+    deliverdate:any
+    getuserdetails(l:any,i:any){
+      console.log(l);
+      // this.router.navigate(['/user-details',l.id]);
+      this.http.get(`${Urls.ULIST}/${l.id}`).subscribe(res=>{
+        this.individualuser = res;
+        this.iuid = this.individualuser.Userid;
+        this.iufirstname = this.individualuser.firstname;
+        this.iulastname = this.individualuser.lastname;
+        this.iumobile = this.individualuser.mobile;
+        this.iuusername = this.individualuser.username;
+        this.iuemail = this.individualuser.email;
+      })  
+      this.http.get(`${Urls.RITEM}`).subscribe(res=>{
+        this.userrequest = res;
+        console.log(this.iuid);
+        for(let i=0;i<this.userrequest.length;i++){
+          if(this.userrequest[i].employeeid == this.iuid && this.userrequest[i].track[0].deliver == true)
+          {
+            console.log("print");
+            this.username = this.userrequest[i];
+            console.log("prod",this.username)          
+          } 
+          this.total=this.total.concat(this.username);    
+        }   
+        console.log("before filter",this.total)
+        this.total=this.total.filter(
+          (element: any,i: any) => this.total.indexOf(element) == i
+        );        
+        console.log("ritem",this.total);        
+      })
+      const u = document.getElementById("userlist");
+      u.style.display="none";
+
+      const ul = document.getElementById("userdesc");
+      ul.style.display = "block";
+    }
+
     cancelbtn(){
       const open = document.getElementById("id01");
       open.style.display = 'none';

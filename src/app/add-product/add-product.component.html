@@ -19,6 +19,11 @@
                 <span class="text">Manage User</span>
             </p>
             <hr class="divider">
+            <p class="options" (click)="func_userlist($event)" [ngStyle]="{color:getulcolor()}">
+                <span class="icon"><img src="../../assets/images/manage user.svg" alt="dashboard"></span>
+                <span class="text">Users</span>
+            </p>
+            <hr class="divider">
             <p class="options" (click)="func_request($event)" [ngStyle]="{color:getrcolor()}">
                 <span class="icon"><img src="../../assets/images/request.svg" alt="dashboard"></span>
                 <span class="text">Request</span>
@@ -342,6 +347,91 @@
                 </div>
               </div>
             </form>
-        </div>       
+        </div> 
+        <div *ngIf="userslist">
+            <div class="search_user">
+                <!-- <app-searchbar (searchTextChanged)="onSearchTextEntered($event)"></app-searchbar> -->
+                <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+                <!-- <input type="search" placeholder="search"> -->
+                <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+            </div> 
+            <div id="userlist">
+                <table>
+                    <tr class="headings">
+                        <th>Name</th>
+                        <th>CompanyId</th>
+                        <th>Action</th>
+                    </tr>
+                    <!-- *ngIf="searchtext === '' || list.firstname.toLowerCase().includes(searchtext)" -->
+                        <tr *ngFor="let list of users | filter:term;let i=index"  class="user_data">
+                            <td (click)="getuserdetails(list,i)" style="padding:5%">{{list.firstname}}</td>
+                            <td>{{list.id}}</td>
+                            <!-- <td>
+                                <img class="deletep" src="../../assets/images/delete.png" alt="delete" (click)="opendeleteuser(list)">
+                            </td> -->
+                            <hr>                                                   
+                        </tr>
+                        <hr>                    
+                </table>
+            </div>
+            <div id="userdesc">
+                <div class="user-card">
+                    <img src="../../assets/images/profile.jpg" alt="profile" style="width: 20%;">                    
+                    <div class="user-info">
+                        <h4>{{iufirstname}} {{iulastname}}</h4>
+                        <h4>Contact Info</h4>
+                        <div class="profile-info">
+                            <img src="../../assets/images/email.png" alt="email">
+                            <p>{{iuemail}}</p>
+                        </div>
+                        <div class="profile-info">
+                            <img src="../../assets/images/phone.png" alt="phone">
+                            <p>{{iumobile}}</p>
+                        </div>                       
+                    </div>                    
+                </div>
+                <div>
+                    <h2>Products</h2>
+                    <hr class="division">
+                    <table class="deliver-table">
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Date of Delivery</th>
+                            <th></th>
+                        </tr>                    
+                            <tr *ngFor="let t of total">
+                                <td>{{t.name}}</td>
+                                <td>{{t.track[0].deliverdate}}</td>
+                                <td>
+                                    <button class="return-btn">Returned</button>
+                                </td>
+                            </tr>
+                            <!-- <p>{{t.track[0].deliverdate}}</p> -->    
+                    </table>
+                   
+                </div>
+                <div>
+                    <h2>Products - Handed Over</h2>
+                    <hr class="division">
+                </div>
+
+            </div>
+            <!-- <div id="id01" class="modal">
+                
+                <form class="modal-content">
+                    <img class="modal-icon" src="../../assets/images/Trash.svg" alt="trash">
+                    <div class="container">
+                      <h1 class="modal-heading">Are you sure?</h1>
+                      <p>Do you Really want to delete these records?<br>
+                      This process cannot be undone</p>                                 
+                    <div class="clearfix">
+                      <button class="modal-button" type="button" class="cancelbtn" (click)="cancelbtn()">Cancel</button>
+                      <button class="modal-button" type="button" class="deletebtn" (click)="deleteapproveduser(ulid)">Delete</button>
+                    </div>
+                  </div>
+                </form>
+            </div> -->
+
+        </div>      
     </div>        
 </div>

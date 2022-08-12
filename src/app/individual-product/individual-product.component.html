@@ -1,30 +1,36 @@
 <!-- <p>individual-product works!</p> -->
 <app-menu></app-menu>
 <div class="row product-desc-div">
-    <div class="col-5">
+    <div class="col-4 prod-img">
         <img class="pimage" src="http://3.111.188.154:3000/api/containers/images/download/{{pd.imagename}}"/>
     </div>
-    <div class="col-7">
-        <p><span>name:</span> {{pd.name}}</p>
+    <div class="col-1"></div>
+    <div class="prod-info col-7">
+        <h4>{{pd.name}}</h4>
+        <!-- <p><span>name:</span> {{pd.name}}</p> -->
         <p><span>brand: </span>{{pd.brand}}</p>
-        <p>{{pd.description}}</p>
-        <div *ngIf="LoggedIn1()">
-            <div *ngIf="user1">
-              <div class="quantity-div">
-                <div class="input-group">                
-                  <input class="plusminus" (click)="decrement()" value="-" readonly>
-                  <input type="number" class="num" min="1" max="{{productStock}}" value="1" [(ngModel)]="value" readonly>
-                  <input class="plusminus" (click)="increment()" value="+" max="{{productStock}}" readonly>
-                </div>
-                <div class="submit-div">
-                  <button (click)="openpop(pd)" class="asset-btn">Submit</button>
-                </div>
-              </div>
-            </div>
+        <p>{{pd.description}}</p>        
         <p>{{pd.quantity}} <span>available</span></p>
         <p>{{pd.location}}</p>
-
+        <div *ngIf="LoggedIn1()">
+          <div *ngIf="user1">
+            <div class="quantity-div">
+              <div class="input-group">                
+                <input class="plusminus" (click)="decrement()" value="-" readonly>
+                <input type="number" class="num" min="1" max="{{productStock}}" value="1" [(ngModel)]="value" readonly>
+                <input class="plusminus" (click)="increment()" value="+" max="{{productStock}}" readonly>
+              </div>
+              <div class="submit-div">
+                <button (click)="openpop(pd)" class="asset-btn">Submit</button>
+              </div>
+            </div>
+          </div>
     </div>
+</div>
+<div>
+  <h4 class="desc-heading">Description</h4>
+  <hr>
+  <p class="desc-content">{{pd.description}}</p>
 </div>
 <div id="id02" class="modal">
     <form class="modal-content">

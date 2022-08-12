@@ -30,12 +30,12 @@ export class TrackingComponent implements OnInit {
       // console.log("user",this.user_name);           
     })    
 
-    this.http.get(`${Urls.RITEM}?access_token=${this.user.id}`)
-    .subscribe ((res :any)=>{
-      console.log(res);
-      this.item=res;
+    // this.http.get(`${Urls.RITEM}?access_token=${this.user.id}`)
+    // .subscribe ((res :any)=>{
+    //   console.log(res);
+    //   this.item=res;
       
-    })
+    // })
     
     this.http.get(`${Urls.RITEM}?access_token=${this.user.id}`)
     .subscribe ((res :any)=>{

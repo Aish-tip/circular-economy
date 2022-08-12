@@ -63,7 +63,7 @@ hr.line{
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  color: #000000;
+  color: #417D7A;
   cursor: pointer;
 }
 .admin-menu-item span{
@@ -74,7 +74,7 @@ hr.line{
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  color: #000000;
+  color: #417D7A;
   cursor: pointer;
 }
 .logout{
@@ -139,6 +139,11 @@ hr.line{
 }
 .active{
   color:#1D5C63 !important;
+  /* text-decoration: underline; */
+  /* text-decoration-color: #1D5C63; */
+  padding-bottom: 2%;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
 }
 
 

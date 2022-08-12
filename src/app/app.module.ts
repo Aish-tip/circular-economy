@@ -37,6 +37,7 @@ import { ProductRequestComponent } from './product-request/product-request.compo
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { ContactComponent } from './contact/contact.component';
 import { IndividualProductComponent } from './individual-product/individual-product.component';
+import { IndividualUserComponent } from './individual-user/individual-user.component';
 
 
 //googleChartsConfigSubject.next(config);
@@ -63,7 +64,8 @@ import { IndividualProductComponent } from './individual-product/individual-prod
     ProductRequestComponent,
     ManageUserComponent,
     ContactComponent,
-    IndividualProductComponent
+    IndividualProductComponent,
+    IndividualUserComponent
   ],
   imports: [
     BrowserModule,

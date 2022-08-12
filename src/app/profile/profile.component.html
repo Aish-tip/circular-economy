@@ -4,31 +4,49 @@
 <div style="margin-bottom:10%">
   <div id="profile_details">
     <div class="profile-details">
-      <h1>Profile</h1>
-    <hr> 
+      <!-- <h1>Profile</h1> -->
+    <!-- <hr>  -->
     </div>
-    <div>
-      <div class="profile-card">
-        <img src="../../assets/images/profile.jpg" alt="profile">
+    <div class="row">
+      <!-- <div class="col-1"></div> -->
+      <div class="col-4" *ngIf="LoggedIn()">
+        <div class="profile-container" *ngIf="admin">
+          <div class="profile-card centered-element">
+            <img src="../../assets/images/profile.jpg" alt="profile">
+            <!-- <p class="my-orders">My Orders</p> -->
+            <p class="chng-pwd">Change Password</p>
+          </div>
+        </div>
+        <div class="profile-container" *ngIf="user">
+          <div class="profile-card centered-element">
+            <img src="../../assets/images/profile.jpg" alt="profile">
+            <p class="my-orders">My Orders</p>
+            <p class="chng-pwd">Change Password</p>
+          </div>
+        </div>
       </div>
       <div  class="profile_card"> 
         <img src="../../assets/images/edit.png" alt="edit" (click)="editdetails()">
         <div>
-          <p>Firstname: {{activeuser.firstname}}</p>            
-          <p>Lastname: {{activeuser.lastname}}</p>
-          <p>Email: {{activeuser.email}}</p>
-          <p>Username: {{activeuser.username}}</p>
-          <p>Role: {{activeuser.role}}</p>
-          <p>Mobile Number: {{activeuser.mobile}}</p>
-          <!-- <button>Edit details</button> -->
+          <h6 class="username">{{activeuser.firstname}} {{activeuser.lastname}}</h6>   
+          <p>{{activeuser.role}}</p>          
+          <!-- <p>Lastname: {{activeuser.lastname}}</p> -->
+          <h6 class="subtitle">Contact Info</h6>
+          <div class="profile-info">
+            <img src="../../assets/images/email.png" alt="email">
+            <p>{{activeuser.email}}</p>
+          </div>
+          <div class="profile-info">
+            <img src="../../assets/images/phone.png" alt="">
+            <p>{{activeuser.mobile}}</p>
+          </div>
         </div>         
       </div>
     </div>    
-  </div>
-  
+  </div>  
   <div id="profile_edit">
     <div class="edit-profile">
-      <h2>Edit Profile</h2>
+      <h1>Edit Profile</h1>
       <hr>
     </div>    
     <form class="row"  [formGroup]="editform" (ngSubmit)="save_modified_form()">

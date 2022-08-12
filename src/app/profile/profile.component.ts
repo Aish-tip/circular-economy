@@ -12,6 +12,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   user:any;
  activeuser :any;
+ cuser:any
   constructor( private http:HttpClient) {}
 
   editform = new FormGroup({
@@ -24,9 +25,9 @@ export class ProfileComponent implements OnInit {
    
    
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('currentUser')!);
-    console.log(this.user);
-    this.http.get(`${Urls.USERS}/${this.user.userId}?access_token=${this.user.id}`).subscribe((res: any) => {
+    this.cuser = JSON.parse(localStorage.getItem('currentUser')!);
+    console.log(this.cuser);
+    this.http.get(`${Urls.USERS}/${this.cuser.userId}?access_token=${this.cuser.id}`).subscribe((res: any) => {
       this.activeuser = res;
       console.log(this.activeuser)
            
@@ -68,6 +69,30 @@ export class ProfileComponent implements OnInit {
       p2.style.display = "block";
     }
   }
+
+  role:any
+  admin:any
+  
+  LoggedIn(){
+    if(localStorage.getItem('currentUser'))
+    {
+      this.role= sessionStorage.getItem("role");
+      // console.log(this.role);
+      if(this.role == 'admin')
+      {
+        this.admin=true;
+      }
+      else if(this.role == 'user')
+      {
+        this.user=true;
+      }
+      return true;
+    }
+    else{
+      return false;
+    }    
+  }
+
 }
   
   

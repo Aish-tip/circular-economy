@@ -17,6 +17,7 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
 import { ProductRequestComponent } from './product-request/product-request.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { IndividualProductComponent } from './individual-product/individual-product.component';
+import { IndividualUserComponent } from './individual-user/individual-user.component';
 import { AuthGuard } from './services/auth.guard';
 import { NoauthGuard } from './services/noauth.guard';
 
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path:'manage-product',component:ManageProductComponent, canActivate: [AuthGuard]},
   {path:'product-request',component:ProductRequestComponent, canActivate: [AuthGuard]},
   {path:'manage-user', component:ManageUserComponent, canActivate: [AuthGuard]},
-  {path:'product-description/:id', component:IndividualProductComponent, canActivate:[AuthGuard]}
+  {path:'product-description/:id', component:IndividualProductComponent, canActivate:[AuthGuard]},
+  {path:'user-details/:id', component:IndividualUserComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({
