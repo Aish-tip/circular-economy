@@ -79,47 +79,50 @@ content:any
   productname:any
   productStock:any
   qty:number
-
+  userdata:any
+  userdataid:any
   openpop(p:any){
     console.log("product",p)
     this.productname = p.name;
     this.productStock = p.quantity;
     this.productStock= this.productStock - this.value;
-    // console.log("active user",this.cuser.userId);
-    // console.log("name",this.activeuser.firstname)
-    // console.log("stock",this.productStock)
-    // console.log("qty",this.value);
-    // console.log("value",this.productname)
+    this.http.get(`${Urls.ULIST}?filter[where][firstname]=${this.activeuser.firstname}&access_token=${this.cuser.id}`).subscribe(Response=>{
+      console.log(Response);
+      this.userdata = Response;
+      this.userdataid = this.userdata[0].id;
+      this.http.post<any>(`${Urls.RITEM}`,
+      {"employeename": this.activeuser.firstname,
+        "employeeid": this.cuser.userId,
+        "UserListId": this.userdataid,
+        "name": this.productname,
+        "quantity": this.value,
+        "requestDate": currentDateTime,
+        "track":[ {
+          "review": false,
+          "reviewdate":'',
+          "process": false,
+          "processdate": '',
+          "accept": false,
+          "acceptdate": '',
+          "deliver": false,
+          "deliverdate":''
+        }]
+      }).subscribe(Response =>{        
+      this.http.patch(`${Urls.PRODUCT}/${p.id}`,{
+      "quantity":this.productStock
+      }).subscribe(res=>{
+      console.log("patchstock",res);
+    }) 
+        const success = document.getElementById("id02");
+        success.style.display = 'block';
+          console.log(Response);
+          // alert("successful");
+      }); 
+    })
+    // console.log("id",this.userdataid);
     let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');  
       console.log(currentDateTime);
-    this.http.post<any>(`${Urls.RITEM}`,
-    {"employeename": this.activeuser.firstname,
-      "employeeid": this.cuser.userId,
-      "name": this.productname,
-      "quantity": this.value,
-      "requestDate": currentDateTime,
-      "track":[ {
-        "review": false,
-        "reviewdate":'',
-        "process": false,
-        "processdate": '',
-        "accept": false,
-        "acceptdate": '',
-        "deliver": false,
-        "deliverdate":''
-      }]
-    }).subscribe(Response =>{
-      const success = document.getElementById("id02");
-      success.style.display = 'block';
-        console.log(Response);
-        // alert("successful");
-    }); 
-    this.http.patch(`${Urls.PRODUCT}/${p.id}`,{
-      "quantity":this.productStock
-    }).subscribe(res=>{
-      console.log("patchstock",res);
-      // location.reload();
-    })   
+     
   }
 
   value=1

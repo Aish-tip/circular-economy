@@ -146,6 +146,12 @@ hr.line{
   border-bottom-width: 2px;
 }
 
+@media only screen and (width: 1920px){
+  .track{
+    margin-left:12%;
+  }
+}
+
 
 
 

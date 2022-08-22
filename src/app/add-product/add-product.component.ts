@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import { Urls } from '../constants/urls';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { empty } from 'rxjs';
 
 function base64toBlob(base64Data: string, contentType: string) {
   contentType = contentType || '';
@@ -392,7 +393,9 @@ export class AddProductComponent implements OnInit {
       console.log(r);
       this.http.delete(`${Urls.RITEM}/${r}?access_token=${this.cuser.id}`).subscribe(res=>{
         console.log(res);
-        alert("request deleted");
+        const open = document.getElementById("id01");
+      open.style.display = 'block';
+        // alert("request deleted");
         location.reload();
       })
     }
@@ -545,8 +548,9 @@ export class AddProductComponent implements OnInit {
     iuusername:any
     iuemail:any
     iuid:any
+    ulistid:any
     userrequest:any
-    username:any
+    username:any = []
     total:any = []
     deliverdate:any
     getuserdetails(l:any,i:any){
@@ -555,30 +559,53 @@ export class AddProductComponent implements OnInit {
       this.http.get(`${Urls.ULIST}/${l.id}`).subscribe(res=>{
         this.individualuser = res;
         this.iuid = this.individualuser.Userid;
+        this.ulistid = this.individualuser.id;
         this.iufirstname = this.individualuser.firstname;
         this.iulastname = this.individualuser.lastname;
         this.iumobile = this.individualuser.mobile;
         this.iuusername = this.individualuser.username;
         this.iuemail = this.individualuser.email;
+        console.log(res);
+        this.http.get(`${Urls.RITEM}?filter[where][employeename]=${this.individualuser.firstname}&access_token=${this.cuser.id}`)
+        .subscribe(res=>{
+          console.log(res);
+          this.userrequest=res;
+          for(let i=0;i<this.userrequest.length;i++){
+                if(this.userrequest[i].track[0].deliver == true)
+                {
+                  console.log("print");
+                  this.username = this.userrequest[i];
+                  console.log("prod",this.username)          
+                } 
+                this.total[i]=this.username;    
+              } 
+              console.log("before filter",this.total);
+              this.total=this.total.filter(
+                (element: any,i: any) => this.total.indexOf(element) == i
+              );        
+              console.log("ritem",this.total); 
+        })
+        
       })  
-      this.http.get(`${Urls.RITEM}`).subscribe(res=>{
-        this.userrequest = res;
-        console.log(this.iuid);
-        for(let i=0;i<this.userrequest.length;i++){
-          if(this.userrequest[i].employeeid == this.iuid && this.userrequest[i].track[0].deliver == true)
-          {
-            console.log("print");
-            this.username = this.userrequest[i];
-            console.log("prod",this.username)          
-          } 
-          this.total=this.total.concat(this.username);    
-        }   
-        console.log("before filter",this.total)
-        this.total=this.total.filter(
-          (element: any,i: any) => this.total.indexOf(element) == i
-        );        
-        console.log("ritem",this.total);        
-      })
+
+      // this.http.get(`${Urls.RITEM}`).subscribe(res=>{
+      //   this.userrequest = res;
+      //   console.log(this.iuid);
+      //   for(let i=0;i<this.userrequest.length;i++){
+      //     if(this.userrequest[i].employeeid == this.iuid && this.userrequest[i].track[0].deliver == true)
+      //     {
+      //       console.log("print");
+      //       this.username = this.userrequest[i];
+      //       console.log("prod",this.username)          
+      //     } 
+      //     this.total=this.total.concat(this.username);    
+      //   }   
+      //   console.log("before filter",this.total)
+      //   this.total=this.total.filter(
+      //     (element: any,i: any) => this.total.indexOf(element) == i
+      //   );        
+      //   console.log("ritem",this.total);        
+      // })
       const u = document.getElementById("userlist");
       u.style.display="none";
 

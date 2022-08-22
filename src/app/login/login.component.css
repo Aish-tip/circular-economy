@@ -236,5 +236,14 @@ font-size: 20px;
 /* line-height: 30px; */
 color: #838383;
 }
+@media only screen and (width: 1920px){
+    #submit{
+        left:5%;
+    }
+    #admin-submit{
+        left:5%;
+    }
+  }
+  
 
 
